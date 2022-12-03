@@ -15,6 +15,7 @@
 
 (use-package meow
   :init (meow-global-mode 1)
+  :demand nil
   :config
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)

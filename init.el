@@ -28,6 +28,9 @@
       `((".*" ,emacs-tmp-dir t)))
 (setq auto-save-list-file-prefix
       emacs-tmp-dir)
+(setq transient-levels-file (expand-file-name "transient/levels.el" prelude-local-dir))
+(setq transient-values-file (expand-file-name "transient/values.el" prelude-local-dir))
+(setq transient-history-file (expand-file-name "transient/history.el" prelude-local-dir))
 
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
@@ -38,22 +41,5 @@
 (require 'core)
 (setq large-file-warning-threshold 100000000)
 
-(use-package project
-  :init
-  (setq project-list-file (expand-file-name "projects" prelude-local-dir)))
-(use-package eshell
-  :init
-  (setq eshell-directory-name (expand-file-name "eshell" prelude-local-dir)))
+
 (load prelude-modules-file)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(go-fill-struct orderless compat)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

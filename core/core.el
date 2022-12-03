@@ -1,3 +1,6 @@
+(use-package eshell
+  :init
+  (setq eshell-directory-name (expand-file-name "eshell" prelude-local-dir)))
 
 (setq el-get-sources
       '((:name vertico :type github :pkgname "minad/vertico")
@@ -33,6 +36,7 @@
 
 ;; Example configuration for Consult
 (use-package consult
+  :demand nil
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
@@ -45,7 +49,7 @@
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
          ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
-         ("C-x p f" . consult-fd)
+;         ("C-x p f" . consult-fd)
          ;; Custom M-# bindings for fast register access
          ("M-#" . consult-register-load)
          ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
@@ -101,6 +105,7 @@
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
 
+
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
@@ -108,6 +113,8 @@
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
   :config
+  (advice-add #'project-find-regexp :override #'consult-ripgrep)
+  (advice-add #'project-find-file :override #'consult-fd)
 
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
@@ -151,6 +158,11 @@
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
   (setq consult-narrow-key "<") ;; (kbd "C-+")
-)
+  )
+
+(use-package project
+  :init
+  (setq project-list-file (expand-file-name "projects" prelude-local-dir))
+  )
 
 (provide 'core)
