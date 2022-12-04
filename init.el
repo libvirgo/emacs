@@ -12,7 +12,7 @@
 
 (defvar prelude-savefile-dir (expand-file-name "savefile" prelude-local-dir))
 (defvar prelude-backup-dir (expand-file-name "backup" prelude-local-dir))
-(defvar prelude-modules-file (expand-file-name "prelude-modules.el" prelude-modules-dir))
+(defvar prelude-modules-file (expand-file-name "modules.el" prelude-modules-dir))
 (defvar is-darwin '(eq system-type 'darwin))
 
 (unless (file-exists-p prelude-local-dir)

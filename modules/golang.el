@@ -1,4 +1,3 @@
-(prefer-coding-system 'utf-8)
 (setq el-get-sources
 	  '((:name go-fill-struct :type elpa
 			   ))
@@ -17,4 +16,4 @@
   :config
   (add-hook 'go-mode-hook 'eglot-ensure))
 
-(provide 'prelude-lang-go)
+(provide 'golang)

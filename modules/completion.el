@@ -1,5 +1,19 @@
-(el-get-bundle corfu
-  :url "https://github.com/minad/corfu.git")
+(setq el-get-sources
+      '((:name corfu :type github :pkgname "minad/corfu")
+        (:name cape :type github :pkgname "minad/cape")
+        (:name citre :type github :pkgname "universal-ctags/citre")
+        (:name orderless :type elpa)
+        (:name kind-icon :type github :pkgname "jdtsmith/kind-icon")
+        ))
+(setq completion-require-packages
+      (append
+       '(corfu
+         cape
+         citre
+         orderless
+         kind-icon)
+       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
+(el-get 'sync completion-require-packages)
 
 (use-package corfu
   ;; Optional customizations
@@ -26,9 +40,6 @@
   :init
   (global-corfu-mode))
 
-(el-get-bundle cape
-  :url "https://github.com/minad/cape.git")
-
 (use-package cape
   :bind (("C-c p p" . completion-at-point))
   :init
@@ -36,11 +47,16 @@
   (add-to-list 'completion-at-point-functions #'cape-keyword)
   )
 
-(el-get-bundle citre
-  :url "https://github.com/universal-ctags/citre.git")
-
-(el-get-bundle kind-icon
-  :url "https://github.com/jdtsmith/kind-icon.git")
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '(
+                                        (file (styles partial-completion))
+                                        (eglot (styles orderless)))))
 
 (use-package kind-icon
   :after corfu
@@ -51,4 +67,4 @@
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
 
-(provide 'prelude-completion)
+(provide 'completion)

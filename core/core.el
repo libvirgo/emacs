@@ -4,33 +4,21 @@
 
 (setq el-get-sources
       '((:name vertico :type github :pkgname "minad/vertico")
-		(:name orderless :type elpa)
         (:name marginalia :type github :pkgname "minad/marginalia")
         (:name consult :type github :pkgname "minad/consult")
 		))
-(setq completion-require-packages
+(setq core-require-packages
       (append
        '(vertico
          marginalia
-         orderless
          consult)
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 
-(el-get 'sync completion-require-packages)
+(el-get 'sync core-require-packages)
 
 (use-package vertico
   :init (vertico-mode)
   )
-(use-package orderless
-  :init
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
-  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '(
-                                        (file (styles partial-completion))
-                                        (eglot (styles orderless)))))
 
 (use-package marginalia
   :init
@@ -48,7 +36,7 @@
          ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-othecompletionr-frame
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
          ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
          ;; Custom M-# bindings for fast register access
@@ -163,6 +151,29 @@
 (use-package project
   :init
   (setq project-list-file (expand-file-name "projects" prelude-local-dir))
+  :config
+  (defcustom project-root-markers
+    '("Cargo.toml" "go.mod" "package.json" ".git")
+    "Files or directories that indicate the root of a project."
+    :type '(repeat string)
+    :group 'project)
+  (defun project-root-p (path)
+    "Check if the current PATH has any of the project root markers."
+    (catch 'found
+      (dolist (marker project-root-markers)
+        (when (file-exists-p (concat path marker))
+          (throw 'found marker)))))
+  (defun project-find-root (path)
+    "Search up the PATH for `project-root-markers'."
+    (let ((path (expand-file-name path)))
+      (catch 'found
+        (while (not (equal "/" path))
+          (if (not (project-root-p path))
+              (setq path (file-name-directory (directory-file-name path)))
+            (throw 'found (cons 'transient path)))))))
+  (add-to-list 'project-find-functions #'project-find-root)
+  
   )
+
 
 (provide 'core)
