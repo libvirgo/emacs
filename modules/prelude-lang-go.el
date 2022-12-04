@@ -13,6 +13,8 @@
 
 (use-package go-mode
   :bind (:map go-mode-map
-			  ("C-c C-u" . go-remove-unused-imports)))
+			  ("C-c C-u" . go-remove-unused-imports))
+  :config
+  (add-hook 'go-mode-hook 'eglot-ensure))
 
 (provide 'prelude-lang-go)

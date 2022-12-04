@@ -28,7 +28,9 @@
   ;;       orderless-component-separator #'orderless-escapable-split-on-space)
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-overrides '(
+                                        (file (styles partial-completion))
+                                        (eglot (styles orderless)))))
 
 (use-package marginalia
   :init
@@ -113,7 +115,6 @@
   ;; after lazily loading the package.
   :config
   (advice-add #'project-find-regexp :override #'consult-ripgrep)
-  (advice-add #'project-find-file :override #'consult-fd)
 
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
