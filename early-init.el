@@ -27,3 +27,8 @@
     ('light (load-theme 'spacemacs-light t))
     ('dark (load-theme 'spacemacs-dark t))))
 (add-hook 'ns-system-appearance-change-functions #'my/load-theme)
+
+(defconst sys/linuxp
+  (and (eq system-type 'gnu/linux)
+       (not (string-match "-[Mm]icrosoft" operating-system-release)))
+  "Are we running on a GNU/Linux system?")
