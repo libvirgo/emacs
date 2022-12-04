@@ -41,6 +41,7 @@
      '("[" . switch-to-prev-buffer)
      '("l" . avy-goto-line)
      '("s" . avy-goto-char-2)
+     '("t" . vterm)
      )
     (meow-normal-define-key
      '("0" . meow-expand-0)
