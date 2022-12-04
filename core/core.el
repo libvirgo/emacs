@@ -1,3 +1,5 @@
+(setq xref-search-program 'ripgrep)
+
 (use-package eshell
   :init
   (setq eshell-directory-name (expand-file-name "eshell" prelude-local-dir)))
@@ -29,20 +31,19 @@
   :demand nil
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
-         ("C-c h" . consult-history)
-         ("C-c m" . consult-mode-command)
+         ;; ("C-c h" . consult-history)
+         ;; ("C-c m" . consult-mode-command)
          ("C-c k" . consult-kmacro)
          ;; C-x bindings (ctl-x-map)
-         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-othecompletionr-frame
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
-         ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
          ;; Custom M-# bindings for fast register access
-         ("M-#" . consult-register-load)
-         ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-         ("C-M-#" . consult-register)
+         ("C-x r i" . consult-register-load)
+         ("C-x r s" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("C-x r r" . consult-register)
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ;; M-g bindings (goto-map)
@@ -56,14 +57,10 @@
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ;; M-s bindings (search-map)
-         ("M-s d" . consult-find)
-         ("M-s D" . consult-locate)
-         ("M-s g" . consult-git-grep)
+         ;; ("M-s D" . consult-locate)
          ("M-s r" . consult-ripgrep)
-         ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s m" . consult-multi-occur)
-         ("M-s k" . consult-keep-lines)
          ("M-s u" . consult-focus-lines)
          ;; Isearch integration
          ("M-s e" . consult-isearch-history)
@@ -172,8 +169,18 @@
               (setq path (file-name-directory (directory-file-name path)))
             (throw 'found (cons 'transient path)))))))
   (add-to-list 'project-find-functions #'project-find-root)
-  
-  )
+  (defun my/project-files-in-directory (dir)
+    "Use `fd' to list files in DIR."
+    (let* ((default-directory dir)
+           (localdir (file-local-name (expand-file-name dir)))
+           (command (format "fd -H -t f -0 -E .git . %s" localdir)))
+      (project--remote-file-names
+       (sort (split-string (shell-command-to-string command) "\0" t)
+             #'string<))))
 
+  (cl-defmethod project-files ((project (head transient)) &optional dirs)
+    "Override `project-files' to use `fd' in local projects."
+    (mapcan #'my/project-files-in-directory
+            (or dirs (list (project-root project))))))
 
 (provide 'core)
