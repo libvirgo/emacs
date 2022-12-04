@@ -17,7 +17,4 @@
 (set-frame-height (selected-frame) 39)
 (set-face-attribute 'default nil :font "JetBrainsMono NF 15")
 
-(use-package display-line-numbers
-  :init (global-display-line-numbers-mode))
-
 (provide 'prelude-ui)
