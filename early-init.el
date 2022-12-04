@@ -17,16 +17,6 @@
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'super)
 
-;; set theme to spacemacs-theme
-(add-to-list 'load-path (expand-file-name "core/spacemacs-theme" user-emacs-directory))
-(require 'spacemacs-common)
-(defun my/load-theme (appearance)
-  "Load theme, taking current system APPEARANCE into consideration."
-  (mapc #'disable-theme custom-enabled-themes)
-  (pcase appearance
-    ('light (load-theme 'spacemacs-light t))
-    ('dark (load-theme 'spacemacs-dark t))))
-(add-hook 'ns-system-appearance-change-functions #'my/load-theme)
 
 (defconst sys/linuxp
   (and (eq system-type 'gnu/linux)

@@ -1,6 +1,8 @@
 (el-get-bundle meow
   :url "https://github.com/meow-edit/meow.git")
 
+
+
 (use-package meow
   :init (meow-global-mode 1)
   :demand nil
@@ -30,7 +32,16 @@
      '("9" . meow-digit-argument)
      '("0" . meow-digit-argument)
      '("/" . meow-keypad-describe-key)
-     '("?" . meow-cheatsheet))
+     '("?" . meow-cheatsheet)
+     '("f" . project-find-file)
+     '("v" . magit)
+     '("d" . dired)
+     '("b" . consult-project-buffer)
+     '("]" . switch-to-next-buffer)
+     '("[" . switch-to-prev-buffer)
+     '("l" . avy-goto-line)
+     '("s" . avy-goto-char-2)
+     )
     (meow-normal-define-key
      '("0" . meow-expand-0)
      '("9" . meow-expand-9)

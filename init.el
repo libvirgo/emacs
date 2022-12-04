@@ -1,7 +1,7 @@
 (defvar prelude-user
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
-
+(setq large-file-warning-threshold 100000000)
 (setq load-prefer-newer t)
 
 (defvar prelude-dir (file-name-directory load-file-name))
@@ -32,6 +32,7 @@
 (setq transient-values-file (expand-file-name "transient/values.el" prelude-local-dir))
 (setq transient-history-file (expand-file-name "transient/history.el" prelude-local-dir))
 
+
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
 
@@ -39,7 +40,5 @@
 (require 'prelude-ui)
 (require 'prelude-editor)
 (require 'core)
-(setq large-file-warning-threshold 100000000)
-
 
 (load prelude-modules-file)
