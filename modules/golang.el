@@ -11,9 +11,11 @@
 (el-get 'sync go-mode-require-package)
 
 (use-package go-mode
+  :hook ((before-save . gofmt-before-save))
   :bind (:map go-mode-map
 			  ("C-c C-u" . go-remove-unused-imports))
   :config
-  (add-hook 'go-mode-hook 'eglot-ensure))
+  (add-hook 'go-mode-hook 'eglot-ensure)
+  (setq gofmt-command "goimports"))
 
 (provide 'golang)
