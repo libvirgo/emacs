@@ -34,6 +34,7 @@
      '("/" . meow-keypad-describe-key)
      '("?" . meow-cheatsheet)
      ;; project mode map
+     '("p p" . project-switch-project)
      '("p f" . project-find-file)
      '("p s" . project-find-regexp)
      '("p b" . consult-project-buffer)

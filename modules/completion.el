@@ -41,7 +41,7 @@
   (global-corfu-mode))
 
 (use-package cape
-  :bind (("C-c p p" . completion-at-point))
+  ;; :bind (("C-c p p" . completion-at-point))
   :init
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-keyword)
