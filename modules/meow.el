@@ -3,7 +3,7 @@
 (setq meow-require-packages
       (append
        '(meow)
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-sources))))
+       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 (el-get 'sync meow-require-packages)
 
 (use-package meow

@@ -149,6 +149,7 @@
   :init
   (setq project-list-file (expand-file-name "projects" prelude-local-dir))
   :config
+  (advice-add #'project-vc-dir :override #'magit-status)
   (defcustom project-root-markers
     '("Cargo.toml" "go.mod" "package.json" ".git")
     "Files or directories that indicate the root of a project."
