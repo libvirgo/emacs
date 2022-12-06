@@ -146,10 +146,10 @@
   )
 
 (use-package project
+  :demand nil
   :init
   (setq project-list-file (expand-file-name "projects" prelude-local-dir))
   :config
-  (advice-add #'project-vc-dir :override #'magit-status)
   (defcustom project-root-markers
     '("Cargo.toml" "go.mod" "package.json" ".git")
     "Files or directories that indicate the root of a project."
@@ -182,6 +182,16 @@
   (cl-defmethod project-files ((project (head transient)) &optional dirs)
     "Override `project-files' to use `fd' in local projects."
     (mapcan #'my/project-files-in-directory
-            (or dirs (list (project-root project))))))
+            (or dirs (list (project-root project)))))
+  (setq magit-bind-magit-project-status nil)
+  (define-key project-prefix-map "v" #'vterm)
+  (define-key project-prefix-map "m" #'magit-project-status)
+  (setq project-switch-commands
+        '((project-find-file "Find file")
+          (project-find-regexp "Find regexp")
+          (project-find-dir "Find directory")
+          (vterm "VTerm")
+          (magit-project-status "Magit")))
+  )
 
 (provide 'core)
