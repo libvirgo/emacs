@@ -194,4 +194,8 @@
           (magit-project-status "Magit")))
   )
 
+(use-package magit
+  :config
+  (setq magit-refresh-status-buffer nil))
+
 (provide 'core)

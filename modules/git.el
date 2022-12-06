@@ -31,10 +31,11 @@
         (vector (if sys/linuxp #b11111100 #b11100000))
         1 8
         '(center t)))
-    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)
+    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)))
     ;; Set fringe style
-    (with-eval-after-load 'magit
-      (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
-      (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))))
+    ;; performance slow
+    ;; (with-eval-after-load 'magit
+    ;;   (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+    ;;   (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))))
 
 (provide 'git)

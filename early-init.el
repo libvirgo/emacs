@@ -18,7 +18,4 @@
 (setq mac-command-modifier 'super)
 
 
-(defconst sys/linuxp
-  (and (eq system-type 'gnu/linux)
-       (not (string-match "-[Mm]icrosoft" operating-system-release)))
-  "Are we running on a GNU/Linux system?")
+

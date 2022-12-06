@@ -23,4 +23,13 @@
 (set-frame-height (selected-frame) 39)
 (set-face-attribute 'default nil :font "JetBrainsMono NF 15")
 
+(setq inhibit-startup-screen t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+(setq ring-bell-function 'ignore)
+(blink-cursor-mode -1)
+
 (provide 'prelude-ui)
