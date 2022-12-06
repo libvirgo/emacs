@@ -1,5 +1,11 @@
-(el-get-bundle spacemacs-theme
-  :url "https://github.com/nashamri/spacemacs-theme.git")
+(add-recipe-items
+ '((:name spacemacs-theme :type github :pkgname "nashamri/spacemacs-theme"))
+ )
+(setq ui-require-packages
+      (append
+       '(spacemacs-theme)
+       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
+(el-get 'sync ui-require-packages)
 
 ;; set theme to spacemacs-theme
 (use-package spacemacs-common

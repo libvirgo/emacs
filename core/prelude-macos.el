@@ -1,4 +1,4 @@
-(el-get-bundle exec-path-from-shell)
+(el-get 'sync 'exec-path-from-shell)
 
 (use-package exec-path-from-shell
   :demand nil

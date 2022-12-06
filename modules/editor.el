@@ -1,10 +1,9 @@
-(setq el-get-sources
-      '((:name awesome-pair :type github :pkgname "manateelazycat/awesome-pair")
-        ))
+(add-recipe-items
+ '((:name awesome-pair :type github :pkgname "manateelazycat/awesome-pair")
+   ))
 (setq editor-require-packages
       (append
-       '(awesome-pair
-         )
+       '(awesome-pair)
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 (el-get 'sync editor-require-packages)
 

@@ -1,7 +1,10 @@
-(el-get-bundle meow
-  :url "https://github.com/meow-edit/meow.git")
-
-
+(add-recipe-items
+ '((:name meow :type github :pkgname "meow-edit/meow")))
+(setq meow-require-packages
+      (append
+       '(meow)
+       (mapcar 'el-get-as-symbol (mapcar 'el-get-sources))))
+(el-get 'sync meow-require-packages)
 
 (use-package meow
   :init (meow-global-mode 1)

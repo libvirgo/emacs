@@ -1,16 +1,18 @@
-(setq el-get-sources
-      '((:name corfu :type github :pkgname "minad/corfu")
-        (:name cape :type github :pkgname "minad/cape")
-        (:name citre :type github :pkgname "universal-ctags/citre")
-        (:name orderless :type elpa)
-        (:name kind-icon :type github :pkgname "jdtsmith/kind-icon")
-        ))
+(add-recipe-items
+ '((:name corfu :type github :pkgname "minad/corfu")
+   (:name cape :type github :pkgname "minad/cape")
+   (:name citre :type github :pkgname "universal-ctags/citre")
+   (:name orderless :type elpa)
+   (:name kind-icon :type github :pkgname "jdtsmith/kind-icon")
+   (:name eglot :type github :pkgname "joaotavora/eglot")
+   ))
 (setq completion-require-packages
       (append
        '(corfu
          cape
          citre
          orderless
+         eglot
          kind-icon)
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 (el-get 'sync completion-require-packages)
@@ -66,5 +68,11 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
+
+(use-package eglot
+  :bind (:map eglot-mode-map
+              ("C-c C-l C-a" . eglot-code-actions)
+              ("C-c C-l C-r" . eglot-rename)
+              ))
 
 (provide 'completion)

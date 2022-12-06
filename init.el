@@ -36,7 +36,10 @@
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
 
+(require 'util)
 (require 'prelude-packages)
+(if is-darwin
+    (require 'prelude-macos))
 (require 'prelude-ui)
 (require 'prelude-editor)
 (require 'core)

@@ -2,7 +2,7 @@
 (require 'golang)
 (require 'git)
 (require 'term)
-(require 'meow)
 (require 'editor)
+(require 'meow)
 
 (provide 'modules)

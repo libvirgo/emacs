@@ -15,10 +15,6 @@
 
 (require 'cl-lib)
 
-(if is-darwin
-    (require 'prelude-macos))
-
-
 (setq prelude-require-package
       (append
        '(use-package
@@ -28,6 +24,5 @@
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 
 (el-get 'sync prelude-require-package)
-
 
 (provide 'prelude-packages)

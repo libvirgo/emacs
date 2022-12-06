@@ -1,10 +1,8 @@
-(setq el-get-sources
-      '((:name diff-hl :type github :pkgname "dgutov/diff-hl")
-        ))
+(add-recipe-items
+ '((:name diff-hl :type github :pkgname "dgutov/diff-hl")))
 (setq git-require-packages
       (append
-       '(diff-hl
-         )
+       '(diff-hl)
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 (el-get 'sync git-require-packages)
 

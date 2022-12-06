@@ -1,7 +1,6 @@
-(setq el-get-sources
-	  '((:name go-fill-struct :type elpa
-			   ))
-	  )
+(add-recipe-items
+ '((:name go-fill-struct :type elpa))
+ )
 (setq go-mode-require-package
 	  (append
 	   '(go-mode

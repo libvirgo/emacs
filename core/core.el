@@ -1,10 +1,4 @@
-(setq xref-search-program 'ripgrep)
-
-(use-package eshell
-  :init
-  (setq eshell-directory-name (expand-file-name "eshell" prelude-local-dir)))
-
-(setq el-get-sources
+(add-recipe-items
       '((:name vertico :type github :pkgname "minad/vertico")
         (:name marginalia :type github :pkgname "minad/marginalia")
         (:name consult :type github :pkgname "minad/consult")
@@ -17,6 +11,12 @@
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 
 (el-get 'sync core-require-packages)
+
+(setq xref-search-program 'ripgrep)
+
+(use-package eshell
+  :init
+  (setq eshell-directory-name (expand-file-name "eshell" prelude-local-dir)))
 
 (use-package vertico
   :init (vertico-mode)
