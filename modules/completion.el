@@ -56,7 +56,7 @@
               ))
 
 (use-package corfu-english-helper
-  :straight (corfu-english-helper :type git :host github :repo "manateelazycat/corfu-english-helper")
+  :straight (corfu-english-helper :type git :host github :repo "manateelazycat/corfu-english-helper" :feature orfu-english-helper-data)
   :bind (
          ("C-h C-e" . corfu-english-helper-search)))
 
