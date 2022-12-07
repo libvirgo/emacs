@@ -3,3 +3,4 @@ eln-cache
 tutorial
 
 **/**/.DS_Store
+**/**/*.elc

@@ -8,7 +8,7 @@
 
 (use-package meow
   :init (meow-global-mode 1)
-  :demand nil
+  :demand t
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
   :config
@@ -39,17 +39,18 @@
      ;; project mode map
      '("p p" . project-switch-project)
      '("p f" . project-find-file)
-     '("p s" . project-find-regexp)
+     '("p g" . project-find-regexp)
      '("p b" . consult-project-buffer)
-     '("v s" . magit-status)
-     '("o n" . switch-to-next-buffer)
-     '("o p" . switch-to-prev-buffer)
+     '("p s" . magit-project-status)
+     '("p v" . vterm)
+     '("]" . switch-to-next-buffer)
+     '("[" . switch-to-prev-buffer)
      '("e d" . citre-peek)
      '("e r" . citre-peek-reference)
      '("s l" . avy-goto-line)
      '("s w" . avy-goto-char-2)
      '("s c" . avy-goto-char)
-     '("t v" . vterm)
+;     '("t v" . vterm)
      '("d s" . diff-hl-show-hunk)
      '("d r" . diff-hl-show-hunk-revert-hunk)
      '("d ]" . diff-hl-show-hunk-next)

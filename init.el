@@ -43,7 +43,6 @@
 (require 'prelude-packages)
 (if is-darwin
     (require 'prelude-macos))
-(require 'prelude-ui)
 (require 'prelude-editor)
 (require 'core)
 

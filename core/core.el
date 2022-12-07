@@ -28,7 +28,7 @@
 
 ;; Example configuration for Consult
 (use-package consult
-  :demand nil
+  :demand t
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
          ;; ("C-c h" . consult-history)
@@ -146,7 +146,6 @@
   )
 
 (use-package project
-  :demand nil
   :init
   (setq project-list-file (expand-file-name "projects" prelude-local-dir))
   :config
@@ -188,7 +187,7 @@
   (define-key project-prefix-map "m" #'magit-project-status)
   (setq project-switch-commands
         '((project-find-file "Find file")
-          (project-find-regexp "Find regexp")
+          (project-find-regexp "Find ripgrep")
           (project-find-dir "Find directory")
           (vterm "VTerm")
           (magit-project-status "Magit")))
@@ -197,5 +196,7 @@
 (use-package magit
   :config
   (setq magit-refresh-status-buffer nil))
+
+(use-package dired)
 
 (provide 'core)

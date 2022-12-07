@@ -13,10 +13,10 @@
   (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
   :bind (:map diff-hl-command-map
               ("SPC" . diff-hl-mark-hunk))
-  :hook ((after-init . global-diff-hl-mode)
-         (after-init . global-diff-hl-show-hunk-mouse-mode)
-         (dired-mode . diff-hl-dired-mode))
-  :init (setq diff-hl-draw-borders nil)
+  :hook ((dired-mode . diff-hl-dired-mode))
+  :init
+  (setq diff-hl-draw-borders nil)
+  (global-diff-hl-mode)
   :config
   ;; Highlight on-the-fly
   (diff-hl-flydiff-mode 1)
@@ -31,11 +31,11 @@
         (vector (if sys/linuxp #b11111100 #b11100000))
         1 8
         '(center t)))
-    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)))
+    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
     ;; Set fringe style
     ;; performance slow
     ;; (with-eval-after-load 'magit
-    ;;   (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
-    ;;   (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))))
+  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
 
 (provide 'git)
