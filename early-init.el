@@ -45,7 +45,8 @@
   "don't warn about native-comp"
   :type '(repeat (repeat symbol))
   :version "22.1")
-;(setq native-target-dir (expand-file-name (expand-file-name "local/eln/" user-emacs-directory) comp-native-version-dir))
-;(when (boundp 'native-comp-eln-load-path)
-;  (startup-redirect-eln-cache native-target-dir))
+(setq native-target-dir (expand-file-name (expand-file-name "local/eln/" user-emacs-directory) comp-native-version-dir))
+(when (boundp 'native-comp-eln-load-path)
+  (setq native-compile-target-directory native-target-dir)
+  (startup-redirect-eln-cache native-target-dir))
 (load prelude-init-ui-file)
