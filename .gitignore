@@ -1,6 +1,7 @@
 local
 eln-cache
 tutorial
+benchmark-init-el
 
 **/**/.DS_Store
 **/**/*.elc

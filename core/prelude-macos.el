@@ -1,6 +1,7 @@
 (el-get 'sync 'exec-path-from-shell)
 
 (use-package exec-path-from-shell
+  :demand t
   :config
   (setq exec-path-from-shell-variables '("PATH" "PYTHONPATH" "GOPATH" "GTAGSOBJDIRPREFIX" "GTAGSCONF" "GTAGSLABEL"))
   (setq exec-path-from-shell-check-startup-files nil)
