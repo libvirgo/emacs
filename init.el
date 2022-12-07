@@ -38,9 +38,9 @@
 
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
-(add-to-list 'load-path (expand-file-name "benchmark-init-el" user-emacs-directory))
-(require 'benchmark-init-loaddefs)
-(benchmark-init/activate)
+;; (add-to-list 'load-path (expand-file-name "benchmark-init-el" prelude-local-dir))
+;; (require 'benchmark-init-loaddefs)
+;; (benchmark-init/activate)
 
 (require 'util)
 (require 'prelude-packages)

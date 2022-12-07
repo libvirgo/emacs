@@ -1,5 +1,3 @@
-(setq xref-search-program 'ripgrep)
-
 (use-package eshell
   :straight t
   :init
@@ -185,7 +183,10 @@
   )
 
 (use-package magit
+  :straight t
   :config
   (setq magit-refresh-status-buffer nil))
+
+(setq xref-search-program 'ripgrep)
 
 (provide 'core)

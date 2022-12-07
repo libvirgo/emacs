@@ -22,8 +22,5 @@
 (setq-default use-package-always-defer t)
 
 (straight-use-package 'use-package)
-(straight-use-package 'magit)
-(straight-use-package 'smartparens)
-(straight-use-package 'avy)
 
 (provide 'prelude-packages)
