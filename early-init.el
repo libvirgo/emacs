@@ -1,4 +1,3 @@
-
 (setq doom-gc-cons-threshold 16777216)
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
@@ -37,5 +36,16 @@
 (setq frame-inhibit-implied-resize t)
 
 (setq prelude-init-ui-file (expand-file-name "core/early-init-ui.el" user-emacs-directory))
-
+(defcustom native-comp-driver-options (when (eq system-type 'darwin)
+                                        '("-Wl,-w"))
+  "darwin native comp"
+  :type '(repeat string)
+  :version "28.1")
+(defcustom warning-suppress-types '((comp))
+  "don't warn about native-comp"
+  :type '(repeat (repeat symbol))
+  :version "22.1")
+;(setq native-target-dir (expand-file-name (expand-file-name "local/eln/" user-emacs-directory) comp-native-version-dir))
+;(when (boundp 'native-comp-eln-load-path)
+;  (startup-redirect-eln-cache native-target-dir))
 (load prelude-init-ui-file)
