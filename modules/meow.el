@@ -1,12 +1,5 @@
-(add-recipe-items
- '((:name meow :type github :pkgname "meow-edit/meow")))
-(setq meow-require-packages
-      (append
-       '(meow)
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
-(el-get 'sync meow-require-packages)
-
 (use-package meow
+  :straight t
   :init (meow-global-mode 1)
   :demand t
   :bind (:map meow-insert-state-keymap

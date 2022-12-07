@@ -1,12 +1,5 @@
-(add-recipe-items
- '((:name diff-hl :type github :pkgname "dgutov/diff-hl")))
-(setq git-require-packages
-      (append
-       '(diff-hl)
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
-(el-get 'sync git-require-packages)
-
 (use-package diff-hl
+  :straight t
   :custom-face
   (diff-hl-change ((t (:inherit diff-changed :foreground unspecified :background unspecified))))
   (diff-hl-insert ((t (:inherit diff-added :background unspecified))))

@@ -1,6 +1,5 @@
-(el-get 'sync 'hungry-delete)
-
 (use-package hungry-delete
+  :straight t
   :init (global-hungry-delete-mode)
   )
 
