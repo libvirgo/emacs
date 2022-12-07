@@ -1,13 +1,5 @@
-(add-recipe-items
- '((:name awesome-pair :type github :pkgname "manateelazycat/awesome-pair")
-   ))
-(setq editor-require-packages
-      (append
-       '(awesome-pair)
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
-(el-get 'sync editor-require-packages)
-
 (use-package awesome-pair
+  :straight (awesome-pair :type git :host github :repo "manateelazycat/awesome-pair")
   :hook
   (lisp-mode)
   (emacs-lisp-mode)

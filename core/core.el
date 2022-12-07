@@ -1,33 +1,23 @@
-(add-recipe-items
-      '((:name vertico :type github :pkgname "minad/vertico")
-        (:name marginalia :type github :pkgname "minad/marginalia")
-        (:name consult :type github :pkgname "minad/consult")
-		))
-(setq core-require-packages
-      (append
-       '(vertico
-         marginalia
-         consult)
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
-
-(el-get 'sync core-require-packages)
-
 (setq xref-search-program 'ripgrep)
 
 (use-package eshell
+  :straight t
   :init
   (setq eshell-directory-name (expand-file-name "eshell" prelude-local-dir)))
 
 (use-package vertico
+  :straight t
   :init (vertico-mode)
   )
 
 (use-package marginalia
+  :straight t
   :init
   (marginalia-mode))
 
 ;; Example configuration for Consult
 (use-package consult
+  :straight t
   :demand t
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
@@ -146,6 +136,7 @@
   )
 
 (use-package project
+  :straight t
   :init
   (setq project-list-file (expand-file-name "projects" prelude-local-dir))
   :config
@@ -196,7 +187,5 @@
 (use-package magit
   :config
   (setq magit-refresh-status-buffer nil))
-
-(use-package dired)
 
 (provide 'core)
