@@ -4,8 +4,16 @@
   (diff-hl-change ((t (:inherit diff-changed :foreground unspecified :background unspecified))))
   (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
   (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
-  :bind (:map diff-hl-command-map
-              ("SPC" . diff-hl-mark-hunk))
+  :bind (("C-c d s" . diff-hl-show-hunk)
+         :repeat-map diff-hl-inline-popup-transient-mode-map
+         ("C-f" . diff-hl-show-hunk-next)
+         ("C-b" . diff-hl-show-hunk-previous)
+         ("C-r" . diff-hl-show-hunk-revert-hunk)
+         ("C-n" . diff-hl-inline-popup--popup-up)
+         ("C-p" . diff-hl-inline-popup--popup-down)
+         ("C-c" . diff-hl-show-hunk-copy-original-text)
+         :map diff-hl-command-map
+         ("SPC" . diff-hl-mark-hunk))
   :hook ((dired-mode . diff-hl-dired-mode))
   :init
   (setq diff-hl-draw-borders nil)

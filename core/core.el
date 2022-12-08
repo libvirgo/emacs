@@ -19,7 +19,7 @@
   :demand t
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
-         ;; ("C-c h" . consult-history)
+         ("C-c h" . consult-history)
          ;; ("C-c m" . consult-mode-command)
          ("C-c k" . consult-kmacro)
          ;; C-x bindings (ctl-x-map)
@@ -29,38 +29,39 @@
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-othecompletionr-frame
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
          ;; Custom M-# bindings for fast register access
-         ("C-x r i" . consult-register-load)
-         ("C-x r s" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-         ("C-x r r" . consult-register)
+         ("C-c r i" . consult-register-load)
+         ("C-c r s" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("C-c r r" . consult-register)
          ;; Other custom bindings
-         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+         ("C-c r y" . consult-yank-pop)                ;; orig. yank-pop
          ;; M-g bindings (goto-map)
-         ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-         ("M-g g" . consult-goto-line)             ;; orig. goto-line
-         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-         ("M-g m" . consult-mark)
-         ("M-g k" . consult-global-mark)
-         ("M-g i" . consult-imenu)
-         ("M-g I" . consult-imenu-multi)
+         ("C-c g e" . consult-compile-error)
+         ("C-c g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ("C-c g g" . consult-goto-line)
+         ("C-c g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("C-c m f" . mark-defun)
+         ("C-c m p" . mark-page)
+         ("C-c m j" . consult-mark)
+         ("C-c m J" . consult-global-mark)
+         ("C-c c i" . consult-imenu)
+         ("C-c c I" . consult-imenu-multi)
          ;; M-s bindings (search-map)
          ;; ("M-s D" . consult-locate)
-         ("M-s r" . consult-ripgrep)
-         ("M-s L" . consult-line-multi)
-         ("M-s m" . consult-multi-occur)
-         ("M-s u" . consult-focus-lines)
+         ("C-c s l" . consult-line)
+         ("C-c s L" . consult-line-multi)
+         ("C-c s r" . consult-ripgrep)
+         ("C-c s m" . consult-multi-occur)
+         ("C-c s u" . consult-focus-lines)
          ;; Isearch integration
-         ("M-s e" . consult-isearch-history)
+         ("C-c s e" . consult-isearch-history)
          :map isearch-mode-map
-         ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
-         ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
-         ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
-         ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+         ("C-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+         ("C-l" . consult-line)                  ;; needed by consult-line to detect isearch
+         ("C-m" . consult-line-multi)            ;; needed by consult-line to detect isearch
          ;; Minibuffer history
          :map minibuffer-local-map
-         ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-         ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+         ("C-h" . consult-history))                 ;; orig. next-matching-history-element
+         ;; ("M-r" . consult-history))                ;; orig. previous-matching-history-element
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
@@ -135,6 +136,11 @@
 
 (use-package project
   :straight t
+  :bind (("C-c p p" . project-switch-project)
+         ("C-c p f" . project-find-file)
+         ("C-c p g" . project-find-regexp)
+         ("C-c p b" . consult-project-buffer)
+         ("C-c p s" . magit-project-status))
   :init
   (setq project-list-file (expand-file-name "projects" prelude-local-dir))
   :config

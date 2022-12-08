@@ -31,6 +31,7 @@
 (setq transient-levels-file (expand-file-name "transient/levels.el" prelude-local-dir))
 (setq transient-values-file (expand-file-name "transient/values.el" prelude-local-dir))
 (setq transient-history-file (expand-file-name "transient/history.el" prelude-local-dir))
+(setq bookmark-default-file (expand-file-name "bookmarks" prelude-local-dir))
 
 (setq large-file-warning-threshold 100000000)
 (setq load-prefer-newer t)

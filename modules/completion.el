@@ -55,9 +55,30 @@
               ("C-c C-l C-r" . eglot-rename)
               ))
 
+
 (use-package corfu-english-helper
   :straight (corfu-english-helper :type git :host github :repo "manateelazycat/corfu-english-helper" :feature orfu-english-helper-data)
   :bind (
          ("C-h C-e" . corfu-english-helper-search)))
+
+(use-package citre
+  :straight t
+  :bind (
+         ("C-c e d" . citre-peek)
+         ("C-c e r" . citre-peek-reference)
+         ("C-c e b" . citre-jump-back)
+         ("C-c e g" . citre-peek-restore)
+         :map citre-peek-keymap
+         ("C-j" . citre-peek-jump)
+         ("C-t" . citre-peek-through)
+         ("C-u" . citre-peek-through-reference)
+         ("C-n" . citre-peek-next-line)
+         ("C-p" . citre-peek-prev-line)
+         ("C-c n" . citre-peek-next-tag)
+         ("C-c p" . citre-peek-prev-tag)
+         ("C-c f" . citre-peek-chain-forward)
+         ("C-c b" . citre-peek-chain-backward)
+         )
+  )
 
 (provide 'completion)
