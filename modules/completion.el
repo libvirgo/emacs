@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package kind-icon
   :straight t
   :defer 1

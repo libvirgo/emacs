@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package diff-hl
   :straight t
   :custom-face

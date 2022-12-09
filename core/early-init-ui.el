@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (require 'cl-lib)
 (when (featurep 'ns)
   (push '(ns-transparent-titlebar . t) default-frame-alist))

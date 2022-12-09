@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (require 'completion)
 (require 'golang)
 (require 'git)

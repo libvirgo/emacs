@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defconst prelude-user
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
@@ -44,10 +46,9 @@
 ;; (benchmark-init/activate)
 
 (require 'util)
-(require 'prelude-packages)
-(if is-darwin
-    (require 'prelude-macos))
-(require 'prelude-editor)
 (require 'core)
+(require 'packages)
+(require 'editor)
+
 
 (load prelude-modules-file)

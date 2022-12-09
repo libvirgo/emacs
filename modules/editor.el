@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package awesome-pair
   :straight (awesome-pair :type git :host github :repo "manateelazycat/awesome-pair")
   :hook

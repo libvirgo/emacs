@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun create-scratch-buffer nil
   (interactive)
   (switch-to-buffer (get-buffer-create "*scratch*"))
