@@ -23,20 +23,12 @@
 (prelude-straight-check)
 (setq-default use-package-always-defer t)
 
-(straight-use-package 'use-package)
-(straight-use-package 'delight)
-(straight-use-package 'diminish)
-(if is-darwin
-    (use-package exec-path-from-shell
-      :straight t
-      :config
-      (setq exec-path-from-shell-variables '("PATH" "PYTHONPATH" "GOPATH" "GTAGSOBJDIRPREFIX" "GTAGSCONF" "GTAGSLABEL"))
-      (setq exec-path-from-shell-check-startup-files nil)
-      (setq exec-path-from-shell-arguments '("-l"))
-      (exec-path-from-shell-initialize))
+(dolist (pack '(use-package diminish))
+  (straight-use-package pack))
 
-  (when (fboundp 'set-fontset-font)
-    (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
+(if is-darwin
+    (when (fboundp 'set-fontset-font)
+      (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
   )
 
 (provide 'core)

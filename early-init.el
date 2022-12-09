@@ -1,12 +1,42 @@
 ;;; -*- lexical-binding: t; -*-
 
-(setq doom-gc-cons-threshold 16777216)
+(when (boundp 'native-comp-eln-load-path)
+  (when (eq system-type 'darwin)
+    (setq native-comp-driver-options '("-Wl,-w")))
+  ;; Don't store eln files in ~/.emacs.d/eln-cache (where they can easily be
+  ;; deleted by 'doom upgrade').
+  ;; REVIEW Use `startup-redirect-eln-cache' when 28 support is dropped
+
+  (setq native-comp-cache-dir (expand-file-name (expand-file-name "local/eln/" user-emacs-directory) comp-native-version-dir))
+  (add-to-list 'native-comp-eln-load-path native-comp-cache-dir)
+  (setq native-target-dir native-comp-cache-dir)
+  (setq native-cache-dir native-comp-cache-dir)
+  ;; UX: Suppress compiler warnings and don't inundate users with their popups.
+  ;;   They are rarely more than warnings, so are safe to ignore.
+  (setq native-comp-async-report-warnings-errors init-file-debug
+        native-comp-warning-on-missing-source init-file-debug)
+
+  ;; UX: By default, native-comp uses 100% of half your cores. If you're
+  ;;   expecting this this should be no issue, but the sudden (and silent) spike
+  ;;   of CPU and memory utilization can alarm folks, overheat laptops, or
+  ;;   overwhelm less performant systems.
+  (define-advice comp-effective-async-max-jobs (:before (&rest _) set-default-cpus)
+    "Default to 1/4 of cores in interactive sessions and all of them otherwise."
+    (and (null comp-num-cpus)
+         (zerop native-comp-async-jobs-number)
+         (setq comp-num-cpus
+               (max 1 (/ (num-processors) (if noninteractive 1 4)))))))
+
+
+(setq native-comp-deferred-compilation t)
+
+(setq doom-gc-cons-threshold 167772160)
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
 
 (add-hook 'emacs-startup-hook
   (lambda ()
-    (setq gc-cons-threshold doom-gc-cons-threshold ; 16mb
+    (setq gc-cons-threshold doom-gc-cons-threshold ; 160mb
           gc-cons-percentage 0.1)))
 
 (defun doom-defer-garbage-collection-h ()
@@ -27,7 +57,7 @@
   (lambda ()
     (setq file-name-handler-alist doom--file-name-handler-alist)))
 
-(setq native-comp-deferred-compilation nil)
+
 
 (setq package-enable-at-startup nil ; don't auto-initialize!
       ;; don't add that `custom-set-variables' block to my init.el!
@@ -38,17 +68,5 @@
 (setq frame-inhibit-implied-resize t)
 
 (setq prelude-init-ui-file (expand-file-name "core/early-init-ui.el" user-emacs-directory))
-(defcustom native-comp-driver-options (when (eq system-type 'darwin)
-                                        '("-Wl,-w"))
-  "darwin native comp"
-  :type '(repeat string)
-  :version "28.1")
-(defcustom warning-suppress-types '((comp))
-  "don't warn about native-comp"
-  :type '(repeat (repeat symbol))
-  :version "22.1")
-(setq native-target-dir (expand-file-name (expand-file-name "local/eln/" user-emacs-directory) comp-native-version-dir))
-(when (boundp 'native-comp-eln-load-path)
-  (setq native-compile-target-directory native-target-dir)
-  (startup-redirect-eln-cache native-target-dir))
+
 (load prelude-init-ui-file)
