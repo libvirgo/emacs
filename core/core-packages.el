@@ -204,4 +204,4 @@
 
 (setq xref-search-program 'ripgrep)
 
-(provide 'packages)
+(provide 'core-packages)

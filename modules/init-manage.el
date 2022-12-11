@@ -106,4 +106,4 @@
             (delete-window window)))))
     (advice-add #'keyboard-quit :before #'popper-close-window-hack)))
 
-(provide 'm-manage)
+(provide 'init-manage)

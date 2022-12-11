@@ -88,6 +88,6 @@
   )
 
 
-(provide 'term)
+(provide 'init-term)
 
 

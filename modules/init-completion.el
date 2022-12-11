@@ -83,4 +83,4 @@
          )
   )
 
-(provide 'completion)
+(provide 'init-completion)

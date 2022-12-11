@@ -1,11 +1,11 @@
 ;;; -*- lexical-binding: t; -*-
 
-(require 'completion)
-(require 'golang)
-(require 'git)
-(require 'term)
-(require 'editor)
-(require 'm-manage)
-(require 'meow)
+(require 'init-completion)
+(require 'init-golang)
+(require 'init-vc)
+(require 'init-term)
+(require 'init-editor)
+(require 'init-manage)
+(require 'init-meow)
 
 (provide 'modules)

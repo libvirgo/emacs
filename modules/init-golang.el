@@ -10,4 +10,4 @@
   (add-hook 'go-mode-hook 'eglot-ensure)
   (setq gofmt-command "goimports"))
 
-(provide 'golang)
+(provide 'init-golang)

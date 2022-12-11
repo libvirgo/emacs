@@ -17,4 +17,4 @@
               ("=" . awesome-pair-equal)
               ))
 
-(provide 'editor)
+(provide 'init-editor)

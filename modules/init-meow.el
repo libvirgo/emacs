@@ -107,4 +107,4 @@
   (define-key input-decode-map (kbd "C-[") [control-bracketleft])
   )
 
-(provide 'meow)
+(provide 'init-meow)

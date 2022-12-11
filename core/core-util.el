@@ -12,4 +12,4 @@
                (not (display-graphic-p))))
       (daemonp)))
 
-(provide 'util)
+(provide 'core-util)
