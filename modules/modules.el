@@ -5,6 +5,7 @@
 (require 'git)
 (require 'term)
 (require 'editor)
+(require 'm-manage)
 (require 'meow)
 
 (provide 'modules)

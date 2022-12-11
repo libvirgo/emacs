@@ -29,7 +29,10 @@
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-othecompletionr-frame
-         ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+         ("C-c b b" . consult-bookmark)            ;; orig. bookmark-jump
+         ("C-c b d" . bookmark-delete)
+         ("C-c b m" . bookmark-set)
+         ("C-c b s" . bookmark-save)
          ;; Custom M-# bindings for fast register access
          ("C-c r i" . consult-register-load)
          ("C-c r s" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
