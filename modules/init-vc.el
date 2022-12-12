@@ -11,8 +11,8 @@
          ("C-f" . diff-hl-show-hunk-next)
          ("C-b" . diff-hl-show-hunk-previous)
          ("C-r" . diff-hl-show-hunk-revert-hunk)
-         ("C-n" . diff-hl-inline-popup--popup-up)
-         ("C-p" . diff-hl-inline-popup--popup-down)
+         ("C-p" . diff-hl-inline-popup--popup-up)
+         ("C-n" . diff-hl-inline-popup--popup-down)
          ("C-c" . diff-hl-show-hunk-copy-original-text)
          :map diff-hl-command-map
          ("SPC" . diff-hl-mark-hunk))
@@ -35,10 +35,9 @@
         1 8
         '(center t)))
     (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
-    ;; Set fringe style
     ;; performance slow
-    ;; (with-eval-after-load 'magit
-  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
-  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
+    (with-eval-after-load 'magit
+      (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+      (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
 (provide 'init-vc)

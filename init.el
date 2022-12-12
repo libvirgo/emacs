@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
-;; (add-to-list 'load-path (expand-file-name "benchmark-init-el" prelude-local-dir))
+;; (add-to-list 'load-path (expand-file-name "local/benchmark-init-el" user-emacs-directory))
 ;; (require 'benchmark-init-loaddefs)
 ;; (benchmark-init/activate)
 

@@ -12,4 +12,11 @@
                (not (display-graphic-p))))
       (daemonp)))
 
+(defun project-buffer-p (buf)
+  (member (buffer-name buf)
+          (let ((buffers ()))
+            (dolist (pr (project-buffers (project-current)))
+              (push (buffer-name pr) buffers))
+            buffers)))
+
 (provide 'core-util)

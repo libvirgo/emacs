@@ -36,6 +36,7 @@
   )
 
 (prelude-straight-check)
+
 (setq-default use-package-always-defer t)
 
 (dolist (pack '(use-package diminish))
@@ -43,7 +44,7 @@
 
 (if is-darwin
     (use-package exec-path-from-shell
-      :demand t
+      :defer 1
       :straight t
       :config
       (setq exec-path-from-shell-variables '("PATH" "PYTHONPATH" "GOPATH" "GTAGSOBJDIRPREFIX" "GTAGSCONF" "GTAGSLABEL"))

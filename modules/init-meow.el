@@ -2,7 +2,7 @@
 
 (use-package meow
   :straight t
-  :demand t
+  :defer 1
   :init (meow-global-mode 1)
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))

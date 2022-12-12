@@ -2,7 +2,7 @@
 
 (use-package kind-icon
   :straight t
-  :defer 1
+  :defer 2
   :custom
   (kind-icon-use-icons nil)
   (kind-icon-default-face 'corfu-default)

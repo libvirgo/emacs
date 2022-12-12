@@ -18,7 +18,7 @@
 ;; Example configuration for Consult
 (use-package consult
   :straight t
-  :demand t
+  :defer 1
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)

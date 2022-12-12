@@ -9,6 +9,11 @@
          ("C-c w n" . eyebrowse-next-window-config)
          ("C-c w p" . eyebrowse-prev-window-config)
          ("C-c w r" . eyebrowse-rename-window-config)
+         ("C-c w 0" . eyebrowse-switch-to-window-config-0)
+         ("C-c w 1" . eyebrowse-switch-to-window-config-1)
+         ("C-c w 2" . eyebrowse-switch-to-window-config-2)
+         ("C-c w 3" . eyebrowse-switch-to-window-config-3)
+         ("C-c w 4" . eyebrowse-switch-to-window-config-4)
          ))
 
 (use-package burly
@@ -26,10 +31,10 @@
 (use-package popper
   :straight t
   :defines popper-echo-dispatch-actions
-  :bind (:map popper-mode-map
-         ("C-c b p"     . popper-toggle-latest)
+  :bind (("C-c b p" . popper-toggle-latest)
+         :map popper-mode-map
          ("C-<tab>"   . popper-cycle))
-  :hook (emacs-startup . popper-mode)
+  ;; :hook (emacs-startup . popper-mode)
   :init
   (setq popper-reference-buffers
         '("\\*Messages\\*"
