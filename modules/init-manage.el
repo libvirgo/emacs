@@ -14,7 +14,13 @@
 (use-package burly
   :straight t
   :bind(("C-c b w" . burly-bookmark-windows)
-        ("C-c b l" . burly-open-last-bookmark)))
+        ("C-c b l" . burly-open-last-bookmark)
+        ("C-c b f" . burly-bookmark-frames)
+        ("C-c b o" . burly-open-bookmark))
+  :config
+  (setq burly-frameset-filter-alist '((name . nil)
+                                      (posframe-parent-buffer . :never)))
+  (advice-add 'burly-bookmark-names :before (lambda () (bookmark-maybe-load-default-file))))
 
 ;; Enforce rules for popups
 (use-package popper

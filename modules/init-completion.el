@@ -53,8 +53,8 @@
 (use-package eglot
   :straight t
   :bind (:map eglot-mode-map
-              ("C-c C-l C-a" . eglot-code-actions)
-              ("C-c C-l C-r" . eglot-rename)
+              ("C-c l a" . eglot-code-actions)
+              ("C-c l r" . eglot-rename)
               ))
 
 
@@ -76,10 +76,10 @@
          ("C-u" . citre-peek-through-reference)
          ("C-n" . citre-peek-next-line)
          ("C-p" . citre-peek-prev-line)
-         ("C-c n" . citre-peek-next-tag)
-         ("C-c p" . citre-peek-prev-tag)
-         ("C-c f" . citre-peek-chain-forward)
-         ("C-c b" . citre-peek-chain-backward)
+         ("M-n" . citre-peek-next-tag)
+         ("M-p" . citre-peek-prev-tag)
+         ("C-f" . citre-peek-chain-forward)
+         ("C-b" . citre-peek-chain-backward)
          )
   )
 
