@@ -2,16 +2,16 @@
 
 (use-package meow
   :straight t
-  :defer 1
+  :demand t
   :init (meow-global-mode 1)
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
   :diminish (meow-normal-mode
-	     meow-insert-mode
-	     meow-keypad-mode
-	     meow-beacon-mode
-	     meow-motion-mode
-	     meow-esc-mode)
+         meow-insert-mode
+         meow-keypad-mode
+         meow-beacon-mode
+         meow-motion-mode
+         meow-esc-mode)
   :config
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
