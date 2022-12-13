@@ -30,6 +30,7 @@
 ;; Enforce rules for popups
 (use-package popper
   :straight t
+  :defer 1
   :defines popper-echo-dispatch-actions
   :bind (("C-c b p" . popper-toggle-latest)
          :map popper-mode-map
