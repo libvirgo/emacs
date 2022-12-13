@@ -12,14 +12,14 @@
 
 (use-package corfu
   :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-history.el"))
-  :bind ((:map corfu-map ("SPC" . corfu-insert-separator)))
+  :bind ((:map corfu-map ("S-SPC" . corfu-insert-separator)))
   ;; Optional customizations
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   (corfu-auto t)                 ;; Enable auto completion
   (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-auto-delay 0)
-  (corfu-quit-no-match 'separator)
+  (corfu-quit-no-match 't)
   (savehist-mode)
   (add-to-list 'savehist-additional-variables 'corfu-history)
   :init
