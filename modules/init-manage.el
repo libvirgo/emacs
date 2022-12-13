@@ -141,8 +141,17 @@
     (treemacs-hide-gitignored-files-mode nil))
   :bind
   (:map global-map
-        ("C-c t 1"   . treemacs-delete-other-windows)
-        ("C-c t t"   . treemacs)
-        ("C-c t d"   . treemacs-select-directory)))
+        ("C-c t 1" . treemacs-delete-other-windows)
+        ("C-c t s" . treemacs-select-window)
+        ("C-c t t" . treemacs)
+        ("C-c t f" . treemacs-find-file)
+        ("C-c t i" . treemacs-find-tag)
+        ("C-c t d" . treemacs-select-directory)))
+
+(use-package ace-window
+  :straight t
+  :bind (
+         ("C-c w g" . ace-window)
+         ))
 
 (provide 'init-manage)
