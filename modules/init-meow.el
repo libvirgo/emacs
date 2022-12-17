@@ -3,15 +3,18 @@
 (use-package meow
   :straight t
   :demand t
-  :init (meow-global-mode 1)
+  ;; :init (meow-global-mode 1)
+  :hook (
+         (fundamental-mode . meow-mode)
+         (dired-mode . meow-mode)
+         (go-mode . meow-mode)
+         (emacs-lisp-mode . meow-mode)
+         (lisp-interaction-mode . meow-mode)
+         (lisp-mode . meow-mode)
+         (org-mode . meow-mode)
+         )
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
-  :diminish (meow-normal-mode
-         meow-insert-mode
-         meow-keypad-mode
-         meow-beacon-mode
-         meow-motion-mode
-         meow-esc-mode)
   :config
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
