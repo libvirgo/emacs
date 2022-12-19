@@ -40,4 +40,9 @@
       (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
       (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
+(use-package vc
+  :straight (vc :type built-in)
+  :bind (("C-c v h" . vc-region-history))
+  )
+
 (provide 'init-vc)
