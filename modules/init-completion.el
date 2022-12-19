@@ -13,7 +13,7 @@
 (use-package corfu
   :straight (corfu :type git :host github :repo "minad/corfu")
   :bind ((:map corfu-map
-               ("S-SPC" . corfu-insert-separator)
+               ("C-SPC" . corfu-insert-separator)
                ("C-n" . corfu-complete-common-or-next)))
   ;; Optional customizations
   :custom
@@ -51,19 +51,13 @@
   ((emacs-lisp-mode . (lambda ()
                         (setq-local completion-at-point-functions
                                     (list (cape-super-capf
-                                           #'cape-dabbrev
-                                           #'elisp-completion-at-point))
-                                    cape-dabbrev-min-length 1
-                                    cape-dabbrev-check-other-buffers t)))
-   (fundamental-mode . (lambda ()
-                         (setq-local completion-at-point-functions
-                                     (list (cape-super-capf
-                                            #'cape-dabbrev))
-                                     cape-dabbrev-min-length 1
-                                     cape-dabbrev-check-other-buffers nil))))
+                                           #'elisp-completion-at-point
+                                           #'cape-dabbrev))))))
   :init
+  (setq cape-dabbrev-min-length 1)
+  (setq cape-dabbrev-check-other-buffers t)
   ;; (add-to-list 'completion-at-point-functions #'cape-file)
-  ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   )
 
 (use-package orderless

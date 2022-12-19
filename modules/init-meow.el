@@ -3,16 +3,8 @@
 (use-package meow
   :straight t
   :demand t
-  ;; :init (meow-global-mode 1)
-  :hook (
-         (fundamental-mode . meow-mode)
-         (dired-mode . meow-mode)
-         (go-mode . meow-mode)
-         (emacs-lisp-mode . meow-mode)
-         (lisp-interaction-mode . meow-mode)
-         (lisp-mode . meow-mode)
-         (org-mode . meow-mode)
-         )
+  :init (meow-global-mode 1)
+  :hook (())
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
   :config
