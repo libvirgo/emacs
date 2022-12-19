@@ -4,6 +4,11 @@
   :straight t
   :demand t
   :init (meow-global-mode 1)
+  :diminish (meow-normal-mode
+             meow-insert-mode
+             meow-beacon-mode
+             meow-motion-mode
+             meow-esc-mode)
   :hook (())
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
