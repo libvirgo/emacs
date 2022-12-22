@@ -17,4 +17,11 @@
               ("=" . awesome-pair-equal)
               ))
 
+(use-package hl-indent-scope
+  :straight t
+  :commands (hl-indent-scope-mode)
+  :hook(
+        (prog-mode . hl-indent-scope-mode)
+        (after-load-theme . hl-indent-scope--auto-color-calc)))
+
 (provide 'init-editor)
