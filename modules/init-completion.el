@@ -11,10 +11,11 @@
   )
 
 (use-package corfu
-  :straight (corfu :type git :host github :repo "minad/corfu")
+  :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
-               ("C-n" . corfu-complete-common-or-next)))
+               ("C-n" . corfu-complete-common-or-next)
+               ("C-f" . corfu-quick-complete)))
   ;; Optional customizations
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
@@ -104,5 +105,23 @@
          ("C-b" . citre-peek-chain-backward)
          )
   )
+
+(use-package embark
+  :straight (embark :files ("embark.el" "embark-consult.el"))
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode)
+  :bind
+  (("C-;" . embark-act)
+   ("C-h B" . embark-bindings)
+   ("M-." . embark-dwim))
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
 
 (provide 'init-completion)
