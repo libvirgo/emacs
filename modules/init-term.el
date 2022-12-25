@@ -3,7 +3,7 @@
 (use-package vterm
   :straight t
   :bind (:map vterm-mode-map
-              ("C-c p v" . shell-pop-posframe-toggle))
+              ("C-'" . shell-pop-posframe-toggle))
   :init (setq vterm-always-compile-module t)
   (defvar shell-pop--frame nil)
   (defvar shell-pop--window nil)
@@ -84,7 +84,7 @@
             (goto-char (point-max))
             (when (fboundp 'vterm-reset-cursor-point)
               (vterm-reset-cursor-point)))))))
-  (bind-key "C-c p v" #'shell-pop-posframe-toggle)
+  (bind-key "C-'" #'shell-pop-posframe-toggle)
   )
 
 
