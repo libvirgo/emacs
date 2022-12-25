@@ -36,7 +36,7 @@
   (rime-show-candidate 'posframe)
   (rime-user-data-dir "~/Library/Rime")
   (rime-posframe-style 'vertical)
-  :bind (:map rime-mode-map ("M-j" . rime-force-enable))
+  :bind (:map rime-mode-map ("M-j" . rime-inline-ascii))
   :config
   (setq rime-disable-predicates '(meow-normal-mode-p
 				  meow-motion-mode-p

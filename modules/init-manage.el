@@ -139,8 +139,7 @@
 
 (use-package ace-window
   :straight t
-  :bind (
-         ("C-c w g" . ace-window)
+  :bind (("C-c w w" . ace-window)
          ))
 
 (provide 'init-manage)
