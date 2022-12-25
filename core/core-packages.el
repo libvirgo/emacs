@@ -139,6 +139,23 @@
   (setq consult-narrow-key "<") ;; (kbd "C-+")
   )
 
+(use-package embark
+  :straight (embark :files ("embark.el" "embark-consult.el"))
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode)
+  :bind
+  (("C-;" . embark-act)
+   ("M-." . embark-dwim))
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
 (use-package project
   :straight t
   :bind (("C-c p p" . project-switch-project)
