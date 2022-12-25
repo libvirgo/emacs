@@ -61,4 +61,7 @@
 (pixel-scroll-precision-mode)
 (blink-cursor-mode -1)
 
+(setq prelude-modeline-file (expand-file-name "core/early-modeline.el" user-emacs-directory))
+
+(load prelude-modeline-file)
 

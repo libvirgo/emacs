@@ -103,7 +103,6 @@
      '("'" . repeat)
      '("<escape>" . ignore)))
   (meow-setup)
-  (meow-setup-indicator)
   (define-key input-decode-map (kbd "C-[") [control-bracketleft])
   )
 
