@@ -6,6 +6,7 @@
   :custom
   (kind-icon-use-icons nil)
   (kind-icon-default-face 'corfu-default)
+  :hook ((after-load-theme . 'kind-icon-reset-cache))
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )

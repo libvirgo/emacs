@@ -8,7 +8,6 @@
       (let* ((filename (buffer-file-name))
              (status (vc-git-state filename))
              (branch (car (vc-git-branches))))
-
         (pcase status
           ('up-to-date (setq status ""))
           ('edited (setq status "!"))
