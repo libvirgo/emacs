@@ -75,11 +75,11 @@
 
 (use-package eglot
   :straight t
-  :bind (:map eglot-mode-map
-              ("C-c l a" . eglot-code-actions)
-              ("C-c l r" . eglot-rename)
-              ))
-
+  :init
+  (with-eval-after-load 'embark
+      (push 'embark--allow-edit
+            (alist-get 'eglot-rename embark-target-injection-hooks)))
+  )
 
 (use-package corfu-english-helper
   :straight (corfu-english-helper :type git :host github :repo "manateelazycat/corfu-english-helper" :feature orfu-english-helper-data)
@@ -106,22 +106,5 @@
          )
   )
 
-(use-package embark
-  :straight (embark :files ("embark.el" "embark-consult.el"))
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode)
-  :bind
-  (("C-;" . embark-act)
-   ("C-h B" . embark-bindings)
-   ("M-." . embark-dwim))
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-  :config
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
 
 (provide 'init-completion)
