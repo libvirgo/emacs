@@ -10,4 +10,6 @@
 
 (require 'init-meow)
 
+(require 'init-modeline)
+
 (provide 'modules)
