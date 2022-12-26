@@ -1,6 +1,6 @@
 [submodule "local/submodules/templ-collection"]
 	path = local/submodules/templ-collection
-	url = git@github.com:libvirgo/tempel-collection.git
+	url = https://github.com/libvirgo/tempel-collection.git
 [submodule "local/submodules/spacemacs-theme"]
 	path = local/submodules/spacemacs-theme
 	url = https://github.com/nashamri/spacemacs-theme.git
