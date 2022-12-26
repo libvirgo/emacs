@@ -17,6 +17,8 @@
 (defconst prelude-backup-dir (expand-file-name "backup" prelude-local-dir))
 (defconst prelude-modules-file (expand-file-name "modules.el" prelude-modules-dir))
 
+(defconst prelude-submodules-dir (expand-file-name "submodules" prelude-local-dir))
+
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) prelude-savefile-dir))
 
 (provide 'core-const)

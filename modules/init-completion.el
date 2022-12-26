@@ -15,7 +15,7 @@
   :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
-               ("C-n" . corfu-complete-common-or-next)
+               ("RET" . corfu-complete-common-or-next)
                ("C-f" . corfu-quick-complete)))
   ;; Optional customizations
   :custom
@@ -43,6 +43,29 @@
           (corfu-next)))))
   (global-corfu-mode))
 
+;; yasnippet replacement.
+(use-package tempel
+  :straight t
+  :defer 2
+  :custom
+  (tempel-trigger-prefix "<")
+  :bind (:map tempel-map
+              ("C-f" . tempel-next)
+              ("C-b" . tempel-previous)
+              ("C-a" . tempel-beginning)
+              ("RET" . tempel-done)
+              )
+  :init
+  ;; Setup completion at point
+  (defun tempel-setup-capf ()
+    (setq-local completion-at-point-functions
+                (cons #'tempel-complete
+                      completion-at-point-functions)))
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+  (setq-default tempel-path (expand-file-name "templ-collection/templates/*.eld" prelude-submodules-dir))
+  )
+
 (use-package cape
   :straight t
   :bind (
@@ -53,6 +76,7 @@
   ((emacs-lisp-mode . (lambda ()
                         (setq-local completion-at-point-functions
                                     (list (cape-super-capf
+                                           #'tempel-complete
                                            #'elisp-completion-at-point
                                            #'cape-dabbrev))))))
   :init
@@ -106,6 +130,5 @@
          ("C-b" . citre-peek-chain-backward)
          )
   )
-
 
 (provide 'init-completion)

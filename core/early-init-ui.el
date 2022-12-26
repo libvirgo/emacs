@@ -5,7 +5,7 @@
   (push '(ns-transparent-titlebar . t) default-frame-alist))
 (if (eq system-type 'darwin)
     (progn
-      (setq theme-directory (expand-file-name "core/spacemacs-theme/" user-emacs-directory))
+      (setq theme-directory (expand-file-name "local/submodules/spacemacs-theme" user-emacs-directory))
       (add-to-list 'load-path theme-directory)
 
       (require 'spacemacs-common)
