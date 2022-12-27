@@ -4,4 +4,7 @@
 .DS_Store
 eln-cache
 auto-save-list
+
+!.local/lib
+.local/*
 epkgs

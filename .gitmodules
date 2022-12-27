@@ -34,6 +34,12 @@
 	url = https://git.sr.ht/~tarsius/llama.git
 	ignore = dirty
 	shallow = true
+[submodule "spacemacs-theme"]
+	path = .local/lib/spacemacs-theme
+	url = https://github.com/nashamri/spacemacs-theme
+	ignore = dirty
+	shallow = true
+	build-step = borg-compile
 [submodule "sqlite3"]
 	path = .local/lib/sqlite3
 	url = https://github.com/pekingduck/emacs-sqlite3-api.git
@@ -47,3 +53,5 @@
 [submodule "use-package"]
 	path = .local/lib/use-package
 	url = https://github.com/jwiegley/use-package
+	ignore = dirty
+	shallow = true
