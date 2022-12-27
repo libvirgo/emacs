@@ -101,6 +101,16 @@
 	url = https://depp.brause.cc/eyebrowse.git
 	ignore = dirty
 	shallow = true
+[submodule "go-fill-struct"]
+	path = .local/lib/go-fill-struct
+	url = https://github.com/s-kostyaev/go-fill-struct.git
+    ignore = dirty
+	shallow = true
+[submodule "go-mode"]
+	path = .local/lib/go-mode
+	url = https://github.com/dominikh/go-mode.el
+    ignore = dirty
+	shallow = true
 [submodule "hl-indent-scope"]
 	path = .local/lib/hl-indent-scope
 	url = git@github.com:emacsmirror/hl-indent-scope.git

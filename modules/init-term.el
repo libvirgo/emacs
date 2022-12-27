@@ -86,11 +86,4 @@
   (bind-key "C-'" #'shell-pop-posframe-toggle)
   )
 
-<<<<<<< HEAD
-
 (provide 'init-term)
-
-
-=======
-(provide 'init-term)
->>>>>>> borg
