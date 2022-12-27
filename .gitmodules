@@ -8,15 +8,25 @@
 	url = https://github.com/emacscollective/closql.git
 	ignore = dirty
 	shallow = true
+[submodule "compat"]
+	path = .local/lib/compat
+	url = https://git.sr.ht/~pkal/compat.git
+	ignore = dirty
+	shallow = true
 [submodule "emacsql"]
 	path = .local/lib/emacsql
 	url = https://github.com/skeeto/emacsql.git
 	ignore = dirty
 	shallow = true
 	no-byte-compile = emacsql-pg.el.git
-[submodule "compat"]
-	path = .local/lib/compat
-	url = https://git.sr.ht/~pkal/compat.git
+[submodule "epkg"]
+	path = .local/lib/epkg
+	url = https://github.com/emacscollective/epkg.git
+	ignore = dirty
+	shallow = true
+[submodule "key-chord"]
+	path = .local/lib/key-chord
+	url = https://github.com/emacsorphanage/key-chord
 	ignore = dirty
 	shallow = true
 [submodule "llama"]
@@ -29,8 +39,11 @@
 	url = https://github.com/pekingduck/emacs-sqlite3-api.git
 	ignore = dirty
 	shallow = true
-[submodule "epkg"]
-	path = .local/lib/epkg
-	url = https://github.com/emacscollective/epkg.git
+[submodule "system-packages"]
+	path = .local/lib/system-packages
+	url = https://gitlab.com/jabranham/system-packages
 	ignore = dirty
 	shallow = true
+[submodule "use-package"]
+	path = .local/lib/use-package
+	url = https://github.com/jwiegley/use-package
