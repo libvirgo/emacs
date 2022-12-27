@@ -15,7 +15,7 @@
 	shallow = true
 [submodule "borg"]
 	path = .local/lib/borg
-	url = https://github.com/emacscollective/borg.git
+	url = git@github.com:libvirgo/borg.git
 	ignore = dirty
 	shallow = true
 [submodule "cape"]

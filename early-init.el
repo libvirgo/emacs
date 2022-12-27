@@ -8,9 +8,11 @@
   ;; REVIEW Use `startup-redirect-eln-cache' when 28 support is dropped
 
   (setq native-comp-cache-dir (expand-file-name (expand-file-name ".local/eln/" user-emacs-directory) comp-native-version-dir))
-  (add-to-list 'native-comp-eln-load-path native-comp-cache-dir)
-  (setq native-target-dir native-comp-cache-dir)
-  (setq native-cache-dir native-comp-cache-dir)
+  (setcar native-comp-eln-load-path native-comp-cache-dir)
+          (startup-redirect-eln-cache native-comp-cache-dir))
+  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+  (setq native-compile-target-directory native-comp-cache-dir)
+  
   ;; UX: Suppress compiler warnings and don't inundate users with their popups.
   ;;   They are rarely more than warnings, so are safe to ignore.
   (setq native-comp-async-report-warnings-errors init-file-debug
