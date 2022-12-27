@@ -1,0 +1,5 @@
+[submodule "borg"]
+	path = .local/lib/borg
+	url = https://github.com/emacscollective/borg
+	ignore = dirty
+	shallow = true

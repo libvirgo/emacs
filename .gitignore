@@ -1,0 +1,7 @@
+.idea
+*.elc
+*-autoloads.el
+.DS_Store
+eln-cache
+auto-save-list
+epkgs
