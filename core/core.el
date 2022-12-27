@@ -20,6 +20,11 @@
   (setq-default straight-use-package-by-default t)
   (setq-default straight-vc-git-default-clone-depth 1)
   (setq-default straight-base-dir prelude-local-dir)
+  (if (and (executable-find "watchexec")
+           (executable-find "python3"))
+      (setq straight-check-for-modifications '(watch-files find-when-checking))
+    (setq straight-check-for-modifications
+          '(find-at-startup find-when-checking)))
   (let ((repo-dir (expand-file-name "straight/repos/straight.el" straight-base-dir))
         ))
   (let ((bootstrap-file

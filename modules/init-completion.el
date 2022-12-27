@@ -2,13 +2,15 @@
 
 (use-package kind-icon
   :straight t
-  :defer 2
+  :demand t
   :custom
   (kind-icon-use-icons nil)
   (kind-icon-default-face 'corfu-default)
-  :hook ((after-load-theme . 'kind-icon-reset-cache))
+  :hook ((after-load-theme . kind-icon-reset-cache))
   :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  (with-eval-after-load 'corfu
+      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+    )
   )
 
 (use-package corfu
