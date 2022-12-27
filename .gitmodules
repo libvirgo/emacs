@@ -1,6 +1,31 @@
+[submodule "ace-window"]
+	path = .local/lib/ace-window
+	url = https://github.com/abo-abo/ace-window
+	ignore = dirty
+	shallow = true
+[submodule "avy"]
+	path = .local/lib/avy
+	url = https://github.com/abo-abo/avy
+	ignore = dirty
+	shallow = true
+[submodule "awesome-pair"]
+	path = .local/lib/awesome-pair
+	url = https://github.com/manateelazycat/awesome-pair.git
+	ignore = dirty
+	shallow = true
 [submodule "borg"]
 	path = .local/lib/borg
 	url = https://github.com/emacscollective/borg.git
+	ignore = dirty
+	shallow = true
+[submodule "cape"]
+	path = .local/lib/cape
+	url = https://github.com/minad/cape
+	ignore = dirty
+	shallow = true
+[submodule "citre"]
+	path = .local/lib/citre
+	url = https://github.com/universal-ctags/citre
 	ignore = dirty
 	shallow = true
 [submodule "closql"]
@@ -13,15 +38,77 @@
 	url = https://git.sr.ht/~pkal/compat.git
 	ignore = dirty
 	shallow = true
+[submodule "consult"]
+	path = .local/lib/consult
+	url = https://github.com/minad/consult
+	ignore = dirty
+	shallow = true
+[submodule "corfu"]
+	path = .local/lib/corfu
+	url = https://github.com/minad/corfu
+	ignore = dirty
+	shallow = true
+	load-path = .
+	load-path = extensions
+[submodule "corfu-english-helper"]
+	path = .local/lib/corfu-english-helper
+	url = https://github.com/manateelazycat/corfu-english-helper.git
+	ignore = dirty
+	shallow = true
+[submodule "dash"]
+	path = .local/lib/dash
+	url = https://github.com/magnars/dash.el
+	ignore = dirty
+	shallow = true
+[submodule "diff-hl"]
+	path = .local/lib/diff-hl
+	url = https://github.com/dgutov/diff-hl
+	ignore = dirty
+	shallow = true
+[submodule "diminish"]
+	path = .local/lib/diminish
+	url = https://github.com/myrjola/diminish.el
+	ignore = dirty
+	shallow = true
+[submodule "eglot"]
+	path = .local/lib/eglot
+	url = https://github.com/joaotavora/eglot
+	ignore = dirty
+	shallow = true
 [submodule "emacsql"]
 	path = .local/lib/emacsql
 	url = https://github.com/skeeto/emacsql.git
 	ignore = dirty
 	shallow = true
 	no-byte-compile = emacsql-pg.el.git
+[submodule "embark"]
+	path = .local/lib/embark
+	url = https://github.com/oantolin/embark
+	ignore = dirty
+	shallow = true
 [submodule "epkg"]
 	path = .local/lib/epkg
 	url = https://github.com/emacscollective/epkg.git
+	ignore = dirty
+	shallow = true
+[submodule "exec-path-from-shell"]
+	path = .local/lib/exec-path-from-shell
+	url = https://github.com/purcell/exec-path-from-shell
+	ignore = dirty
+	shallow = true
+[submodule "eyebrowse"]
+	path = .local/lib/eyebrowse
+	url = https://depp.brause.cc/eyebrowse.git
+	ignore = dirty
+	shallow = true
+[submodule "hl-indent-scope"]
+	path = .local/lib/hl-indent-scope
+	url = git@github.com:emacsmirror/hl-indent-scope.git
+	ignore = dirty
+	shallow = true
+[submodule "hungry-delete"]
+	path = .local/lib/hungry-delete
+	url = https://github.com/nflath/hungry-delete
 	ignore = dirty
 	shallow = true
 [submodule "key-chord"]
@@ -29,9 +116,60 @@
 	url = https://github.com/emacsorphanage/key-chord
 	ignore = dirty
 	shallow = true
+[submodule "kind-icon"]
+	path = .local/lib/kind-icon
+	url = https://github.com/jdtsmith/kind-icon
+	ignore = dirty
+	shallow = true
+[submodule "libgit"]
+	path = .local/lib/libgit
+	url = https://github.com/magit/libegit2
+	ignore = dirty
+	shallow = true
+	build-step = make
 [submodule "llama"]
 	path = .local/lib/llama
 	url = https://git.sr.ht/~tarsius/llama.git
+	ignore = dirty
+	shallow = true
+[submodule "magit"]
+	path = .local/lib/magit
+	url = https://github.com/magit/magit
+	ignore = dirty
+	shallow = true
+[submodule "marginalia"]
+	path = .local/lib/marginalia
+	url = https://github.com/minad/marginalia
+	ignore = dirty
+	shallow = true
+[submodule "meow"]
+	path = .local/lib/meow
+	url = https://github.com/meow-edit/meow
+	ignore = dirty
+	shallow = true
+[submodule "orderless"]
+	path = .local/lib/orderless
+	url = https://github.com/oantolin/orderless
+	ignore = dirty
+	shallow = true
+[submodule "popper"]
+	path = .local/lib/popper
+	url = https://github.com/karthink/popper
+	ignore = dirty
+	shallow = true
+[submodule "posframe"]
+	path = .local/lib/posframe
+	url = https://github.com/tumashu/posframe
+	ignore = dirty
+	shallow = true
+[submodule "rime"]
+	path = .local/lib/rime
+	url = https://github.com/DogLooksGood/emacs-rime
+	ignore = dirty
+	shallow = true
+[submodule "smartparens"]
+	path = .local/lib/smartparens
+	url = https://github.com/Fuco1/smartparens
 	ignore = dirty
 	shallow = true
 [submodule "spacemacs-theme"]
@@ -50,8 +188,44 @@
 	url = https://gitlab.com/jabranham/system-packages
 	ignore = dirty
 	shallow = true
+[submodule "tempel"]
+	path = .local/lib/tempel
+	url = https://github.com/minad/tempel
+	ignore = dirty
+	shallow = true
+[submodule "tempel-collection"]
+	path = .local/lib/tempel-collection
+	url = git@github.com:libvirgo/tempel-collection.git
+	ignore = dirty
+	shallow = true
+	build-step = borg-compile
+[submodule "transient"]
+	path = .local/lib/transient
+	url = https://github.com/magit/transient
+	ignore = dirty
+	shallow = true
+[submodule "treemacs"]
+	path = .local/lib/treemacs
+	url = https://github.com/Alexander-Miller/treemacs
+	ignore = dirty
+	shallow = true
 [submodule "use-package"]
 	path = .local/lib/use-package
 	url = https://github.com/jwiegley/use-package
+	ignore = dirty
+	shallow = true
+[submodule "vertico"]
+	path = .local/lib/vertico
+	url = https://github.com/minad/vertico
+	ignore = dirty
+	shallow = true
+[submodule "vterm"]
+	path = .local/lib/vterm
+	url = https://github.com/akermu/emacs-libvterm
+	ignore = dirty
+	shallow = true
+[submodule "with-editor"]
+	path = .local/lib/with-editor
+	url = https://github.com/magit/with-editor
 	ignore = dirty
 	shallow = true

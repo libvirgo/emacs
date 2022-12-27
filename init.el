@@ -1,12 +1,33 @@
+;;; -*- lexical-binding: t; -*-
+
+(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+
+(require 'clytie-const)
+
+(setq backup-directory-alist
+        `((".*" . ,clytie-backup-dir)))
+(setq auto-save-file-name-transforms
+      `((".*" ,clytie-tmp-dir t)))
+(setq auto-save-list-file-prefix
+      clytie-tmp-dir)
+(setq transient-levels-file (expand-file-name "transient/levels.el" clytie-local-dir))
+(setq transient-values-file (expand-file-name "transient/values.el" clytie-local-dir))
+(setq transient-history-file (expand-file-name "transient/history.el" clytie-local-dir))
+(setq bookmark-default-file (expand-file-name "bookmarks" clytie-local-dir))
+
+(setq large-file-warning-threshold 100000000)
+(setq load-prefer-newer t)
+
 (eval-and-compile ; `borg'
   (add-to-list 'load-path (expand-file-name ".local/lib/borg" user-emacs-directory))
   (require 'borg)
   (borg-initialize))
 
-(setq epkg-repository (expand-file-name ".local/lib/epkgs" user-emacs-directory))
 
-(eval-and-compile ; `use-package'
-  (require  'use-package)
-  (setq use-package-verbose t)
-  (setq-default use-package-always-defer t))
+(require 'clytie-util)
+(require 'clytie-packages)
+
+(add-to-list 'load-path clytie-modules-dir)
+
+(require 'modules)
 

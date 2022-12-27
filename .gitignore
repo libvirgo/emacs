@@ -5,6 +5,7 @@
 eln-cache
 auto-save-list
 
-!.local/lib
 .local/*
-epkgs
+!.local/lib/
+.local/lib/epkgs/
+.local/lib/librime/
