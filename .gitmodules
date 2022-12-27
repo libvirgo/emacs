@@ -1,5 +1,36 @@
 [submodule "borg"]
 	path = .local/lib/borg
-	url = https://github.com/emacscollective/borg
+	url = https://github.com/emacscollective/borg.git
+	ignore = dirty
+	shallow = true
+[submodule "closql"]
+	path = .local/lib/closql
+	url = https://github.com/emacscollective/closql.git
+	ignore = dirty
+	shallow = true
+[submodule "emacsql"]
+	path = .local/lib/emacsql
+	url = https://github.com/skeeto/emacsql.git
+	ignore = dirty
+	shallow = true
+	no-byte-compile = emacsql-pg.el.git
+[submodule "compat"]
+	path = .local/lib/compat
+	url = https://git.sr.ht/~pkal/compat.git
+	ignore = dirty
+	shallow = true
+[submodule "llama"]
+	path = .local/lib/llama
+	url = https://git.sr.ht/~tarsius/llama.git
+	ignore = dirty
+	shallow = true
+[submodule "sqlite3"]
+	path = .local/lib/sqlite3
+	url = https://github.com/pekingduck/emacs-sqlite3-api.git
+	ignore = dirty
+	shallow = true
+[submodule "epkg"]
+	path = .local/lib/epkg
+	url = https://github.com/emacscollective/epkg.git
 	ignore = dirty
 	shallow = true
