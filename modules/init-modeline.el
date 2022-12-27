@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defvar awesome-tray-git-buffer-filename "")
 (defvar awesome-tray-git-command-cache "")
 (defvar  awesome-tray-git-show-status t)

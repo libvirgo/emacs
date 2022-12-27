@@ -1,7 +1,106 @@
 ;;; -*- lexical-binding: t; -*-
 
+(use-package magit
+  :config
+  (setq magit-refresh-status-buffer nil))
+
+(use-package project
+  :bind (("C-c p p" . project-switch-project)
+         ("C-c p f" . project-find-file)
+         ("C-c p g" . project-find-regexp)
+         ("C-c p b" . consult-project-buffer)
+         ("C-c p s" . magit-project-status))
+  :init
+  (setq project-list-file (expand-file-name "projects" clytie-local-dir))
+  :config
+  (defcustom project-root-markers
+    '("Cargo.toml" "go.mod" "package.json" ".git")
+    "Files or directories that indicate the root of a project."
+    :type '(repeat string)
+    :group 'project)
+  (defun project-root-p (path)
+    "Check if the current PATH has any of the project root markers."
+    (catch 'found
+      (dolist (marker project-root-markers)
+        (when (file-exists-p (concat path marker))
+          (throw 'found marker)))))
+  (defun project-find-root (path)
+    "Search up the PATH for `project-root-markers'."
+    (let ((path (expand-file-name path)))
+      (catch 'found
+        (while (not (equal "/" path))
+          (if (not (project-root-p path))
+              (setq path (file-name-directory (directory-file-name path)))
+            (throw 'found (cons 'transient path)))))))
+  (add-to-list 'project-find-functions #'project-find-root)
+  (defun my/project-files-in-directory (dir)
+    "Use `fd' to list files in DIR."
+    (let* ((default-directory dir)
+           (localdir (file-local-name (expand-file-name dir)))
+           (command (format "fd -H -t f -0 -E .git . %s" localdir)))
+      (project--remote-file-names
+       (sort (split-string (shell-command-to-string command) "\0" t)
+             #'string<))))
+
+  (cl-defmethod project-files ((project (head transient)) &optional dirs)
+    "Override `project-files' to use `fd' in local projects."
+    (mapcan #'my/project-files-in-directory
+            (or dirs (list (project-root project)))))
+  (setq magit-bind-magit-project-status nil)
+  (define-key project-prefix-map "v" #'vterm)
+  (define-key project-prefix-map "m" #'magit-project-status)
+  (setq project-switch-commands
+        '((project-find-file "Find file")
+          (project-find-regexp "Find ripgrep")
+          (project-find-dir "Find directory")
+          (vterm "VTerm")
+          (magit-project-status "Magit")))
+  )
+
+(use-package diff-hl
+  :custom-face
+  (diff-hl-change ((t (:inherit diff-changed :foreground unspecified :background unspecified))))
+  (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
+  (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
+  :bind (("C-c d s" . diff-hl-show-hunk)
+         :repeat-map diff-hl-inline-popup-transient-mode-map
+         ("C-f" . diff-hl-show-hunk-next)
+         ("C-b" . diff-hl-show-hunk-previous)
+         ("C-r" . diff-hl-show-hunk-revert-hunk)
+         ("C-p" . diff-hl-inline-popup--popup-up)
+         ("C-n" . diff-hl-inline-popup--popup-down)
+         ("C-c" . diff-hl-show-hunk-copy-original-text)
+         :map diff-hl-command-map
+         ("SPC" . diff-hl-mark-hunk))
+  :hook ((dired-mode . diff-hl-dired-mode))
+  :init
+  (setq diff-hl-draw-borders nil)
+  (global-diff-hl-mode)
+  :config
+  ;; Highlight on-the-fly
+  (diff-hl-flydiff-mode 1)
+
+  ;; Set fringe style
+  (setq-default fringes-outside-margins t)
+
+  (with-no-warnings
+    (defun my-diff-hl-fringe-bmp-function (_type _pos)
+      "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
+      (define-fringe-bitmap 'my-diff-hl-bmp
+        (vector (if sys/linuxp #b11111100 #b11100000))
+        1 8
+        '(center t)))
+    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
+    ;; performance slow
+    (with-eval-after-load 'magit
+      (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+      (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
+
+(use-package vc
+  :bind (("C-c v h" . vc-region-history))
+  )
+
 (use-package eyebrowse
-  :straight t
   :init
   (eyebrowse-mode)
   :bind (("C-c w c" . eyebrowse-create-window-config)
@@ -18,8 +117,7 @@
 
 ;; Enforce rules for popups
 (use-package popper
-  :straight t
-  :defer 1
+  :defer 2
   :defines popper-echo-dispatch-actions
   :bind (("C-c b p" . popper-toggle-latest)
          :map popper-mode-map
@@ -108,7 +206,6 @@
     (advice-add #'keyboard-quit :before #'popper-close-window-hack)))
 
 (use-package treemacs
-  :straight t
   :config
   (progn
     (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
@@ -138,8 +235,7 @@
         ("C-c t d" . treemacs-select-directory)))
 
 (use-package ace-window
-  :straight t
   :bind (("C-c w w" . ace-window)
          ))
 
-(provide 'init-manage)
+(provide 'init-project)

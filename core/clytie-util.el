@@ -19,4 +19,4 @@
               (push (buffer-name pr) buffers))
             buffers)))
 
-(provide 'core-util)
+(provide 'clytie-util)

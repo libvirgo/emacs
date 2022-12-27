@@ -7,7 +7,7 @@
   ;; deleted by 'doom upgrade').
   ;; REVIEW Use `startup-redirect-eln-cache' when 28 support is dropped
 
-  (setq native-comp-cache-dir (expand-file-name (expand-file-name "local/eln/" user-emacs-directory) comp-native-version-dir))
+  (setq native-comp-cache-dir (expand-file-name (expand-file-name ".local/eln/" user-emacs-directory) comp-native-version-dir))
   (add-to-list 'native-comp-eln-load-path native-comp-cache-dir)
   (setq native-target-dir native-comp-cache-dir)
   (setq native-cache-dir native-comp-cache-dir)
@@ -67,6 +67,4 @@
 
 (setq frame-inhibit-implied-resize t)
 
-(setq prelude-init-ui-file (expand-file-name "core/early-init-ui.el" user-emacs-directory))
-
-(load prelude-init-ui-file)
+(load (expand-file-name "core/core" user-emacs-directory))

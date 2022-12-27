@@ -1,5 +1,6 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package org-modern
-  :straight t
   :hook
   (org-mode . org-modern-mode)
   (org-agenda-finalize . org-modern-agenda)

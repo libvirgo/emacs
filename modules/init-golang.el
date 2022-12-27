@@ -1,10 +1,8 @@
 ;;; -*- lexical-binding: t; -*-
 
-(use-package go-fill-struct
-  :straight t)
+(use-package go-fill-struct)
 
 (use-package go-mode
-  :straight t
   :hook ((before-save . gofmt-before-save)
          (go-mode . (lambda ()
                       (with-eval-after-load 'embark

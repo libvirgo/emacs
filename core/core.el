@@ -1,71 +1,66 @@
 ;;; -*- lexical-binding: t; -*-
 
-(setq backup-directory-alist
-        `((".*" . ,prelude-backup-dir)))
-(setq auto-save-file-name-transforms
-      `((".*" ,emacs-tmp-dir t)))
-(setq auto-save-list-file-prefix
-      emacs-tmp-dir)
-(setq transient-levels-file (expand-file-name "transient/levels.el" prelude-local-dir))
-(setq transient-values-file (expand-file-name "transient/values.el" prelude-local-dir))
-(setq transient-history-file (expand-file-name "transient/history.el" prelude-local-dir))
-(setq bookmark-default-file (expand-file-name "bookmarks" prelude-local-dir))
+(require 'cl-lib)
+(when (featurep 'ns)
+  (push '(ns-transparent-titlebar . t) default-frame-alist))
+(if (eq system-type 'darwin)
+    (progn
+      (setq theme-directory (expand-file-name ".local/lib/spacemacs-theme" user-emacs-directory))
+      (add-to-list 'load-path theme-directory)
 
-(setq large-file-warning-threshold 100000000)
-(setq load-prefer-newer t)
-
-
-(defun prelude-straight-check ()
-  (defvar bootstrap-version)
-  (setq-default straight-use-package-by-default t)
-  (setq-default straight-vc-git-default-clone-depth 1)
-  (setq-default straight-base-dir prelude-local-dir)
-  (if (and (executable-find "watchexec")
-           (executable-find "python3"))
-      (setq straight-check-for-modifications '(watch-files find-when-checking))
-    (setq straight-check-for-modifications
-          '(find-at-startup find-when-checking)))
-  (let ((repo-dir (expand-file-name "straight/repos/straight.el" straight-base-dir))
-        ))
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" straight-base-dir))
-        (bootstrap-version 6))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
+      (require 'spacemacs-common)
+      (defun my/load-theme (appearance)
+        "Load theme, taking current system APPEARANCE into consideration."
+        (mapc #'disable-theme custom-enabled-themes)
+        (pcase appearance
+          ('light (load-theme 'spacemacs-light t))
+          ('dark (load-theme 'spacemacs-dark t))))
+      (add-hook 'ns-system-appearance-change-functions #'my/load-theme)
+      (setq mac-option-modifier 'meta)
+      (setq mac-command-modifier 'super)
+      )
   )
 
-(prelude-straight-check)
+(defun spacemacs/reset-frame-size (&optional frame)
+    (interactive)
+    (when frame
+      (select-frame frame))
+    (set-frame-width (selected-frame) 120)
+    (set-frame-height (selected-frame) 39))
+(add-hook 'after-make-frame-functions 'spacemacs/reset-frame-size)
 
-(setq-default use-package-always-defer t)
+(defun +my/better-font()
+  (interactive)
+  ;; english font
+  (if (display-graphic-p)
+      (progn
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "JetBrainsMono NF" 15))
+        ;; chinese font
+        (dolist (charset '(kana han symbol cjk-misc bopomofo))
+          (set-fontset-font (frame-parameter nil 'font)
+                            charset
+                            (font-spec :family "Sarasa Mono SC"))))
+    ))
 
-(dolist (pack '(use-package diminish))
-  (straight-use-package pack))
+(defun +my|init-font(frame)
+  (with-selected-frame frame
+    (if (display-graphic-p)
+        (+my/better-font))))
+(add-hook 'after-make-frame-functions #'+my|init-font)
+(+my/better-font)
 
-(if is-darwin
-    (use-package exec-path-from-shell
-      :defer 1
-      :straight t
-      :config
-      (setq exec-path-from-shell-variables '("PATH" "PYTHONPATH" "GOPATH" "GTAGSOBJDIRPREFIX" "GTAGSCONF" "GTAGSLABEL"))
-      (setq exec-path-from-shell-check-startup-files nil)
-      (setq exec-path-from-shell-arguments '("-l"))
-      (exec-path-from-shell-initialize))
-    (when (fboundp 'set-fontset-font)
-      (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
-    (setq dired-use-ls-dired nil)
-    )
+(setq inhibit-startup-screen t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+(setq ring-bell-function 'ignore)
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
 
-(defvar after-load-theme-hook nil
-  "Hook run after a color theme is loaded using `load-theme'.")
+(pixel-scroll-precision-mode)
+(blink-cursor-mode -1)
 
-(defadvice load-theme (after run-after-load-theme-hook activate)
-  "Run `after-load-theme-hook'."
-  (run-hooks 'after-load-theme-hook))
-
-(provide 'core)
+(setq-default mode-line-format nil)

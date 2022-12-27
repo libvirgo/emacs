@@ -1,7 +1,7 @@
+
 ;;; -*- lexical-binding: t; -*-
 
 (use-package meow
-  :straight t
   :demand t
   :init (meow-global-mode 1)
   :diminish (meow-normal-mode

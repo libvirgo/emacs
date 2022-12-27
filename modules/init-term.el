@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package vterm
-  :straight t
   :bind (:map vterm-mode-map
               ("C-'" . shell-pop-posframe-toggle))
   :init (setq vterm-always-compile-module t)
@@ -87,7 +86,11 @@
   (bind-key "C-'" #'shell-pop-posframe-toggle)
   )
 
+<<<<<<< HEAD
 
 (provide 'init-term)
 
 
+=======
+(provide 'init-term)
+>>>>>>> borg
