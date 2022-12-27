@@ -9,8 +9,7 @@
 
   (setq native-comp-cache-dir (expand-file-name (expand-file-name ".local/eln/" user-emacs-directory) comp-native-version-dir))
   (setcar native-comp-eln-load-path native-comp-cache-dir)
-          (startup-redirect-eln-cache native-comp-cache-dir))
-  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+  (startup-redirect-eln-cache native-comp-cache-dir)
   (setq native-compile-target-directory native-comp-cache-dir)
   
   ;; UX: Suppress compiler warnings and don't inundate users with their popups.
