@@ -62,14 +62,13 @@
 
                 (:eval (when (bound-and-true-p flycheck-mode) flycheck-mode-line))
                 (:eval (when (bound-and-true-p flymake-mode) flymake-mode-line-format))))
-         (rhs '((:eval minor-mode-alist)
-                " "
+         (rhs '(
+                ;; (:eval minor-mode-alist) " "
                 (:eval (awesome-tray-module-git-info))
                 " |"
                 (:eval (concat (my/mode-line-mode-name)))
                 ;; (:eval (propertize "%m" 'face 'font-lock-type-face))
                 "|"
-
                 ))
          (ww (window-width))
          (lhs-str (format-mode-line lhs))
