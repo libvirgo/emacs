@@ -153,7 +153,7 @@
                  (window-parameters (mode-line-format . none)))))
 
 (use-package kind-icon
-  :demand t
+  :defer 2
   :custom
   (kind-icon-use-icons nil)
   (kind-icon-default-face 'corfu-default)
@@ -167,7 +167,7 @@
 (use-package corfu
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
-               ("RET" . corfu-complete-common-or-next)
+               ("<tab>" . corfu-complete-common-or-next)
                ("C-f" . corfu-quick-complete)))
   ;; Optional customizations
   :custom

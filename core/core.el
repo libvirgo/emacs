@@ -51,16 +51,32 @@
 
 (setq inhibit-startup-screen t)
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b"))))
-(setq ring-bell-function 'ignore)
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(tool-bar-lines . 0) default-frame-alist)
-(push '(vertical-scroll-bars) default-frame-alist)
 
-(pixel-scroll-precision-mode)
-(blink-cursor-mode -1)
+;; remove gui elements.
+(progn
+  (setq ns-use-proxy-icon nil)
+  (setq frame-title-format
+      '((:eval "")))
+  (defun spacemacs//removes-gui-elements ()
+  "Remove the menu bar, tool bar and scroll bars."
+  ;; removes the GUI elements
+  (unless (eq window-system 'mac)
+    (when (and (fboundp 'menu-bar-mode) (not (eq menu-bar-mode -1)))
+      (menu-bar-mode -1)))
+  (when (and (fboundp 'scroll-bar-mode) (not (eq scroll-bar-mode -1)))
+    (scroll-bar-mode -1))
+  (when (and (fboundp 'tool-bar-mode) (not (eq tool-bar-mode -1)))
+    (tool-bar-mode -1))
+  ;; tooltips in echo-aera
+  (when (and (fboundp 'tooltip-mode) (not (eq tooltip-mode -1)))
+    (tooltip-mode -1)))
+  (spacemacs//removes-gui-elements)
+  (push '(menu-bar-lines . -1) default-frame-alist)
+  (push '(tool-bar-lines . -1) default-frame-alist)
+  (push '(vertical-scroll-bars) default-frame-alist)
+  (pixel-scroll-precision-mode)
+  (blink-cursor-mode -1))
+
+(setq ring-bell-function 'ignore)
 
 (setq-default mode-line-format nil)

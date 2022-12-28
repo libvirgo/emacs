@@ -43,11 +43,16 @@
         awesome-tray-git-command-cache)
     ""))
 
+(defun my/mode-line-mode-name ()
+  (format "%s"
+		  (propertize (format-mode-line mode-name)
+					  'face '(:inherit font-lock-type-face))))
+
 (defun +format-mode-line ()
   (let* ((lhs '(
                 (:eval (when (bound-and-true-p meow-mode) (meow-indicator)))
+                (:eval (propertize "%b" 'face 'font-lock-keyword-face 'help-echo (buffer-file-name)))
                 (:eval (if (fboundp 'rime-lighter) (format "%s "(rime-lighter)) ""))
-                
                 (:eval (propertize "%l" 'face 'font-lock-type-face))
                 ","
                 (:eval (propertize "%c" 'face 'font-lock-type-face))
@@ -57,11 +62,15 @@
 
                 (:eval (when (bound-and-true-p flycheck-mode) flycheck-mode-line))
                 (:eval (when (bound-and-true-p flymake-mode) flymake-mode-line-format))))
-         (rhs '((:eval (awesome-tray-module-git-info))
+         (rhs '((:eval minor-mode-alist)
                 " "
-                (:eval (propertize "%b" 'face 'font-lock-keyword-face 'help-echo (buffer-file-name)))
-                " "
-                (:eval mode-name)))
+                (:eval (awesome-tray-module-git-info))
+                " |"
+                (:eval (concat (my/mode-line-mode-name)))
+                ;; (:eval (propertize "%m" 'face 'font-lock-type-face))
+                "|"
+
+                ))
          (ww (window-width))
          (lhs-str (format-mode-line lhs))
          (rhs-str (format-mode-line rhs))

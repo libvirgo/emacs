@@ -8,6 +8,7 @@
              meow-insert-mode
              meow-beacon-mode
              meow-motion-mode
+             meow-keypad-mode
              meow-esc-mode)
   :hook (())
   :bind (:map meow-insert-state-keymap
