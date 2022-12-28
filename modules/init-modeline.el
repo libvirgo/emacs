@@ -52,7 +52,7 @@
   (let* ((lhs '(
                 (:eval (when (bound-and-true-p meow-mode) (meow-indicator)))
                 (:eval (propertize "%b" 'face 'font-lock-keyword-face 'help-echo (buffer-file-name)))
-                (:eval (if (fboundp 'rime-lighter) (format "%s "(rime-lighter)) ""))
+                (:eval (if (fboundp 'rime-lighter) (format " %s "(rime-lighter)) ""))
                 (:eval (propertize "%l" 'face 'font-lock-type-face))
                 ","
                 (:eval (propertize "%c" 'face 'font-lock-type-face))

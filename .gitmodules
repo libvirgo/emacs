@@ -16,8 +16,6 @@
 [submodule "borg"]
 	path = .local/lib/borg
 	url = git@github.com:libvirgo/borg.git
-	ignore = dirty
-	shallow = true
 [submodule "cape"]
 	path = .local/lib/cape
 	url = https://github.com/minad/cape
