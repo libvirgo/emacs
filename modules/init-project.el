@@ -1,8 +1,12 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package magit
+  :bind (("C-c m m" . magit-file-dispatch))
   :config
   (setq magit-refresh-status-buffer nil))
+
+(use-package vc-mode
+  :bind (("C-c v d" . vc-version-diff)))
 
 (use-package project
   :bind (("C-c p p" . project-switch-project)
