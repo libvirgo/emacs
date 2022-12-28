@@ -9,7 +9,8 @@
 
 (when is-darwin
   (use-package exec-path-from-shell
-    :defer 1
+    :hook
+    ((after-init . (lambda ()(require 'exec-path-from-shell))))
     :config
     (setq exec-path-from-shell-variables '("PATH" "PYTHONPATH" "GOPATH" "GTAGSOBJDIRPREFIX" "GTAGSCONF" "GTAGSLABEL"))
     (setq exec-path-from-shell-check-startup-files nil)

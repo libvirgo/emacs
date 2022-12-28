@@ -153,7 +153,7 @@
                  (window-parameters (mode-line-format . none)))))
 
 (use-package kind-icon
-  :defer 2
+  :defer 3
   :custom
   (kind-icon-use-icons nil)
   (kind-icon-default-face 'corfu-default)
@@ -197,7 +197,7 @@
 
 ;; yasnippet replacement.
 (use-package tempel
-  :defer 2
+  :defer 3
   :custom
   (tempel-trigger-prefix "<")
   :bind (:map tempel-map

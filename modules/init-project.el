@@ -117,12 +117,11 @@
 
 ;; Enforce rules for popups
 (use-package popper
-  :defer 2
+  :defer 3
   :defines popper-echo-dispatch-actions
   :bind (("C-c b p" . popper-toggle-latest)
          :map popper-mode-map
          ("C-<tab>"   . popper-cycle))
-  ;; :hook (emacs-startup . popper-mode)
   :init
   (setq popper-reference-buffers
         '("\\*Messages\\*"

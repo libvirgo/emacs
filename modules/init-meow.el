@@ -10,7 +10,6 @@
              meow-motion-mode
              meow-keypad-mode
              meow-esc-mode)
-  :hook (())
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
   :config
