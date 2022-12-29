@@ -14,8 +14,6 @@
   :init (global-hungry-delete-mode)
   )
 
-(use-package smartparens)
-
 (use-package avy
   :bind(("C-c g l" . avy-goto-line)
         ("C-c g c" . avy-goto-char)

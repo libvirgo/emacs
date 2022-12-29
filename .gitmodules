@@ -169,11 +169,6 @@
 	url = https://github.com/DogLooksGood/emacs-rime
 	ignore = dirty
 	shallow = true
-[submodule "smartparens"]
-	path = .local/lib/smartparens
-	url = https://github.com/Fuco1/smartparens
-	ignore = dirty
-	shallow = true
 [submodule "spacemacs-theme"]
 	path = .local/lib/spacemacs-theme
 	url = https://github.com/nashamri/spacemacs-theme
