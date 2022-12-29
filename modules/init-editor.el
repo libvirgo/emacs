@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package electric-pair
-  :hook (after-init . electric-pair-mode))
+  :hook (prog-mode . electric-pair-mode))
 
 (use-package hl-indent-scope
   :commands (hl-indent-scope-mode)
@@ -21,54 +21,6 @@
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-
-(defun vmacs-boring-buffer-p(&optional buf)
-  (string-match-p (rx (or
-                       "\*Async-native-compile-log\*"
-                       "magit"
-                       "\*company-documentation\*"
-                       "\*eaf" "\*eldoc" "\*Launch " "*dap-"
-                       "*EGLOT " "\*Flymake log\*"
-                       "\*gopls::stderr\*" "\*gopls\*"
-                       "\*Compile-Log\*" "*Backtrace*"
-                       "*Package-Lint*" "\*sdcv\*" "\*tramp"
-                       "\*lsp-log\*" "\*tramp" "\*Ibuffer\*"
-                       "\*Help\*" "\*ccls" "\*vc"
-                       "\*xref" "\*Warnings*" "\*Http"
-                       "\*Async Shell Command\*"
-                       "\*Shell Command Output\*"
-                       "\*Calculator\*" "\*Calc "
-                       "\*Flycheck error messages\*"
-                       "\*Gofmt Errors\*"
-                       "\*Ediff" "\*sdcv\*"
-                       "\*Org PDF LaTex Output\*"
-                       "\*Org Export"
-                       "\*osx-dictionary\*" "\*Messages\*"
-                       "\*straight-process\*"
-                       ))
-                  (buffer-name buf)))
-
-(defun vmacs-tab-vterm-p(&optional buf)
-  (eq (buffer-local-value 'major-mode (or buf (current-buffer))) 'vterm-mode))
-
-;; switch-to-prev-buffer 与 switch-to-next-buffer 时 skip 特定的buffers
-;;而 tab-line-switch-to-prev/next-tab 恰好使用了上面两个函数
-(defun vmacs-switch-to-prev-buffer-skip(win buf bury-or-kill)
-  (when (member this-command '(next-buffer previous-buffer
-                                           switch-to-prev-buffer
-                                           switch-to-next-buffer))
-    (cond
-     ;; ((vmacs-tab-vterm-p)                ;当前buffer是vterm
-     ;; (not (vmacs-tab-vterm-p buf)))     ;若buf 不是vterm,则skip
-     ((vmacs-boring-buffer-p (current-buffer))
-      (not (vmacs-boring-buffer-p buf)))
-     (t                                 ;当前buffer是正常buffer
-      (or (vmacs-boring-buffer-p buf)   ;若buf 是boring buf 或vterm，则跳过
-          (vmacs-tab-vterm-p buf)
-          (not (project-buffer-p buf))
-          )))))
-
-(setq switch-to-prev-buffer-skip #'vmacs-switch-to-prev-buffer-skip)
 
 (use-package posframe
   :hook (after-load-theme . posframe-delete-all)
@@ -95,5 +47,67 @@
             (/ (+ (plist-get info :parent-frame-height)
                   (* 2 (plist-get info :font-height)))
                2)))))
+
+(use-package ace-window
+  :bind (("C-c w w" . ace-window)
+         ))
+
+(use-package awesome-tab
+  :hook (after-init . awesome-tab-mode)
+  :bind (("s-1" . 'awesome-tab-select-visible-tab)
+         ("s-2" . 'awesome-tab-select-visible-tab)
+         ("s-3" . 'awesome-tab-select-visible-tab)
+         ("s-4" . 'awesome-tab-select-visible-tab)
+         ("s-5" . 'awesome-tab-select-visible-tab)
+         ("s-6" . 'awesome-tab-select-visible-tab)
+         ("s-7" . 'awesome-tab-select-visible-tab)
+         ("s-8" . 'awesome-tab-select-visible-tab)
+         ("s-9" . 'awesome-tab-select-visible-tab)
+         ("s-0" . 'awesome-tab-select-visible-tab)
+         ("C-c [" . 'awesome-tab-backward-tab)
+         ("C-c ]" . 'awesome-tab-forward-tab)
+         )
+  :config
+  (with-eval-after-load 'hydra
+      (defhydra awesome-fast-switch (:hint nil)
+  "
+ ^^^^Fast Move             ^^^^Tab                    ^^Search            ^^Misc
+-^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
+   ^_k_^   prev group    | _C-a_^^     select first | _b_ search buffer | _C-k_   kill buffer
+ _h_   _l_  switch tab   | _C-e_^^     select last  | _g_ search group  | _C-S-k_ kill others in group
+   ^_j_^   next group    | _C-j_^^     ace jump     | ^^                | ^^
+ _H_   _L_ switch project| _C-h_/_C-l_ move current | ^^                | ^^
+ ^^0 ~ 9^^ eyebrowse     | ^^                     | ^^                | ^^
+-^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
+"
+  ("h" awesome-tab-backward-tab)
+  ("j" awesome-tab-forward-group)
+  ("k" awesome-tab-backward-group)
+  ("l" awesome-tab-forward-tab)
+  ("L" eyebrowse-next-window-config)
+  ("H" eyebrowse-prev-window-config)
+  ("C-a" awesome-tab-select-beg-tab)
+  ("C-e" awesome-tab-select-end-tab)
+  ("C-j" awesome-tab-ace-jump)
+  ("C-h" awesome-tab-move-current-tab-to-left)
+  ("C-l" awesome-tab-move-current-tab-to-right)
+  ("0" eyebrowse-switch-to-window-config-0)
+  ("1" eyebrowse-switch-to-window-config-1)
+  ("2" eyebrowse-switch-to-window-config-2)
+  ("3" eyebrowse-switch-to-window-config-3)
+  ("4" eyebrowse-switch-to-window-config-4)
+  ("5" eyebrowse-switch-to-window-config-5)
+  ("6" eyebrowse-switch-to-window-config-6)
+  ("7" eyebrowse-switch-to-window-config-7)
+  ("8" eyebrowse-switch-to-window-config-8)
+  ("9" eyebrowse-switch-to-window-config-9)
+  ("b" consult-buffer )
+  ("g" awesome-tab-switch-group)
+  ("C-k" kill-current-buffer)
+  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group)
+  ("q" nil "quit"))
+  (global-set-key (kbd "C-.") 'awesome-fast-switch/body)
+    )
+  )
 
 (provide 'init-editor)

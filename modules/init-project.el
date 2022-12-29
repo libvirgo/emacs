@@ -3,7 +3,37 @@
 (use-package magit
   :bind (("C-c m m" . magit-file-dispatch))
   :config
-  (setq magit-refresh-status-buffer nil))
+  (setq magit-refresh-status-buffer nil)
+  
+  (transient-append-suffix 'magit-submodule "-r"
+    '("-d" "shallow-clone update or add with --depth 1" "--depth 1"))
+  (transient-append-suffix 'magit-commit "-e"
+    '("-N" "Don't edit message" "--no-edit"))
+  
+  ;; git config -f .gitmodules submodule.<name>.shallow true
+  ;; (defun magit-submodule-config (&optional args)
+  ;; "git config for submodule."
+  ;; (interactive (if current-prefix-arg
+  ;;                  (list (cons "--amend" (magit-commit-arguments)))
+  ;;                (list (magit-commit-arguments))))
+  ;; (when (member "--all" args)
+  ;;   (setq this-command 'magit-commit--all))
+  ;;   (let ((default-directory (magit-toplevel)))
+  ;;     (magit-run-git-with-editor "config" args)))
+  ;; (transient-define-prefix 'my/magit-config ()
+  ;; "Create a new commit or replace an existing commit."
+  ;; :info-manual "(magit)Git config"
+  ;; :man-page "git-config"
+  ;; ["Arguments"
+  ;;  ("-g" "Stage all modified and deleted files"   ("-g" "--global"))
+  ;;  ]
+  ;; [["Submodule"
+  ;;   ("s" "submodule"         magit-submodule-config)]]
+  ;; (interactive)
+  ;; (if-let ((buffer (magit-commit-message-buffer)))
+  ;;     (switch-to-buffer buffer)
+  ;;   (transient-setup 'my/magit-config)))
+  )
 
 (use-package vc-mode
   :bind (("C-c v d" . vc-version-diff)))
@@ -107,16 +137,8 @@
 (use-package eyebrowse
   :init
   (eyebrowse-mode)
-  :bind (("C-c w c" . eyebrowse-create-window-config)
-         ("C-c w q" . eyebrowse-close-window-config)
-         ("C-c w n" . eyebrowse-next-window-config)
-         ("C-c w p" . eyebrowse-prev-window-config)
+  :bind (("C-c w q" . eyebrowse-close-window-config)
          ("C-c w r" . eyebrowse-rename-window-config)
-         ("C-c w 0" . eyebrowse-switch-to-window-config-0)
-         ("C-c w 1" . eyebrowse-switch-to-window-config-1)
-         ("C-c w 2" . eyebrowse-switch-to-window-config-2)
-         ("C-c w 3" . eyebrowse-switch-to-window-config-3)
-         ("C-c w 4" . eyebrowse-switch-to-window-config-4)
          ))
 
 ;; Enforce rules for popups
@@ -236,9 +258,5 @@
         ("C-c t f" . treemacs-find-file)
         ("C-c t i" . treemacs-find-tag)
         ("C-c t d" . treemacs-select-directory)))
-
-(use-package ace-window
-  :bind (("C-c w w" . ace-window)
-         ))
 
 (provide 'init-project)

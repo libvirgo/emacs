@@ -6,6 +6,7 @@
 (defvar awesome-tray-git-format "[git:%s]")
 
 (defun awesome-tray-git-command-update-cache ()
+  (require 'vc-git)
   (if (file-exists-p (format "%s" (buffer-file-name)))
       (let* ((filename (buffer-file-name))
              (status (vc-git-state filename))

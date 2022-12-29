@@ -1,3 +1,6 @@
+(use-package hydra
+  :hook (after-init . (lambda () (require 'hydra))))
+
 (use-package eldoc
   :diminish)
 

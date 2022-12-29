@@ -36,9 +36,6 @@
      '("0" . meow-digit-argument)
      '("/" . meow-keypad-describe-key)
      '("?" . meow-cheatsheet)
-     ;; project mode map
-     '("]" . switch-to-next-buffer)
-     '("[" . switch-to-prev-buffer)
      )
     (meow-normal-define-key
      '("0" . meow-expand-0)
