@@ -8,11 +8,6 @@
 	url = https://github.com/abo-abo/avy
 	ignore = dirty
 	shallow = true
-[submodule "awesome-pair"]
-	path = .local/lib/awesome-pair
-	url = https://github.com/manateelazycat/awesome-pair.git
-	ignore = dirty
-	shallow = true
 [submodule "borg"]
 	path = .local/lib/borg
 	url = git@github.com:libvirgo/borg.git

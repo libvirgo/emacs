@@ -56,14 +56,16 @@
                 (:eval (propertize "%l" 'face 'font-lock-type-face))
                 ","
                 (:eval (propertize "%c" 'face 'font-lock-type-face))
-                " "
-                (:eval (eyebrowse-mode-line-indicator))
                 ;; (:eval " L%l C%C")
-
                 (:eval (when (bound-and-true-p flycheck-mode) flycheck-mode-line))
-                (:eval (when (bound-and-true-p flymake-mode) flymake-mode-line-format))))
+                (:eval (when (bound-and-true-p flymake-mode) flymake-mode-line-format))
+
+                       ))
+
          (rhs '(
                 ;; (:eval minor-mode-alist) " "
+                (:eval (eyebrowse-mode-line-indicator))
+                " "
                 (:eval (awesome-tray-module-git-info))
                 " |"
                 (:eval (concat (my/mode-line-mode-name)))
