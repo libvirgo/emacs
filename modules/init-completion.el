@@ -35,6 +35,7 @@
          ("C-c r r" . consult-register)
          ;; Other custom bindings
          ("C-c r y" . consult-yank-pop)                ;; orig. yank-pop
+         ("M-y" . consult-yank-pop)
          ;; M-g bindings (goto-map)
          ("C-c g e" . consult-compile-error)
          ("C-c g f" . consult-flymake)               ;; Alternative: consult-flycheck
