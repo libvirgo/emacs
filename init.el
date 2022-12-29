@@ -14,6 +14,7 @@
 (setq transient-values-file (expand-file-name "transient/values.el" clytie-local-dir))
 (setq transient-history-file (expand-file-name "transient/history.el" clytie-local-dir))
 (setq bookmark-default-file (expand-file-name "bookmarks" clytie-local-dir))
+(setq make-backup-files nil)
 
 (setq large-file-warning-threshold 100000000)
 (setq load-prefer-newer t)
