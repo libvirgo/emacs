@@ -1,9 +1,6 @@
 (use-package hydra
   :hook (after-init . (lambda () (require 'hydra))))
 
-(use-package eldoc
-  :diminish)
-
 (use-package xref
   :init
   (setq xref-search-program 'ripgrep))
@@ -13,8 +10,7 @@
   )
 
 (use-package marginalia
-  :init
-  (marginalia-mode))
+  :hook (after-init . marginalia-mode))
 
 ;; Example configuration for Consult
 (use-package consult
@@ -161,10 +157,10 @@
   :custom
   (kind-icon-use-icons nil)
   (kind-icon-default-face 'corfu-default)
-  :hook ((after-load-theme . kind-icon-reset-cache))
   :config
   (with-eval-after-load 'corfu
-      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+    (add-hook 'after-load-theme-hook #'kind-icon-reset-cache)
     )
   )
 
@@ -201,7 +197,6 @@
 
 ;; yasnippet replacement.
 (use-package tempel
-  :defer 3
   :custom
   (tempel-trigger-prefix "<")
   :bind (:map tempel-map

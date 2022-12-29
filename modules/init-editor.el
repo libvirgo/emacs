@@ -23,7 +23,6 @@
 (setq-default indent-tabs-mode nil)
 
 (use-package posframe
-  :hook (after-load-theme . posframe-delete-all)
   :init
   (defface posframe-border
     `((t (:inherit region)))
@@ -35,6 +34,7 @@
               (lambda (&rest _)
                 (posframe-delete-all))))
   :config
+  (add-hook 'after-load-theme-hook 'posframe-delete-all)
   (with-no-warnings
     (defun my-posframe--prettify-frame (&rest _)
       (set-face-background 'fringe nil posframe--frame))
@@ -53,7 +53,7 @@
          ))
 
 (use-package awesome-tab
-  :hook (after-init . awesome-tab-mode)
+  :defer 3
   :bind (("s-1" . 'awesome-tab-select-visible-tab)
          ("s-2" . 'awesome-tab-select-visible-tab)
          ("s-3" . 'awesome-tab-select-visible-tab)
@@ -68,6 +68,7 @@
          ("C-c ]" . 'awesome-tab-forward-tab)
          )
   :config
+  (awesome-tab-mode)
   (with-eval-after-load 'hydra
       (defhydra awesome-fast-switch (:hint nil)
   "
