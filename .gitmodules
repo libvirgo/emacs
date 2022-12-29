@@ -28,7 +28,7 @@
 	shallow = true
 [submodule "compat"]
 	path = .local/lib/compat
-	url = https://git.sr.ht/~pkal/compat.git
+	url = https://git.sr.ht/~pkal/compat
 	ignore = dirty
 	shallow = true
 [submodule "consult"]
@@ -93,7 +93,6 @@
 	path = .local/lib/eyebrowse
 	url = https://depp.brause.cc/eyebrowse.git
 	ignore = dirty
-	shallow = true
 [submodule "go-fill-struct"]
 	path = .local/lib/go-fill-struct
 	url = https://github.com/s-kostyaev/go-fill-struct.git
@@ -132,7 +131,7 @@
 	build-step = make
 [submodule "llama"]
 	path = .local/lib/llama
-	url = https://git.sr.ht/~tarsius/llama.git
+	url = https://git.sr.ht/~tarsius/llama
 	ignore = dirty
 	shallow = true
 [submodule "magit"]
