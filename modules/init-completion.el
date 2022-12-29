@@ -14,7 +14,6 @@
 
 ;; Example configuration for Consult
 (use-package consult
-  :defer 1
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
@@ -86,12 +85,10 @@
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
-
+  (advice-add #'project-find-regexp :override #'consult-ripgrep)
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
   :config
-  (advice-add #'project-find-regexp :override #'consult-ripgrep)
-
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
   ;; (setq consult-preview-key 'any)

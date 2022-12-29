@@ -86,7 +86,6 @@
   )
 
 (use-package diff-hl
-  :defer 3
   :custom-face
   (diff-hl-change ((t (:inherit diff-changed :foreground unspecified :background unspecified))))
   (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
@@ -104,10 +103,10 @@
   :hook ((dired-mode . diff-hl-dired-mode))
   :init
   (setq diff-hl-draw-borders nil)
+  (global-diff-hl-mode)
   :config
   ;; Highlight on-the-fly
   (diff-hl-flydiff-mode 1)
-  (global-diff-hl-mode)
   ;; Set fringe style
   (setq-default fringes-outside-margins t)
 

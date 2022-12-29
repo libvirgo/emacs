@@ -6,7 +6,6 @@
 (defvar awesome-tray-git-format "[git:%s]")
 
 (defun awesome-tray-git-command-update-cache ()
-  (require 'vc-git)
   (if (file-exists-p (format "%s" (buffer-file-name)))
       (let* ((filename (buffer-file-name))
              (status (vc-git-state filename))
@@ -84,7 +83,8 @@
             rhs-str)))
 
 (add-hook 'after-init-hook (lambda ()
-                            (setq-default mode-line-format '((:eval (+format-mode-line))))
-                            (setq-default header-line-format nil)))
+                             (require 'vc-git)
+                             (setq-default mode-line-format '((:eval (+format-mode-line))))
+                             (setq-default header-line-format nil)))
 
 (provide 'init-modeline)
