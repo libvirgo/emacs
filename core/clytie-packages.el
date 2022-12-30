@@ -5,7 +5,8 @@
 
 (use-package epkg
   :config
-  (setq epkg-repository (expand-file-name ".local/lib/epkgs" user-emacs-directory)))
+  (setq epkg-repository (expand-file-name ".local/lib/epkgs" user-emacs-directory))
+  (setq epkg-database-connector 'sqlite-builtin))
 
 (when is-darwin
   (use-package exec-path-from-shell
