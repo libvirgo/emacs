@@ -113,6 +113,9 @@
 	url = git@github.com:emacsmirror/hl-indent-scope.git
 	ignore = dirty
 	shallow = true
+[submodule "ht"]
+	path = .local/lib/ht
+	url = https://github.com/Wilfred/ht.el
 [submodule "hungry-delete"]
 	path = .local/lib/hungry-delete
 	url = https://github.com/nflath/hungry-delete
@@ -164,6 +167,9 @@
 	url = https://github.com/oantolin/orderless
 	ignore = dirty
 	shallow = true
+[submodule "pfuture"]
+	path = .local/lib/pfuture
+	url = https://github.com/Alexander-Miller/pfuture
 [submodule "popper"]
 	path = .local/lib/popper
 	url = https://github.com/karthink/popper
@@ -237,15 +243,12 @@
 	url = https://github.com/akermu/emacs-libvterm
 	ignore = dirty
 	shallow = true
+[submodule "wgrep"]
+	path = .local/lib/wgrep
+	url = https://github.com/mhayashi1120/Emacs-wgrep
 [submodule "with-editor"]
 	path = .local/lib/with-editor
 	url = https://github.com/magit/with-editor
 	ignore = dirty
 	shallow = true
 	
-[submodule "ht"]
-	path = .local/lib/ht
-	url = https://github.com/Wilfred/ht.el
-[submodule "pfuture"]
-	path = .local/lib/pfuture
-	url = https://github.com/Alexander-Miller/pfuture

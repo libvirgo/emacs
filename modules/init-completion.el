@@ -54,7 +54,7 @@
          ("C-c s m" . consult-multi-occur)
          ("C-c s u" . consult-focus-lines)
          ;; Isearch integration
-         ("C-c s e" . consult-isearch-history)
+         ("C-c s h" . consult-isearch-history)
          :map isearch-mode-map
          ("C-e" . consult-isearch-history)         ;; orig. isearch-edit-string
          ("C-l" . consult-line)                  ;; needed by consult-line to detect isearch
