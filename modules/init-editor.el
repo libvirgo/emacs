@@ -1,5 +1,16 @@
 ;;; -*- lexical-binding: t; -*-
 
+(use-package recentf
+  :defer 3
+  :config
+  (setq recentf-save-file (expand-file-name "recentf" clytie-local-dir))
+  (recentf-mode))
+
+(use-package autorevert
+  :defer 3
+  :config
+  (global-auto-revert-mode))
+
 (use-package electric-pair
   :hook (prog-mode . electric-pair-mode))
 
@@ -76,8 +87,8 @@
 -^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
    ^_k_^   prev group    | _C-a_^^     select first | _b_ search buffer | _C-k_   kill buffer
  _h_   _l_  switch tab   | _C-e_^^     select last  | _g_ search group  | _C-S-k_ kill others in group
-   ^_j_^   next group    | _C-j_^^     ace jump     | ^^                | ^^
- _H_   _L_ switch project| _C-h_/_C-l_ move current | ^^                | ^^
+   ^_j_^   next group    | _C-j_^^     ace jump     | ^^                | ^_p_^ switch project
+ _H_   _L_ switch eye    | _C-h_/_C-l_ move current | ^^                | ^^
  ^^0 ~ 9^^ eyebrowse     | ^^                     | ^^                | ^^
 -^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
 "
@@ -106,6 +117,7 @@
   ("g" awesome-tab-switch-group)
   ("C-k" kill-current-buffer)
   ("C-S-k" awesome-tab-kill-other-buffers-in-current-group)
+  ("p" project-switch-project)
   ("q" nil "quit"))
   (global-set-key (kbd "C-.") 'awesome-fast-switch/body)
     )

@@ -179,6 +179,11 @@
 	url = https://github.com/DogLooksGood/emacs-rime
 	ignore = dirty
 	shallow = true
+[submodule "s"]
+	path = .local/lib/s
+	url = https://github.com/magnars/s.el.git
+    ignore = dirty
+	shallow = true
 [submodule "spacemacs-theme"]
 	path = .local/lib/spacemacs-theme
 	url = https://github.com/nashamri/spacemacs-theme
@@ -216,6 +221,7 @@
 	url = https://github.com/Alexander-Miller/treemacs
 	ignore = dirty
 	shallow = true
+    load-path = src/elisp
 [submodule "use-package"]
 	path = .local/lib/use-package
 	url = https://github.com/jwiegley/use-package
@@ -237,3 +243,9 @@
 	ignore = dirty
 	shallow = true
 	
+[submodule "ht"]
+	path = .local/lib/ht
+	url = https://github.com/Wilfred/ht.el
+[submodule "pfuture"]
+	path = .local/lib/pfuture
+	url = https://github.com/Alexander-Miller/pfuture
