@@ -11,7 +11,7 @@
 [submodule "awesome-tab"]
 	path = .local/lib/awesome-tab
 	url = https://github.com/manateelazycat/awesome-tab.git
-    ignore = dirty
+	ignore = dirty
 	shallow = true
 [submodule "borg"]
 	path = .local/lib/borg
@@ -106,7 +106,7 @@
 [submodule "go-mode"]
 	path = .local/lib/go-mode
 	url = https://github.com/dominikh/go-mode.el
-    ignore = dirty
+	ignore = dirty
 	shallow = true
 [submodule "hl-indent-scope"]
 	path = .local/lib/hl-indent-scope

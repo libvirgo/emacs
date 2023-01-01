@@ -31,7 +31,7 @@
         ("C-c g w" . avy-goto-char-2)))
 
 (setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
+;; (setq-default indent-tabs-mode nil)
 
 (use-package posframe
   :init
