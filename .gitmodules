@@ -196,11 +196,6 @@
 	ignore = dirty
 	shallow = true
 	build-step = borg-compile
-[submodule "sqlite3"]
-	path = .local/lib/sqlite3
-	url = https://github.com/pekingduck/emacs-sqlite3-api.git
-	ignore = dirty
-	shallow = true
 [submodule "system-packages"]
 	path = .local/lib/system-packages
 	url = https://gitlab.com/jabranham/system-packages
