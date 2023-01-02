@@ -13,6 +13,7 @@
 (defconst clytie-core-dir (expand-file-name "core" clytie-dir))
 (defconst clytie-modules-dir (expand-file-name "modules" clytie-dir))
 (defconst clytie-local-dir (expand-file-name ".local" clytie-dir))
+(defconst clytie-cache-dir (expand-file-name "cache" clytie-local-dir))
 (defconst clytie-lib-dir (expand-file-name "lib" clytie-local-dir))
 (defconst clytie-savefile-dir (expand-file-name "savefile" clytie-local-dir))
 (defconst clytie-backup-dir (expand-file-name "backup" clytie-local-dir))

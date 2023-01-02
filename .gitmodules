@@ -21,11 +21,27 @@
 	url = https://github.com/minad/cape
 	ignore = dirty
 	shallow = true
+[submodule "cider"]
+	path = .local/lib/cider
+	url = https://github.com/clojure-emacs/cider
+	ignore = dirty
+	shallow = true
 [submodule "citre"]
 	path = .local/lib/citre
 	url = https://github.com/universal-ctags/citre
 	ignore = dirty
 	shallow = true
+[submodule "clojure-mode"]
+	path = .local/lib/clojure-mode
+	url = https://github.com/clojure-emacs/clojure-mode
+	ignore = dirty
+	shallow = true
+[submodule "clomacs"]
+	path = .local/lib/clomacs
+	url = https://github.com/clojure-emacs/clomacs
+	ignore = dirty
+	shallow = true
+	load-path = src/elisp
 [submodule "closql"]
 	path = .local/lib/closql
 	url = https://github.com/emacscollective/closql.git
@@ -73,6 +89,13 @@
 	url = https://github.com/joaotavora/eglot
 	ignore = dirty
 	shallow = true
+[submodule "ejc-sql"]
+	path = .local/lib/ejc-sql
+	url = https://github.com/kostafey/ejc-sql.git
+	ignore = dirty
+	shallow = true
+	no-byte-compile = ejc-autocomplete.el
+	no-byte-compile = ejc-company.el
 [submodule "emacsql"]
 	path = .local/lib/emacsql
 	url = https://github.com/skeeto/emacsql.git
@@ -167,6 +190,16 @@
 	url = https://github.com/oantolin/orderless
 	ignore = dirty
 	shallow = true
+[submodule "parseclj"]
+	path = .local/lib/parseclj
+	url = https://github.com/clojure-emacs/parseclj
+	ignore = dirty
+	shallow = true
+[submodule "parseedn"]
+	path = .local/lib/parseedn
+	url = https://github.com/clojure-emacs/parseedn
+	ignore = dirty
+	shallow = true
 [submodule "pfuture"]
 	path = .local/lib/pfuture
 	url = https://github.com/Alexander-Miller/pfuture
@@ -180,6 +213,11 @@
 	url = https://github.com/tumashu/posframe
 	ignore = dirty
 	shallow = true
+[submodule "queue"]
+	path = .local/lib/queue
+	url = git@github.com:emacsmirror/queue.git
+	ignore = dirty
+	shallow = true
 [submodule "rime"]
 	path = .local/lib/rime
 	url = https://github.com/DogLooksGood/emacs-rime
@@ -190,12 +228,27 @@
 	url = https://github.com/magnars/s.el.git
     ignore = dirty
 	shallow = true
+[submodule "sesman"]
+	path = .local/lib/sesman
+	url = https://github.com/vspinu/sesman
+	ignore = dirty
+	shallow = true
+[submodule "simple-httpd"]
+	path = .local/lib/simple-httpd
+	url = https://github.com/skeeto/emacs-web-server
+	ignore = dirty
+	shallow = true
 [submodule "spacemacs-theme"]
 	path = .local/lib/spacemacs-theme
 	url = https://github.com/nashamri/spacemacs-theme
 	ignore = dirty
 	shallow = true
 	build-step = borg-compile
+[submodule "spinner"]
+	path = .local/lib/spinner
+	url = https://github.com/Malabarba/spinner.el
+	ignore = dirty
+	shallow = true
 [submodule "system-packages"]
 	path = .local/lib/system-packages
 	url = https://gitlab.com/jabranham/system-packages

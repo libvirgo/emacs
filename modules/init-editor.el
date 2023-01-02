@@ -1,4 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
+(use-package tramp
+  :init
+  (setq tramp-persistency-file-name (expand-file-name "tramp" clytie-cache-dir)))
 
 (use-package recentf
   :defer 3
