@@ -4,9 +4,8 @@
   :bind (("C-c m m" . magit-file-dispatch))
   :config
   (setq magit-refresh-status-buffer nil)
-  
-  (transient-append-suffix 'magit-submodule "-r"
-    '("-d" "shallow-clone update or add with --depth 1" "--depth 1"))
+    ;; (transient-append-suffix 'magit-submodule "-r"
+    ;; '("-d" "shallow-clone update or add with --depth 1" "--depth 1"))
   (transient-append-suffix 'magit-commit "-e"
     '("-N" "Don't edit message" "--no-edit"))
   
