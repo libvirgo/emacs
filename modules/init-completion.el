@@ -242,7 +242,15 @@
         completion-category-defaults nil
         completion-category-overrides '(
                                         (file (styles partial-completion))
-                                        (eglot (styles orderless)))))
+                                        (eglot (styles orderless))))
+  :config
+  (defun without-if-bang (pattern _index _total)
+    (cond
+     ((equal "!" pattern)
+      '(orderless-literal . ""))
+     ((string-prefix-p "!" pattern)
+      `(orderless-without-literal . ,(substring pattern 1)))))
+  (add-to-list 'orderless-style-dispatchers #'without-if-bang))
 
 (use-package eglot
   :init
