@@ -126,4 +126,25 @@
     )
   )
 
+(progn
+  (when (treesit-available-p)
+	(setq major-mode-remap-alist
+        '((c-mode          . c-ts-mode)
+          (c++-mode        . c++-ts-mode)
+          (conf-toml-mode  . toml-ts-mode)
+          (csharp-mode     . csharp-ts-mode)
+          (css-mode        . css-ts-mode)
+          (java-mode       . java-ts-mode)
+          (js-mode         . js-ts-mode)
+          (javascript-mode . js-ts-mode)
+          (js-json-mode    . json-ts-mode)
+          (python-mode     . python-ts-mode)
+          (ruby-mode       . ruby-ts-mode)
+          (sh-mode         . bash-ts-mode)
+		  (go-mode         . go-ts-mode)
+		  ))
+	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
+  )
+
+
 (provide 'init-editor)
