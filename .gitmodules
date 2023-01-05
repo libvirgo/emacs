@@ -21,6 +21,9 @@
 	url = https://github.com/minad/cape
 	ignore = dirty
 	shallow = true
+[submodule "cfrs"]
+	path = .local/lib/cfrs
+	url = https://github.com/Alexander-Miller/cfrs
 [submodule "cider"]
 	path = .local/lib/cider
 	url = https://github.com/clojure-emacs/cider

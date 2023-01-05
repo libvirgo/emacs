@@ -42,7 +42,7 @@
          ("C-c p f" . project-find-file)
          ("C-c p g" . project-find-regexp)
          ("C-c p b" . consult-project-buffer)
-         ("C-c p s" . magit-project-status))
+         ("C-c p m" . magit-project-status))
   :init
   (setq project-list-file (expand-file-name "projects" clytie-local-dir))
   :config
