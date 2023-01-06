@@ -41,7 +41,7 @@
          ;; M-g bindings (goto-map)
          ("C-c g e" . consult-compile-error)
          ("C-c g f" . consult-flymake)               ;; Alternative: consult-flycheck
-         ("C-c g g" . consult-goto-line)
+         ("s-g" . consult-goto-line)
          ("C-c g o" . consult-outline)               ;; Alternative: consult-org-heading
          ("C-c m f" . mark-defun)
          ("C-c m p" . mark-page)

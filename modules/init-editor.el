@@ -29,9 +29,9 @@
   )
 
 (use-package avy
-  :bind(("C-c g l" . avy-goto-line)
-        ("C-c g c" . avy-goto-char)
-        ("C-c g w" . avy-goto-char-2)))
+  :bind (("s-l" . avy-goto-line)
+         ("s-c" . avy-goto-char)
+         ("s-w" . avy-goto-char-2)))
 
 (setq-default tab-width 4)
 ;; (setq-default indent-tabs-mode nil)
@@ -131,6 +131,8 @@
 	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
   )
 
+(progn
+  (keymap-global-set "s-w" #'kill-this-buffer))
 
 
 (provide 'init-editor)
