@@ -24,6 +24,8 @@
 [submodule "cfrs"]
 	path = .local/lib/cfrs
 	url = https://github.com/Alexander-Miller/cfrs
+	ignore = dirty
+	shallow = true
 [submodule "cider"]
 	path = .local/lib/cider
 	url = https://github.com/clojure-emacs/cider
@@ -142,6 +144,8 @@
 [submodule "ht"]
 	path = .local/lib/ht
 	url = https://github.com/Wilfred/ht.el
+	ignore = dirty
+	shallow = true
 [submodule "hungry-delete"]
 	path = .local/lib/hungry-delete
 	url = https://github.com/nflath/hungry-delete
@@ -211,6 +215,8 @@
 [submodule "pfuture"]
 	path = .local/lib/pfuture
 	url = https://github.com/Alexander-Miller/pfuture
+	ignore = dirty
+	shallow = true
 [submodule "popper"]
 	path = .local/lib/popper
 	url = https://github.com/karthink/popper
@@ -322,6 +328,8 @@
 [submodule "wgrep"]
 	path = .local/lib/wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep
+	ignore = dirty
+	shallow = true
 [submodule "with-editor"]
 	path = .local/lib/with-editor
 	url = https://github.com/magit/with-editor
