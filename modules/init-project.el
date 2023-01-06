@@ -228,7 +228,7 @@
     (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
           treemacs-hide-dot-git-directory          t
           treemacs-no-png-images                   t
-          treemacs-persist-file                    (expand-file-name ".cache/treemacs-persist" clytie-local-dir))
+          treemacs-persist-file                    (expand-file-name "treemacs-persist" clytie-cache-dir))
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode 'always)

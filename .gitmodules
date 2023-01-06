@@ -279,6 +279,11 @@
 	ignore = dirty
 	shallow = true
     load-path = src/elisp
+[submodule "undohist"]
+	path = .local/lib/undohist
+	url = https://github.com/emacsorphanage/undohist.git
+	ignore = dirty
+	shallow = true
 [submodule "use-package"]
 	path = .local/lib/use-package
 	url = https://github.com/jwiegley/use-package
@@ -292,6 +297,11 @@
 [submodule "vterm"]
 	path = .local/lib/vterm
 	url = https://github.com/akermu/emacs-libvterm
+	ignore = dirty
+	shallow = true
+[submodule "vundo"]
+	path = .local/lib/vundo
+	url = https://github.com/casouri/vundo.git
 	ignore = dirty
 	shallow = true
 [submodule "wgrep"]

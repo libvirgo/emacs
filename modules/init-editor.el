@@ -146,5 +146,10 @@
 	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
   )
 
+(use-package vundo
+  :bind (("C-c u" . 'vundo))
+  :config
+  (setq undohist-directory (expand-file-name "undohist" clytie-cache-dir))
+  (undohist-initialize))
 
 (provide 'init-editor)
