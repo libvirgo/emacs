@@ -1,6 +1,9 @@
 (use-package hydra
   :hook (after-init . (lambda () (require 'hydra))))
 
+(use-package major-mode-hydra
+  :hook (after-init . (lambda () (require 'major-mode-hydra))))
+
 (use-package xref
   :init
   (setq xref-search-program 'ripgrep))

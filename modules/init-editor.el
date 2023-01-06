@@ -83,48 +83,31 @@
          )
   :config
   (awesome-tab-mode)
-  (with-eval-after-load 'hydra
-      (defhydra awesome-fast-switch (:hint nil)
-  "
- ^^^^Fast Move             ^^^^Tab                    ^^Search            ^^Misc
--^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
-   ^_k_^   prev group    | _C-a_^^     select first | _b_ search buffer | _C-k_   kill buffer
- _h_   _l_  switch tab   | _C-e_^^     select last  | _g_ search group  | _C-S-k_ kill others in group
-   ^_j_^   next group    | _C-j_^^     ace jump     | ^^                | ^_p_^ switch project
- _H_   _L_ switch eye    | _C-h_/_C-l_ move current | ^^                | ^^
- ^^0 ~ 9^^ eyebrowse     | ^^                     | ^^                | ^^
--^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
-"
-  ("h" awesome-tab-backward-tab)
-  ("j" awesome-tab-forward-group)
-  ("k" awesome-tab-backward-group)
-  ("l" awesome-tab-forward-tab)
-  ("L" eyebrowse-next-window-config)
-  ("H" eyebrowse-prev-window-config)
-  ("C-a" awesome-tab-select-beg-tab)
-  ("C-e" awesome-tab-select-end-tab)
-  ("C-j" awesome-tab-ace-jump)
-  ("C-h" awesome-tab-move-current-tab-to-left)
-  ("C-l" awesome-tab-move-current-tab-to-right)
-  ("0" eyebrowse-switch-to-window-config-0)
-  ("1" eyebrowse-switch-to-window-config-1)
-  ("2" eyebrowse-switch-to-window-config-2)
-  ("3" eyebrowse-switch-to-window-config-3)
-  ("4" eyebrowse-switch-to-window-config-4)
-  ("5" eyebrowse-switch-to-window-config-5)
-  ("6" eyebrowse-switch-to-window-config-6)
-  ("7" eyebrowse-switch-to-window-config-7)
-  ("8" eyebrowse-switch-to-window-config-8)
-  ("9" eyebrowse-switch-to-window-config-9)
-  ("b" consult-buffer )
-  ("g" awesome-tab-switch-group)
-  ("C-k" kill-current-buffer)
-  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group)
-  ("p" project-switch-project)
-  ("q" nil "quit"))
-  (global-set-key (kbd "C-.") 'awesome-fast-switch/body)
-    )
-  )
+  (pretty-hydra-define awesome-fast-switch
+	(:title "Switch" :color blue :quit-key ("q" "C-g"))
+	("Move"
+	 (("h" awesome-tab-backward-tab "switch backward tab" :exit nil)
+	  ("j" awesome-tab-forward-group "switch forward tab group" :exit nil)
+	  ("k" awesome-tab-backward-group "switch backward tab group" :exit nil)
+	  ("l" awesome-tab-forward-tab "switch forward tab" :exit nil)
+	  ("L" eyebrowse-next-window-config "switch next eyebrowse window" :exit nil)
+	  ("H" eyebrowse-prev-window-config "switch prev eyebrowse window" :exit nil))
+	"Tab"
+	 (("C-a" awesome-tab-select-beg-tab "select begin tab" :exit nil)
+	  ("C-e" awesome-tab-select-end-tab "select end tab" :exit nil)
+	  ("C-j" awesome-tab-ace-jump "tab ace jump" :exit nil)
+	  ("C-h" awesome-tab-move-current-tab-to-left "move current tab to left" :exit nil)
+	  ("C-l" awesome-tab-move-current-tab-to-right "move current tab to right" :exit nil))
+	"Search"
+	 (("b" consult-buffer "search buffer by consult")
+	  ("g" awesome-tab-switch-group "switch awesome tab group"))
+	"Misc"
+	 (("C-k" kill-current-buffer "kill buffer" :exit nil)
+	  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group "kill other buffers" :exit nil)
+	  ("p" project-switch-project "switch project"))))
+  :bind
+  ("C-." . awesome-fast-switch/body))
+  
 
 (progn
   (when (treesit-available-p)
@@ -145,10 +128,6 @@
 	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
   )
 
-(use-package vundo
-  :bind (("C-c u" . 'vundo))
-  :config
-  (setq undohist-directory (expand-file-name "undohist" clytie-cache-dir))
-  (undohist-initialize))
+
 
 (provide 'init-editor)

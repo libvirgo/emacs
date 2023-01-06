@@ -1,42 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
 
-(use-package magit
-  :bind (("C-c m m" . magit-file-dispatch))
-  :config
-  (setq magit-refresh-status-buffer nil)
-    ;; (transient-append-suffix 'magit-submodule "-r"
-    ;; '("-d" "shallow-clone update or add with --depth 1" "--depth 1"))
-  (transient-append-suffix 'magit-commit "-e"
-    '("-N" "Don't edit message" "--no-edit"))
-  
-  ;; git config -f .gitmodules submodule.<name>.shallow true
-  ;; (defun magit-submodule-config (&optional args)
-  ;; "git config for submodule."
-  ;; (interactive (if current-prefix-arg
-  ;;                  (list (cons "--amend" (magit-commit-arguments)))
-  ;;                (list (magit-commit-arguments))))
-  ;; (when (member "--all" args)
-  ;;   (setq this-command 'magit-commit--all))
-  ;;   (let ((default-directory (magit-toplevel)))
-  ;;     (magit-run-git-with-editor "config" args)))
-  ;; (transient-define-prefix 'my/magit-config ()
-  ;; "Create a new commit or replace an existing commit."
-  ;; :info-manual "(magit)Git config"
-  ;; :man-page "git-config"
-  ;; ["Arguments"
-  ;;  ("-g" "Stage all modified and deleted files"   ("-g" "--global"))
-  ;;  ]
-  ;; [["Submodule"
-  ;;   ("s" "submodule"         magit-submodule-config)]]
-  ;; (interactive)
-  ;; (if-let ((buffer (magit-commit-message-buffer)))
-  ;;     (switch-to-buffer buffer)
-  ;;   (transient-setup 'my/magit-config)))
-  )
-
-(use-package vc-mode
-  :bind (("C-c v d" . vc-version-diff)))
-
 (use-package project
   :bind (("C-c p p" . project-switch-project)
          ("C-c p f" . project-find-file)
@@ -82,48 +45,6 @@
           (project-find-regexp "Find ripgrep")
           (project-find-dir "Find directory")
           (magit-project-status "Magit")))
-  )
-
-(use-package diff-hl
-  :custom-face
-  (diff-hl-change ((t (:inherit diff-changed :foreground unspecified :background unspecified))))
-  (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
-  (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
-  :bind (("C-c d s" . diff-hl-show-hunk)
-         :repeat-map diff-hl-inline-popup-transient-mode-map
-         ("C-f" . diff-hl-show-hunk-next)
-         ("C-b" . diff-hl-show-hunk-previous)
-         ("C-r" . diff-hl-show-hunk-revert-hunk)
-         ("C-p" . diff-hl-inline-popup--popup-up)
-         ("C-n" . diff-hl-inline-popup--popup-down)
-         ("C-c" . diff-hl-show-hunk-copy-original-text)
-         :map diff-hl-command-map
-         ("SPC" . diff-hl-mark-hunk))
-  :hook ((dired-mode . diff-hl-dired-mode))
-  :init
-  (setq diff-hl-draw-borders nil)
-  (global-diff-hl-mode)
-  :config
-  ;; Highlight on-the-fly
-  (diff-hl-flydiff-mode 1)
-  ;; Set fringe style
-  (setq-default fringes-outside-margins t)
-
-  (with-no-warnings
-    (defun my-diff-hl-fringe-bmp-function (_type _pos)
-      "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
-      (define-fringe-bitmap 'my-diff-hl-bmp
-        (vector (if sys/linuxp #b11111100 #b11100000))
-        1 8
-        '(center t)))
-    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
-    ;; performance slow
-    (with-eval-after-load 'magit
-      (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
-      (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
-
-(use-package vc
-  :bind (("C-c v h" . vc-region-history))
   )
 
 (use-package eyebrowse

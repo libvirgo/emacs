@@ -178,6 +178,11 @@
 	url = https://github.com/magit/magit
 	ignore = dirty
 	shallow = true
+[submodule "major-mode-hydra"]
+	path = .local/lib/major-mode-hydra
+	url = https://github.com/jerrypnz/major-mode-hydra.el.git
+	ignore = dirty
+	shallow = true
 [submodule "marginalia"]
 	path = .local/lib/marginalia
 	url = https://github.com/minad/marginalia
@@ -209,6 +214,11 @@
 [submodule "popper"]
 	path = .local/lib/popper
 	url = https://github.com/karthink/popper
+	ignore = dirty
+	shallow = true
+[submodule "popup"]
+	path = .local/lib/popup
+	url = https://github.com/auto-complete/popup-el.git
 	ignore = dirty
 	shallow = true
 [submodule "posframe"]
@@ -289,6 +299,11 @@
 	url = https://github.com/jwiegley/use-package
 	ignore = dirty
 	shallow = true
+[submodule "vc-msg"]
+	path = .local/lib/vc-msg
+	url = https://github.com/redguardtoo/vc-msg.git
+	ignore = dirty
+	shallow = true
 [submodule "vertico"]
 	path = .local/lib/vertico
 	url = https://github.com/minad/vertico
@@ -312,4 +327,3 @@
 	url = https://github.com/magit/with-editor
 	ignore = dirty
 	shallow = true
-	
