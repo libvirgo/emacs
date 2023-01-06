@@ -15,8 +15,8 @@
 (defconst clytie-local-dir (expand-file-name ".local" clytie-dir))
 (defconst clytie-cache-dir (expand-file-name "cache" clytie-local-dir))
 (defconst clytie-lib-dir (expand-file-name "lib" clytie-local-dir))
-(defconst clytie-savefile-dir (expand-file-name "savefile" clytie-local-dir))
-(defconst clytie-backup-dir (expand-file-name "backup" clytie-local-dir))
+(defconst clytie-savefile-dir (expand-file-name "savefile" clytie-cache-dir))
+(defconst clytie-backup-dir (expand-file-name "backup" clytie-cache-dir))
 (defconst clytie-modules-file (expand-file-name "modules.el" clytie-modules-dir))
 
 (defconst clytie-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) clytie-savefile-dir))

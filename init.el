@@ -10,10 +10,10 @@
       `((".*" ,clytie-tmp-dir t)))
 (setq auto-save-list-file-prefix
       clytie-tmp-dir)
-(setq transient-levels-file (expand-file-name "transient/levels.el" clytie-local-dir))
-(setq transient-values-file (expand-file-name "transient/values.el" clytie-local-dir))
-(setq transient-history-file (expand-file-name "transient/history.el" clytie-local-dir))
-(setq bookmark-default-file (expand-file-name "bookmarks" clytie-local-dir))
+(setq transient-levels-file (expand-file-name "transient/levels.el" clytie-cache-dir))
+(setq transient-values-file (expand-file-name "transient/values.el" clytie-cache-dir))
+(setq transient-history-file (expand-file-name "transient/history.el" clytie-cache-dir))
+(setq bookmark-default-file (expand-file-name "bookmarks" clytie-cache-dir))
 (setq make-backup-files nil)
 
 (setq large-file-warning-threshold 100000000)

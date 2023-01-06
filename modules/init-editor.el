@@ -6,7 +6,7 @@
 (use-package recentf
   :defer 3
   :config
-  (setq recentf-save-file (expand-file-name "recentf" clytie-local-dir))
+  (setq recentf-save-file (expand-file-name "recentf" clytie-cache-dir))
   (recentf-mode))
 
 (use-package autorevert

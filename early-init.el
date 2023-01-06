@@ -7,7 +7,7 @@
   ;; deleted by 'doom upgrade').
   ;; REVIEW Use `startup-redirect-eln-cache' when 28 support is dropped
 
-  (setq native-comp-cache-dir (expand-file-name (expand-file-name ".local/eln/" user-emacs-directory) comp-native-version-dir))
+  (setq native-comp-cache-dir (expand-file-name (expand-file-name ".local/cache/eln/" user-emacs-directory) comp-native-version-dir))
   (setcar native-comp-eln-load-path native-comp-cache-dir)
   (startup-redirect-eln-cache native-comp-cache-dir)
   (setq native-compile-target-directory native-comp-cache-dir)

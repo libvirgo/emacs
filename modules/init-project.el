@@ -44,7 +44,7 @@
          ("C-c p b" . consult-project-buffer)
          ("C-c p m" . magit-project-status))
   :init
-  (setq project-list-file (expand-file-name "projects" clytie-local-dir))
+  (setq project-list-file (expand-file-name "projects" clytie-cache-dir))
   :config
   (setq project-root-markers     '("Cargo.toml" "go.mod" "package.json" ".git"))
   (defun project-root-p (path)
