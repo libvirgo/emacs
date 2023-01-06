@@ -84,30 +84,33 @@
   :config
   (awesome-tab-mode)
   (pretty-hydra-define awesome-fast-switch
-	(:title "Switch" :color blue :quit-key ("q" "C-g"))
+	(:title "Switch" :color pink :quit-key ("q" "C-g"))
 	("Move"
-	 (("h" awesome-tab-backward-tab "switch backward tab" :exit nil)
-	  ("j" awesome-tab-forward-group "switch forward tab group" :exit nil)
-	  ("k" awesome-tab-backward-group "switch backward tab group" :exit nil)
-	  ("l" awesome-tab-forward-tab "switch forward tab" :exit nil)
-	  ("L" eyebrowse-next-window-config "switch next eyebrowse window" :exit nil)
-	  ("H" eyebrowse-prev-window-config "switch prev eyebrowse window" :exit nil))
-	"Tab"
-	 (("C-a" awesome-tab-select-beg-tab "select begin tab" :exit nil)
-	  ("C-e" awesome-tab-select-end-tab "select end tab" :exit nil)
-	  ("C-j" awesome-tab-ace-jump "tab ace jump" :exit nil)
-	  ("C-h" awesome-tab-move-current-tab-to-left "move current tab to left" :exit nil)
-	  ("C-l" awesome-tab-move-current-tab-to-right "move current tab to right" :exit nil))
-	"Search"
-	 (("b" consult-buffer "search buffer by consult")
-	  ("g" awesome-tab-switch-group "switch awesome tab group"))
-	"Misc"
-	 (("C-k" kill-current-buffer "kill buffer" :exit nil)
-	  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group "kill other buffers" :exit nil)
+	 (("h" awesome-tab-backward-tab "backward tab")
+	  ("j" awesome-tab-forward-group "forward tab group")
+	  ("k" awesome-tab-backward-group "backward tab group")
+	  ("l" awesome-tab-forward-tab "forward tab")
+	  ("L" eyebrowse-next-window-config "switch next window")
+	  ("H" eyebrowse-prev-window-config "switch prev window"))
+	 "Tab"
+	 (("C-a" awesome-tab-select-beg-tab "begin tab")
+	  ("C-e" awesome-tab-select-end-tab "end tab")
+	  ("C-j" awesome-tab-ace-jump "tab ace jump")
+	  ("C-h" awesome-tab-move-current-tab-to-left "move tab left")
+	  ("C-l" awesome-tab-move-current-tab-to-right "move tab right"))
+	 "Search"
+	 (("b" consult-buffer "search buffer" :color blue)
+	  ("g" awesome-tab-switch-group "switch tab group" :color blue))
+	 "Window"
+	 (("c" eyebrowse-create-window-config "create window")
+	  ("d" eyebrowse-close-window-config "close window")
+	  ("r" eyebrowse-rename-window-config "rename window"))
+	 "Misc"
+	 (("C-k" kill-current-buffer "kill buffer")
+	  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group "kill other buffers")
 	  ("p" project-switch-project "switch project"))))
   :bind
   ("C-." . awesome-fast-switch/body))
-  
 
 (progn
   (when (treesit-available-p)
