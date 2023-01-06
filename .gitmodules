@@ -179,9 +179,7 @@
 	shallow = true
 [submodule "magit"]
 	path = .local/lib/magit
-	url = https://github.com/magit/magit
-	ignore = dirty
-	shallow = true
+	url = git@github.com:libvirgo/magit.git
 [submodule "major-mode-hydra"]
 	path = .local/lib/major-mode-hydra
 	url = https://github.com/jerrypnz/major-mode-hydra.el.git
@@ -270,7 +268,7 @@
 	shallow = true
 [submodule "system-packages"]
 	path = .local/lib/system-packages
-	url = https://gitlab.com/jabranham/system-packages
+	url = https://gitlab.com/jabranham/system-packages.git
 	ignore = dirty
 	shallow = true
 [submodule "tempel"]
