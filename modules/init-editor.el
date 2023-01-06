@@ -141,7 +141,6 @@
           (python-mode     . python-ts-mode)
           (ruby-mode       . ruby-ts-mode)
           (sh-mode         . bash-ts-mode)
-		  (go-mode         . go-ts-mode)
 		  ))
 	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
   )
