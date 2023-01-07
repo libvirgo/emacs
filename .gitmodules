@@ -3,3 +3,6 @@
 	url = https://github.com/nashamri/spacemacs-theme
 	ignore = dirty
 	shallow = true
+[submodule "tempel-collection"]
+	path = .local/lib/tempel-collection
+	url = git@github.com:libvirgo/tempel-collection.git
