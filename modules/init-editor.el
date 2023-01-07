@@ -31,7 +31,7 @@
 (use-package avy
   :bind (("s-l" . avy-goto-line)
          ("s-c" . avy-goto-char)
-         ("s-w" . avy-goto-char-2)))
+         ("s-f" . avy-goto-char-2)))
 
 (setq-default tab-width 4)
 ;; (setq-default indent-tabs-mode nil)
@@ -63,7 +63,7 @@
                2)))))
 
 (use-package ace-window
-  :bind (("C-c w w" . ace-window)
+  :bind (("s-n" . ace-window)
          ))
 
 (use-package awesome-tab
@@ -78,8 +78,8 @@
          ("s-8" . 'awesome-tab-select-visible-tab)
          ("s-9" . 'awesome-tab-select-visible-tab)
          ("s-0" . 'awesome-tab-select-visible-tab)
-         ("C-c [" . 'awesome-tab-backward-tab)
-         ("C-c ]" . 'awesome-tab-forward-tab)
+         ("s-[" . 'awesome-tab-backward-tab)
+         ("s-]" . 'awesome-tab-forward-tab)
          )
   :config
   (awesome-tab-mode)
@@ -134,5 +134,10 @@
 (progn
   (keymap-global-set "s-w" #'kill-this-buffer))
 
+(use-package hideshow
+  :hook (prog-mode . hs-minor-mode)
+  :bind
+  (("M-[" . 'hs-hide-level)
+   ("M-]" . 'hs-show-block)))
 
 (provide 'init-editor)
