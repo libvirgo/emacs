@@ -9,32 +9,7 @@
     ;; (transient-append-suffix 'magit-submodule "-r"
     ;; '("-d" "shallow-clone update or add with --depth 1" "--depth 1"))
   (transient-append-suffix 'magit-commit "-e"
-    '("-N" "Don't edit message" "--no-edit"))
-  
-  ;; git config -f .gitmodules submodule.<name>.shallow true
-  ;; (defun magit-submodule-config (&optional args)
-  ;; "git config for submodule."
-  ;; (interactive (if current-prefix-arg
-  ;;                  (list (cons "--amend" (magit-commit-arguments)))
-  ;;                (list (magit-commit-arguments))))
-  ;; (when (member "--all" args)
-  ;;   (setq this-command 'magit-commit--all))
-  ;;   (let ((default-directory (magit-toplevel)))
-  ;;     (magit-run-git-with-editor "config" args)))
-  ;; (transient-define-prefix 'my/magit-config ()
-  ;; "Create a new commit or replace an existing commit."
-  ;; :info-manual "(magit)Git config"
-  ;; :man-page "git-config"
-  ;; ["Arguments"
-  ;;  ("-g" "Stage all modified and deleted files"   ("-g" "--global"))
-  ;;  ]
-  ;; [["Submodule"
-  ;;   ("s" "submodule"         magit-submodule-config)]]
-  ;; (interactive)
-  ;; (if-let ((buffer (magit-commit-message-buffer)))
-  ;;     (switch-to-buffer buffer)
-  ;;   (transient-setup 'my/magit-config)))
-  )
+    '("-N" "Don't edit message" "--no-edit")))
 
 (use-package vc-mode
   :straight (:type built-in)
