@@ -137,6 +137,7 @@
   )
 
 (use-package embark
+  :straight (embark :files ("embark.el" "embark-consult.el"))
   :hook
   (embark-collect-mode . consult-preview-at-point-mode)
   :bind
@@ -166,6 +167,7 @@
   )
 
 (use-package corfu
+  :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
                ("<tab>" . corfu-complete-common-or-next)
@@ -263,6 +265,7 @@
   )
 
 (use-package corfu-english-helper
+  :straight (corfu-english-helper :type git :host github :repo "manateelazycat/corfu-english-helper" :feature orfu-english-helper-data)
   :bind (
          ("C-h C-e" . corfu-english-helper-search)))
 

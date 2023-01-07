@@ -1,20 +1,24 @@
 ;;; -*- lexical-binding: t; -*-
 (use-package tramp
+  :straight (:type built-in)
   :init
   (setq tramp-persistency-file-name (expand-file-name "tramp" clytie-cache-dir)))
 
 (use-package recentf
+  :straight (:type built-in)
   :defer 3
   :config
   (setq recentf-save-file (expand-file-name "recentf" clytie-cache-dir))
   (recentf-mode))
 
 (use-package autorevert
+  :straight (:type built-in)
   :defer 3
   :config
   (global-auto-revert-mode))
 
 (use-package electric-pair
+  :straight (:type built-in)
   :hook (prog-mode . electric-pair-mode))
 
 (use-package hl-indent-scope

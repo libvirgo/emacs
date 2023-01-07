@@ -19,12 +19,6 @@
 (setq large-file-warning-threshold 100000000)
 (setq load-prefer-newer t)
 
-(eval-and-compile ; `borg'
-  (add-to-list 'load-path (expand-file-name ".local/lib/borg" user-emacs-directory))
-  (require 'borg)
-  (borg-initialize))
-
-
 (require 'clytie-util)
 (require 'clytie-packages)
 

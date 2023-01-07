@@ -1,6 +1,10 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package rime
+  :straight (rime :type git
+                  :host github
+                  :repo "DogLooksGood/emacs-rime"
+                  :files ("*.el" "Makefile" "lib.c"))
   :init
   (setq default-input-method "rime"
         rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.0.60/include"

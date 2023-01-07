@@ -1,12 +1,34 @@
-(eval-and-compile ; `use-package'
-  (require  'use-package)
-  (setq use-package-verbose t)
-  (setq-default use-package-always-defer t))
+(defun clytie-straight-check ()
+  (defvar bootstrap-version)
+  (setq-default straight-use-package-by-default t)
+  (setq-default straight-vc-git-default-clone-depth 1)
+  (setq-default straight-base-dir clytie-local-dir)
+  (if (and (executable-find "watchexec")
+           (executable-find "python3"))
+      (setq straight-check-for-modifications '(watch-files find-when-checking))
+    (setq straight-check-for-modifications
+          '(find-at-startup find-when-checking)))
+  (let ((repo-dir (expand-file-name "straight/repos/straight.el" straight-base-dir))
+        ))
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" straight-base-dir))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage)))
 
-(use-package epkg
-  :config
-  (setq epkg-repository (expand-file-name ".local/lib/epkgs" user-emacs-directory))
-  (setq epkg-database-connector 'sqlite-builtin))
+(clytie-straight-check)
+
+(dolist (pack '(use-package diminish))
+  (straight-use-package pack))
+
+(setq use-package-verbose t)
+(setq-default use-package-always-defer t)
 
 (when is-darwin
   (use-package exec-path-from-shell
@@ -16,6 +38,7 @@
     (setq exec-path-from-shell-check-startup-files nil)
     (setq exec-path-from-shell-arguments '("-l"))
     (exec-path-from-shell-initialize))
+  
   (when (fboundp 'set-fontset-font)
     (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
   (setq dired-use-ls-dired nil)

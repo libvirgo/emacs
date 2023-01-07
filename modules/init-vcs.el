@@ -1,6 +1,8 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package magit
+  :straight (:host github :type git :repo "magit/magit" :depth full
+				   :fork (:repo "libvirgo" :protocol ssh))
   :bind (("C-c m m" . magit-file-dispatch))
   :config
   (setq magit-refresh-status-buffer nil)
@@ -35,6 +37,7 @@
   )
 
 (use-package vc-mode
+  :straight (:type built-in)
   :bind (("C-c v d" . vc-version-diff)))
 
 (use-package diff-hl
