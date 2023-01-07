@@ -3,9 +3,7 @@
 *.elc
 *-autoloads.el
 .DS_Store
-eln-cache
 
 .local/*
 !.local/lib/
-.local/lib/epkgs/
 .local/lib/librime/
