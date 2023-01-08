@@ -27,6 +27,8 @@
      " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
    org-agenda-current-time-string
    "⭠ now ─────────────────────────────────────────────────")
+  (add-to-list 'electric-pair-inhibit-predicate-mode-chars-alist
+             '(org-mode . (?\<)))
   )
 
 (provide 'init-org)

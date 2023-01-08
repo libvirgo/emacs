@@ -137,7 +137,7 @@
   )
 
 (use-package embark
-  :straight (embark :files ("embark.el" "embark-consult.el"))
+  :straight (embark :files ("embark.el" "embark-consult.el" "embark-org.el"))
   :hook
   (embark-collect-mode . consult-preview-at-point-mode)
   :bind
