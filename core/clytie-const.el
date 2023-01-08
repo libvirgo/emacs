@@ -18,6 +18,8 @@
 (defconst clytie-savefile-dir (expand-file-name "savefile" clytie-cache-dir))
 (defconst clytie-backup-dir (expand-file-name "backup" clytie-cache-dir))
 (defconst clytie-modules-file (expand-file-name "modules.el" clytie-modules-dir))
+(defconst clytie-email-dir (expand-file-name "email" clytie-local-dir))
+(defconst clytie-sql-dir (expand-file-name "ejc-sql" clytie-local-dir))
 
 (defconst clytie-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) clytie-savefile-dir))
 
