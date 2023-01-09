@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package hydra
   :hook (after-init . (lambda () (require 'hydra))))
 
@@ -237,6 +239,9 @@
   ;; (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   )
+
+;; for some company-backend.
+(use-package company)
 
 (use-package orderless
   :init

@@ -1,4 +1,15 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package ejc-sql
+  :hook ((sql-mode . ejc-sql-mode)
+		 (ejc-sql-minor-mode . (lambda ()
+								(require 'ejc-company)
+								(setq-local completion-at-point-functions
+											(list (cape-super-capf
+												   (cape-company-to-capf #'ejc-company-backend)
+												   #'cape-dabbrev
+												   ))))))
+  
   :config
   (setq clomacs-httpd-default-port 8090) ; Use a port other than 8080.
   (setq ejc-temp-editor-file-path clytie-sql-dir)
