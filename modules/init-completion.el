@@ -275,6 +275,17 @@
   :bind (
          ("C-h C-e" . corfu-english-helper-search)))
 
+(use-package sdcv
+  :straight (sdcv :host github :repo "manateelazycat/sdcv")
+  :bind (("C-h C-w" . sdcv-search-input+))
+  :init
+  (setq sdcv-only-data-dir t)
+  (setq sdcv-dictionary-data-dir (expand-file-name "dict" clytie-local-dir))
+  (setq sdcv-dictionary-simple-list    ;setup dictionary list for simple search
+		'(
+        "懒虫简明英汉词典"
+        )))
+
 (use-package multi-translate
   :straight (multi-translate :host github :repo "twlz0ne/multi-translate.el")
   :bind (("C-h C-t" . multi-translate-at-point)
