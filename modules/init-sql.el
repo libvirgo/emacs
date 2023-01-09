@@ -5,12 +5,12 @@
 		 (ejc-sql-connected . (lambda ()
 								(ejc-set-column-width-limit 255)))
 		 (ejc-sql-minor-mode . (lambda ()
-								(require 'ejc-company)
-								(setq-local completion-at-point-functions
-											(list (cape-super-capf
-												   (cape-company-to-capf #'ejc-company-backend)
-												   #'cape-dabbrev
-												   ))))))
+								 (require 'ejc-company)
+								 (setq-local completion-at-point-functions (list (cape-super-capf
+																	   (cape-company-to-capf #'ejc-company-backend)
+																	   #'cape-dabbrev
+																	   ))
+											 corfu-auto-prefix 0))))
   :config
   (setq clomacs-httpd-default-port 8090) ; Use a port other than 8080.
   (setq ejc-temp-editor-file-path clytie-sql-dir)

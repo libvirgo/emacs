@@ -173,14 +173,15 @@
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
                ("<tab>" . corfu-complete-common-or-next)
-               ("C-f" . corfu-quick-complete)))
+               ("C-f" . corfu-quick-insert)))
   ;; Optional customizations
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   (corfu-auto t)                 ;; Enable auto completion
   (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-auto-delay 0)
-  (corfu-quit-no-match 't)
+  (corfu-quit-no-match t)
+  (corfu-quit-at-boundary t)
   :init
   (defun corfu-complete-common-or-next ()
     "Complete common prefix or go to next candidate."
