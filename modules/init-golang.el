@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
+(use-package go-fill-struct)
+
 (use-package go-mode
   :hook ((before-save . gofmt-before-save)
          (go-mode . (lambda ()
