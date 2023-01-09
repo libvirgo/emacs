@@ -275,6 +275,16 @@
   :bind (
          ("C-h C-e" . corfu-english-helper-search)))
 
+(use-package multi-translate
+  :straight (multi-translate :host github :repo "twlz0ne/multi-translate.el")
+  :bind (("C-h C-t" . multi-translate-at-point)
+		 :map multi-translate-mode-map
+		 ("p" . multi-translate-prev-translation-section)
+		 ("n" . multi-translate-next-translation-section)
+		 ("c" . multi-translate-clean-buffer))
+  :custom
+  (multi-translate-word-backends nil))
+
 (use-package citre
   :bind (
          ("C-c e d" . citre-peek)
