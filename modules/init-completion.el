@@ -181,7 +181,7 @@
   (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-auto-delay 0)
   (corfu-quit-no-match t)
-  (corfu-quit-at-boundary t)
+  (corfu-quit-at-boundary 'separator)
   :init
   (defun corfu-complete-common-or-next ()
     "Complete common prefix or go to next candidate."
