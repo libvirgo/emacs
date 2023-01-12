@@ -6,3 +6,6 @@
 [submodule "tempel-collection"]
 	path = .local/lib/tempel-collection
 	url = git@github.com:libvirgo/tempel-collection.git
+[submodule "benchmark-init"]
+	path = .local/lib/benchmark-init
+	url = https://github.com/dholm/benchmark-init-el.git
