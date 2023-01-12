@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun clytie-straight-check ()
   (defvar bootstrap-version)
   (setq straight-use-package-by-default t)

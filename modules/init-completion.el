@@ -1,10 +1,8 @@
 ;;; -*- lexical-binding: t; -*-
 
-(use-package hydra
-  :hook (after-init . (lambda () (require 'hydra))))
+(use-package hydra)
 
-(use-package major-mode-hydra
-  :hook (after-init . (lambda () (require 'major-mode-hydra))))
+(use-package major-mode-hydra)
 
 (use-package xref
   :init
