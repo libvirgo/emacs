@@ -1,12 +1,12 @@
 ;;; -*- lexical-binding: t; -*-
 
-(setq doom-gc-cons-threshold 167772160)
+(setq doom-gc-cons-threshold 524288000)
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
 
 (add-hook 'emacs-startup-hook
   (lambda ()
-    (setq gc-cons-threshold doom-gc-cons-threshold ; 160mb
+    (setq gc-cons-threshold doom-gc-cons-threshold ; 500mb
           gc-cons-percentage 0.1)))
 
 (defun doom-defer-garbage-collection-h ()
@@ -19,6 +19,7 @@
    1 nil (lambda () (setq gc-cons-threshold doom-gc-cons-threshold))))
 (add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
 (add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
+(add-hook 'focus-out-hook #'garbage-collect)
 
 (defvar doom--file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
