@@ -5,6 +5,7 @@
          ("C-c p f" . project-find-file)
          ("C-c p g" . project-find-regexp)
          ("C-c p b" . consult-project-buffer)
+		 ("s-p" . project-find-file)
          ("C-c p m" . magit-project-status))
   :init
   (setq project-list-file (expand-file-name "projects" clytie-cache-dir))
