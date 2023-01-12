@@ -116,51 +116,65 @@ CHAR-FUNCTION
   :bind (("s-n" . ace-window)
          ))
 
-(use-package awesome-tab
+(use-package sort-tab
+  :straight (:repo "manateelazycat/sort-tab" :type git :host github)
   :defer 3
-  :bind (("s-1" . 'awesome-tab-select-visible-tab)
-         ("s-2" . 'awesome-tab-select-visible-tab)
-         ("s-3" . 'awesome-tab-select-visible-tab)
-         ("s-4" . 'awesome-tab-select-visible-tab)
-         ("s-5" . 'awesome-tab-select-visible-tab)
-         ("s-6" . 'awesome-tab-select-visible-tab)
-         ("s-7" . 'awesome-tab-select-visible-tab)
-         ("s-8" . 'awesome-tab-select-visible-tab)
-         ("s-9" . 'awesome-tab-select-visible-tab)
-         ("s-0" . 'awesome-tab-select-visible-tab)
-         ("s-[" . 'awesome-tab-backward-tab)
-         ("s-]" . 'awesome-tab-forward-tab)
-         )
+  :bind (("s-1" . 'sort-tab-select-visible-tab)
+         ("s-2" . 'sort-tab-select-visible-tab)
+         ("s-3" . 'sort-tab-select-visible-tab)
+         ("s-4" . 'sort-tab-select-visible-tab)
+         ("s-5" . 'sort-tab-select-visible-tab)
+         ("s-6" . 'sort-tab-select-visible-tab)
+         ("s-7" . 'sort-tab-select-visible-tab)
+         ("s-8" . 'sort-tab-select-visible-tab)
+         ("s-9" . 'sort-tab-select-visible-tab)
+         ("s-0" . 'sort-tab-select-visible-tab)
+         ("s-[" . 'sort-tab-select-prev-tab)
+         ("s-]" . 'sort-tab-select-next-tab)
+		 ("s-q" . 'sort-tab-close-mode-tabs)
+		 ("C-." . fast-switch/body))
   :config
-  (awesome-tab-mode)
-  (pretty-hydra-define awesome-fast-switch
+  (sort-tab-mode)
+  (pretty-hydra-define fast-switch
 	(:title "Switch" :color pink :quit-key ("q" "C-g"))
 	("Move"
-	 (("h" awesome-tab-backward-tab "backward tab")
-	  ("j" awesome-tab-forward-group "forward tab group")
-	  ("k" awesome-tab-backward-group "backward tab group")
-	  ("l" awesome-tab-forward-tab "forward tab")
-	  ("L" eyebrowse-next-window-config "switch next window")
-	  ("H" eyebrowse-prev-window-config "switch prev window"))
+	 (("l" eyebrowse-next-window-config "switch next window")
+	  ("h" eyebrowse-prev-window-config "switch prev window"))
 	 "Tab"
-	 (("C-a" awesome-tab-select-beg-tab "begin tab")
-	  ("C-e" awesome-tab-select-end-tab "end tab")
-	  ("C-j" awesome-tab-ace-jump "tab ace jump")
-	  ("C-h" awesome-tab-move-current-tab-to-left "move tab left")
-	  ("C-l" awesome-tab-move-current-tab-to-right "move tab right"))
+	 (("C-a" sort-tab-select-first-tab "begin tab")
+	  ("C-e" sort-tab-select-last-tab "end tab")
+	  ("C-q" sort-tab-close-current-tab "close tab"))
 	 "Search"
 	 (("b" consult-buffer "search buffer" :color blue)
-	  ("g" awesome-tab-switch-group "switch tab group" :color blue))
+	  ("a" project-find-regexp "search project" :color blue))
 	 "Window"
 	 (("c" eyebrowse-create-window-config "create window")
 	  ("d" eyebrowse-close-window-config "close window")
 	  ("r" eyebrowse-rename-window-config "rename window"))
 	 "Misc"
 	 (("C-k" kill-current-buffer "kill buffer")
-	  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group "kill other buffers")
 	  ("p" project-switch-project "switch project"))))
-  :bind
-  ("C-." . awesome-fast-switch/body))
+  )
+
+;; (use-package awesome-tab
+;;   :defer 3
+;;   :bind (("s-1" . 'awesome-tab-select-visible-tab)
+;;          ("s-2" . 'awesome-tab-select-visible-tab)
+;;          ("s-3" . 'awesome-tab-select-visible-tab)
+;;          ("s-4" . 'awesome-tab-select-visible-tab)
+;;          ("s-5" . 'awesome-tab-select-visible-tab)
+;;          ("s-6" . 'awesome-tab-select-visible-tab)
+;;          ("s-7" . 'awesome-tab-select-visible-tab)
+;;          ("s-8" . 'awesome-tab-select-visible-tab)
+;;          ("s-9" . 'awesome-tab-select-visible-tab)
+;;          ("s-0" . 'awesome-tab-select-visible-tab)
+;;          ("s-[" . 'awesome-tab-backward-tab)
+;;          ("s-]" . 'awesome-tab-forward-tab)
+;;          )
+;;   :config
+;;   (awesome-tab-mode)
+  ;; :bind
+  ;; ("C-." . awesome-fast-switch/body))
 
 (progn
   (when (treesit-available-p)

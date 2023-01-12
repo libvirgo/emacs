@@ -12,8 +12,7 @@
         rime-show-candidate 'posframe
         rime-user-data-dir "~/Library/Rime"
         rime-posframe-style 'vertical)
-  ;; 你好
-  :bind (:map rime-active-mode-map ("M-j" . rime-inline-ascii)
+  :bind (:map rime-mode-map ("s-j" . rime-inline-ascii)
 			  :map rime-mode-map ("M-j" . rime-force-enable))
   :config
   (setq rime-disable-predicates '(meow-normal-mode-p
