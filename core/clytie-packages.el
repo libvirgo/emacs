@@ -116,4 +116,10 @@
       (set-char-table-range composition-ligature-table (car char-regexp)
                             `([,(cdr char-regexp) 0 font-shape-gstring])))))
 
+(use-package gcmh
+  :defer 1
+  :config
+  (gcmh-mode)
+  (setq gcmh-verbose t))
+
 (provide 'clytie-packages)
