@@ -30,10 +30,10 @@
          ("C-c" . diff-hl-show-hunk-copy-original-text)
          :map diff-hl-command-map
          ("SPC" . diff-hl-mark-hunk))
-  :hook ((dired-mode . diff-hl-dired-mode))
+  :hook ((dired-mode . diff-hl-dired-mode)
+		 (find-file . diff-hl-mode))
   :init
   (setq diff-hl-draw-borders nil)
-  (global-diff-hl-mode)
   :config
   ;; Highlight on-the-fly
   (diff-hl-flydiff-mode 1)
