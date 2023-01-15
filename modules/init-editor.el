@@ -114,7 +114,11 @@ CHAR-FUNCTION
 
 (use-package ace-window
   :bind (("s-n" . ace-window)
-         ))
+		 ("C-x 1" . ace-delete-other-windows)
+         )
+  :config
+  (setq aw-ignored-buffers '("*sort-tab*")
+		aw-ignore-on t))
 
 (use-package sort-tab
   :straight (:repo "manateelazycat/sort-tab" :type git :host github)
@@ -132,7 +136,10 @@ CHAR-FUNCTION
          ("s-[" . 'sort-tab-select-prev-tab)
          ("s-]" . 'sort-tab-select-next-tab)
 		 ("s-q" . 'sort-tab-close-mode-tabs)
+		 ("s-w" . 'sort-tab-close-current-tab)
 		 ("C-." . fast-switch/body))
+  :init
+  (setq sort-tab-align 'center)
   :config
   (sort-tab-mode)
   (pretty-hydra-define fast-switch
@@ -194,9 +201,6 @@ CHAR-FUNCTION
 		  ))
 	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
   )
-
-(progn
-  (keymap-global-set "s-w" #'kill-this-buffer))
 
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode)
