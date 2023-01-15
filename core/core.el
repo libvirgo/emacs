@@ -34,6 +34,8 @@
       (select-frame frame))
     (set-frame-width (selected-frame) 120)
     (set-frame-height (selected-frame) 39))
+(add-to-list 'default-frame-alist '(height . 39))
+(add-to-list 'default-frame-alist '(width . 120))
 (add-hook 'after-make-frame-functions 'spacemacs/reset-frame-size)
 
 (defun +my/better-font()
@@ -44,7 +46,7 @@
         ;; (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "JetBrainsMono NF" 15))
 		(cond
 		 ((find-font (font-spec :name "Iosevka"))
-		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka" 21)))
+		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka" 22)))
 		 ((find-font (font-spec :name "Iosevka Nerd Font"))
 		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka Nerd Font" 15))))
         ;; chinese font
