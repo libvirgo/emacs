@@ -9,3 +9,6 @@
 [submodule "benchmark-init"]
 	path = .local/lib/benchmark-init
 	url = https://github.com/dholm/benchmark-init-el.git
+[submodule "circadian"]
+	path = .local/lib/circadian
+	url = https://github.com/guidoschmidt/circadian.el.git

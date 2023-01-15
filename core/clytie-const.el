@@ -3,7 +3,7 @@
 (defconst clytie-user
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
-(defconst is-darwin '(eq system-type 'darwin))
+(defconst is-darwin (eq system-type 'darwin))
 (defconst sys/linuxp
   (and (eq system-type 'gnu/linux)
        (not (string-match "-[Mm]icrosoft" operating-system-release)))
