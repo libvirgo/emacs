@@ -6,11 +6,17 @@
                   :repo "DogLooksGood/emacs-rime"
                   :files ("*.el" "Makefile" "lib.c"))
   :init
+  (if is-darwin
+	  (progn
+		(setq
+		 rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.0.60/include"
+         rime-librime-root (expand-file-name "librime/dist" clytie-lib-dir)
+		 rime-user-data-dir "~/Library/Rime"
+		 ))
+	(progn
+	  (setq rime-user-data-dir "~/.config/ibus/rime")))
   (setq default-input-method "rime"
-        rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.0.60/include"
-        rime-librime-root (expand-file-name "librime/dist" clytie-lib-dir)
         rime-show-candidate 'posframe
-        rime-user-data-dir "~/Library/Rime"
         rime-posframe-style 'vertical)
   :bind (:map rime-mode-map ("s-j" . rime-inline-ascii)
 			  :map rime-mode-map ("M-j" . rime-force-enable))
