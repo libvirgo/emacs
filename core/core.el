@@ -36,7 +36,7 @@
     (set-frame-height (selected-frame) 39))
 (add-to-list 'default-frame-alist '(height . 39))
 (add-to-list 'default-frame-alist '(width . 120))
-(when sys/linuxp
+(when (eq system-type 'gnu/linux)
   (add-to-list 'default-frame-alist '(alpha-background . 80))
   )
 (add-hook 'after-make-frame-functions 'spacemacs/reset-frame-size)
