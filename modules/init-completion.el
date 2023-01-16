@@ -2,7 +2,27 @@
 
 (use-package hydra)
 
-(use-package major-mode-hydra)
+(use-package major-mode-hydra
+  :init
+  (pretty-hydra-define fast-switch
+	(:title "Switch" :color pink :quit-key ("q" "C-g"))
+	("Move"
+	 (("l" eyebrowse-next-window-config "switch next window")
+	  ("h" eyebrowse-prev-window-config "switch prev window"))
+	 "Tab"
+	 ()
+	 "Search"
+	 (("b" consult-buffer "search buffer" :color blue)
+	  ("a" project-find-regexp "search project" :color blue))
+	 "Window"
+	 (("c" eyebrowse-create-window-config "create window")
+	  ("d" eyebrowse-close-window-config "close window")
+	  ("r" eyebrowse-rename-window-config "rename window"))
+	 "Misc"
+	 (("C-k" kill-current-buffer "kill buffer")
+	  ("p" project-switch-project "switch project"))))
+  :bind
+  (("C-." . fast-switch/body)))
 
 (use-package xref
   :init
