@@ -155,6 +155,8 @@
                  nil
                  (window-parameters (mode-line-format . none)))))
 
+(use-package wgrep)
+
 (use-package kind-icon
   :defer 3
   :custom

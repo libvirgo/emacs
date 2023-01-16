@@ -98,7 +98,6 @@ CHAR-FUNCTION
               (lambda (&rest _)
                 (posframe-delete-all))))
   :config
-  (add-hook 'after-load-theme-hook 'posframe-delete-all)
   (with-no-warnings
     (defun my-posframe--prettify-frame (&rest _)
       (set-face-background 'fringe nil posframe--frame))
