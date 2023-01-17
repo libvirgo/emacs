@@ -124,5 +124,7 @@
 		 )
   )
 
+(use-package vc-msg)
+
 
 (provide 'init-vcs)
