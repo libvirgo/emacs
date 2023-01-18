@@ -113,7 +113,6 @@ CHAR-FUNCTION
 
 (use-package ace-window
   :bind (("s-n" . ace-window)
-		 ("C-x 1" . ace-delete-other-windows)
          )
   :config)
 
