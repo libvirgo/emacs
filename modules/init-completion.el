@@ -193,7 +193,7 @@
   :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
-               ("<tab>" . corfu-complete-common-or-next)
+               ("C-n" . corfu-complete-common-or-next)
                ("C-f" . corfu-quick-insert)))
   ;; Optional customizations
   :custom
@@ -227,9 +227,9 @@
   :custom
   (tempel-trigger-prefix "<")
   :bind (:map tempel-map
-              ("C-f" . tempel-next)
-              ("C-b" . tempel-previous)
-              ("C-a" . tempel-beginning)
+              ("M-n" . tempel-next)
+              ("M-p" . tempel-previous)
+              ("M-a" . tempel-beginning)
               ("RET" . tempel-done)
               )
   :init
@@ -319,10 +319,10 @@
 
 (use-package citre
   :bind (
-         ("C-c e d" . citre-peek)
-         ("C-c e r" . citre-peek-reference)
-         ("C-c e b" . citre-jump-back)
-         ("C-c e g" . citre-peek-restore)
+         ("s-." . citre-peek)
+         ("s-r" . citre-peek-reference)
+         ("s-," . citre-jump-back)
+         ("s-h" . citre-peek-restore)
          :map citre-peek-keymap
          ("C-j" . citre-peek-jump)
          ("C-t" . citre-peek-through)
@@ -331,8 +331,8 @@
          ("C-p" . citre-peek-prev-line)
          ("M-n" . citre-peek-next-tag)
          ("M-p" . citre-peek-prev-tag)
-         ("C-f" . citre-peek-chain-forward)
-         ("C-b" . citre-peek-chain-backward)
+         ("M-f" . citre-peek-chain-forward)
+         ("M-b" . citre-peek-chain-backward)
          )
   )
 
