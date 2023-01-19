@@ -142,6 +142,7 @@ CHAR-FUNCTION
    ("M-]" . 'hs-show-block)))
 
 (progn
+  (keymap-global-set "s-w" #'kill-current-buffer)
   (keymap-global-set "s-[" #'switch-to-prev-buffer)
   (keymap-global-set "s-]" #'switch-to-next-buffer))
 

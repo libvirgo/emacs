@@ -6,7 +6,7 @@
                   :repo "DogLooksGood/emacs-rime"
                   :files ("*.el" "Makefile" "lib.c"))
   :init
-  (if is-darwin
+  (if sys/darwinp
 	  (progn
 		(setq
 		 rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.0.60/include"

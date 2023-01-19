@@ -48,8 +48,8 @@
       (progn
         ;; (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "JetBrainsMono NF" 15))
 		(cond
-		 ((find-font (font-spec :name "Iosevka"))
-		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka" 22)))
+		 ((find-font (font-spec :name "Iosevka NF"))
+		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka NF" 22)))
 		 ((find-font (font-spec :name "Iosevka Nerd Font"))
 		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka Nerd Font" 15))))
         ;; chinese font

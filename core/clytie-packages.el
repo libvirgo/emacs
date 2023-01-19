@@ -33,7 +33,7 @@
 (setq use-package-verbose t)
 (setq-default use-package-always-defer t)
 
-(if is-darwin
+(if sys/darwinp
 	(progn
 	  (use-package exec-path-from-shell
 		:defer 1
