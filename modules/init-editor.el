@@ -146,4 +146,9 @@ CHAR-FUNCTION
   (keymap-global-set "s-[" #'switch-to-prev-buffer)
   (keymap-global-set "s-]" #'switch-to-next-buffer))
 
+(use-package separedit
+  :bind
+  (:map prog-mode-map
+		("C-c '" . #'separedit)))
+
 (provide 'init-editor)
