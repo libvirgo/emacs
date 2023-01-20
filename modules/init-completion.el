@@ -20,8 +20,8 @@
 	 "Misc"
 	 (("C-k" kill-current-buffer "kill buffer")
 	  ("p" project-switch-project "switch project")
-	  ("+" org-capture)
-	  ("=" org-agenda))))
+	  ("+" org-capture :color blue)
+	  ("=" org-agenda :color blue))))
   :bind
   (("C-." . fast-switch/body)))
 
