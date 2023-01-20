@@ -9,8 +9,7 @@
 	("Move"
 	 (("l" eyebrowse-next-window-config "switch next window")
 	  ("h" eyebrowse-prev-window-config "switch prev window"))
-	 "Tab"
-	 ()
+
 	 "Search"
 	 (("b" consult-buffer "search buffer" :color blue)
 	  ("a" project-find-regexp "search project" :color blue))
@@ -20,7 +19,9 @@
 	  ("r" eyebrowse-rename-window-config "rename window"))
 	 "Misc"
 	 (("C-k" kill-current-buffer "kill buffer")
-	  ("p" project-switch-project "switch project"))))
+	  ("p" project-switch-project "switch project")
+	  ("+" org-capture)
+	  ("=" org-agenda))))
   :bind
   (("C-." . fast-switch/body)))
 
@@ -45,7 +46,7 @@
          ;; C-x bindings (ctl-x-map)
          ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-		 ("s-b" . consult-buffer)
+		 ("s-b" . consult-project-buffer)
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-othecompletionr-frame
          ("C-c b b" . consult-bookmark)            ;; orig. bookmark-jump
@@ -321,7 +322,6 @@
   :bind (
          ("s-." . citre-peek)
          ("s-r" . citre-peek-reference)
-         ("s-," . citre-jump-back)
          ("s-h" . citre-peek-restore)
          :map citre-peek-keymap
          ("C-j" . citre-peek-jump)

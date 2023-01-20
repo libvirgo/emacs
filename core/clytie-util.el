@@ -42,6 +42,9 @@
                        "\*Org Export"
                        "\*osx-dictionary\*" "\*Messages\*"
                        "\*straight-process\*"
+					   "\*straight-byte-compilation\*"
+					   "\*diff-hl-show-hunk-buffer\*"
+					   "\*diff-hl-show-hunk-diff-buffer\*"
                        ))
                   (buffer-name buf)))
 

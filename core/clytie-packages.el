@@ -122,9 +122,10 @@
                             `([,(cdr char-regexp) 0 font-shape-gstring])))))
 
 (use-package gcmh
-  :defer 1
-  :config
+  :init
   (gcmh-mode)
+  (setq gcmh-high-cons-threshold #x12c00000)
+  :config
   (setq gcmh-verbose t))
 
 (provide 'clytie-packages)
