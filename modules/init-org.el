@@ -52,15 +52,16 @@
   (add-to-list 'org-capture-templates
 			   `("tw" "Work Task" entry
 				 (file+olp ,(capture-todo-week-file clytie-agenda-dir) "Work")
-				 "* TODO %^{task name} %^t->%^t :%^G"))
+				 "* TODO %^{task name} %^t->%^t %^G"))
   (add-to-list 'org-capture-templates
 			   `("td" "Daily Task" entry
 				 (file+olp ,(capture-todo-week-file clytie-agenda-dir) "Daily")
-				 "* TODO %^{task name} %^t->%^t"))
+				 "* TODO %^{task name} %^t->%^t %^G"))
   ;; save password by org-capture
   (require 'epa-file)
   (epa-file-enable)
-  (setq epa-file-select-keys nil)
+  (setq epa-file-select-keys 0)
+  (setq epa-pinentry-mode 'loopback)
   (defun random-alphanum ()
 	(let* ((charset "abcdefghijklmnopqrstuvwxyz0123456789")
            (x (random 36)))
@@ -76,7 +77,7 @@
       password))
   (add-to-list 'org-capture-templates
 			   '("p" "Passwords" entry (file "~/Documents/org/passwords.org.gpg")
-				 "* %U - %^{title} :%^G\n\n  - Name: %^{Name}\n  - Password: %(get-or-create-password)"
+				 "* %U - %^{title} %^G\n\n  - Name: %^{Name}\n  - Password: %(get-or-create-password)"
 				 :empty-lines 1 :kill-buffer t)))
 
 (use-package org-autolist
