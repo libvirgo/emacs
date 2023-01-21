@@ -93,7 +93,8 @@
 		 ("C-c n c" . org-roam-capture)
 		 ("C-c n j" . org-roam-dailies-capture-today))
   :init
-  (setq org-roam-db-location (expand-file-name "org-roam.db" clytie-cache-dir))
+  (setq org-roam-db-location (expand-file-name "org-roam.db" clytie-cache-dir)
+		org-id-locations-file (expand-file-name "org-id-locations" clytie-cache-dir))
   :config
   (org-roam-db-autosync-mode))
 
