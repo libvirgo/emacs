@@ -45,14 +45,14 @@
   (defun capture-todo-week-file (p)
 	(let ((file-name (expand-file-name (format "%s-todo.org" (format-time-string "%Y-%m_%W")) p)))
 	  (unless (file-exists-p file-name)
-		(dired-create-empty-file file-name)
+		(make-empty-file file-name)
 		(append-to-file "#+title:Task\n#+author:libvirgo\n\n* Work\n\n* Daily" nil file-name))
 	  file-name))
   (add-to-list 'org-capture-templates '("t" "Tasks"))
   (add-to-list 'org-capture-templates
 			   `("tw" "Work Task" entry
 				 (file+olp ,(capture-todo-week-file clytie-agenda-dir) "Work")
-				 "* TODO %^{task name} %^t->%^t"))
+				 "* TODO %^{task name} %^t->%^t :%^G"))
   (add-to-list 'org-capture-templates
 			   `("td" "Daily Task" entry
 				 (file+olp ,(capture-todo-week-file clytie-agenda-dir) "Daily")
@@ -76,7 +76,7 @@
       password))
   (add-to-list 'org-capture-templates
 			   '("p" "Passwords" entry (file "~/Documents/org/passwords.org.gpg")
-				 "* %U - %^{title} %^G\n\n  - Name: %^{Name}\n  - Password: %(get-or-create-password)"
+				 "* %U - %^{title} :%^G\n\n  - Name: %^{Name}\n  - Password: %(get-or-create-password)"
 				 :empty-lines 1 :kill-buffer t)))
 
 (use-package org-autolist
