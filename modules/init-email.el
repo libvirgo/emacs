@@ -36,10 +36,11 @@
 		  "MIME-Version:"
 		  "Content-Transfer-Encoding:"
 		  "DKIM-Signature:"
-		  "List-.*:"
-		  ))
+		  "List-.*:")
+		shr-use-colors nil
+		shr-use-fonts nil		  
+		)
   :config
-  (setq mime-view-text/html-previewer shr
-		shr-use-colors nil))
+  (setq mime-view-text/html-previewer shr))
   
 (provide 'init-email)
