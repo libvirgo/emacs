@@ -3,7 +3,6 @@
 (use-package magit
   :straight (:host github :type git :repo "magit/magit" :depth full
 				   :fork (:repo "libvirgo" :protocol ssh))
-  :bind (("C-c m m" . magit-file-dispatch))
   :config
   (setq magit-refresh-status-buffer nil)
     ;; (transient-append-suffix 'magit-submodule "-r"
@@ -21,13 +20,6 @@
   (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
   (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
   :bind (("C-c d s" . diff-hl-show-hunk)
-         :repeat-map diff-hl-inline-popup-transient-mode-map
-         ("C-f" . diff-hl-show-hunk-next)
-         ("C-b" . diff-hl-show-hunk-previous)
-         ("C-r" . diff-hl-show-hunk-revert-hunk)
-         ("C-p" . diff-hl-inline-popup--popup-up)
-         ("C-n" . diff-hl-inline-popup--popup-down)
-         ("C-c" . diff-hl-show-hunk-copy-original-text)
          :map diff-hl-command-map
          ("SPC" . diff-hl-mark-hunk))
   :hook ((dired-mode . diff-hl-dired-mode)
