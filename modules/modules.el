@@ -8,6 +8,7 @@
 (require 'init-org)
 
 (require 'init-golang)
+(require 'init-rust)
 (require 'init-protobuf)
 
 (require 'init-meow)
