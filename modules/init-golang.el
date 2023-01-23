@@ -18,16 +18,16 @@
                            (keymap-set embark-identifier-map "R" #'lsp-rename)))))
   :mode-hydra
   (go-ts-mode
-   (:title "Go Commands")
+   (:title "Go Commands" :color blue)
    ("Doc"
-    (("d" godoc-at-point "doc at point" :color blue))
+    (("d" godoc-at-point "doc at point"))
 	"Guru"
-	(("r" go-guru-implements "find impl or interface." :color blue)
-	 ("c" go-guru-callers "find func callers" :color blue)
-	 ("e" go-guru-callees "find func callees" :color blue))
+	(("r" go-guru-implements "find impl or interface.")
+	 ("c" go-guru-callers "find func callers")
+	 ("e" go-guru-callees "find func callees"))
     "Imports"
-    (("ia" go-import-add "add" :color blue)
-     ("ir" go-remove-unused-imports "cleanup" :color blue))))
+    (("ia" go-import-add "add")
+     ("ir" go-remove-unused-imports "cleanup"))))
   :config
   (setq gofmt-command "goimports"))
 

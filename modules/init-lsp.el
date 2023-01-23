@@ -36,6 +36,7 @@
   :custom
   (lsp-ui-sideline-enable nil)
   (lsp-ui-doc-show-with-cursor nil)
+  (lsp-ui-doc-show-with-mouse nil)
   (lsp-ui-doc-include-signature t)
   ;; (lsp-ui-doc-use-webkit t)
   (lsp-ui-doc-position 'at-point))
