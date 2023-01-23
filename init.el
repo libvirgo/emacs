@@ -4,7 +4,6 @@
 ;; (require 'benchmark-init-loaddefs)
 ;; (benchmark-init/activate)
 
-
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
 
 (require 'clytie-const)

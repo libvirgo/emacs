@@ -40,9 +40,10 @@
 (use-package org
   :hook (org-mode . (lambda () (setq truncate-lines nil)))
   :init
+  (setq org-capture-templates nil)
+  :config
   ;; agenda and capture
-  (setq clytie-agenda-dir (expand-file-name "agenda" clytie-org-dir))
-  (setq org-capture-templates nil
+  (setq clytie-agenda-dir (expand-file-name "agenda" clytie-org-dir)
 		org-agenda-files (list clytie-agenda-dir))
   (defun capture-todo-week-file (p)
 	(let ((file-name (expand-file-name (format "%s-todo.org" (format-time-string "%Y-%m_%W")) p)))
