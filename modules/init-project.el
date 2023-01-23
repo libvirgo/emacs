@@ -1,14 +1,14 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package project
+  :init
+  (setq project-list-file (expand-file-name "projects" clytie-cache-dir))
   :bind (("C-c p p" . project-switch-project)
          ("C-c p f" . project-find-file)
          ("C-c p g" . project-find-regexp)
          ("C-c p b" . consult-project-buffer)
 		 ("s-p" . project-find-file)
          ("C-c p m" . magit-project-status))
-  :init
-  (setq project-list-file (expand-file-name "projects" clytie-cache-dir))
   :config
   (setq project-root-markers     '("Cargo.toml" "go.mod" "package.json" ".git"))
   (defun project-root-p (path)
@@ -59,9 +59,6 @@
 (use-package popper
   :defer 3
   :defines popper-echo-dispatch-actions
-  :bind (("C-c b p" . popper-toggle-latest)
-         :map popper-mode-map
-         ("C-<tab>"   . popper-cycle))
   :init
   (setq popper-reference-buffers
         '("\\*Messages\\*"
@@ -119,11 +116,12 @@
           "\\*prolog\\*" inferior-python-mode inf-ruby-mode swift-repl-mode
           "\\*rustfmt\\*$" rustic-compilation-mode rustic-cargo-clippy-mode
           rustic-cargo-outdated-mode rustic-cargo-run-mode rustic-cargo-test-mode))
-
   (setq popper-echo-dispatch-actions t)
+  :bind (("C-c b p" . popper-toggle-latest)
+         :map popper-mode-map
+         ("C-<tab>"   . popper-cycle))
   :config
   (popper-echo-mode 1)
-
   (with-no-warnings
     (defun my-popper-fit-window-height (win)
       "Determine the height of popup window WIN by fitting it to the buffer's content."
@@ -145,6 +143,14 @@
     (advice-add #'keyboard-quit :before #'popper-close-window-hack)))
 
 (use-package treemacs
+  :bind
+  (:map global-map
+        ("C-c t 1" . treemacs-delete-other-windows)
+        ("C-c t s" . treemacs-select-window)
+        ("C-c t t" . treemacs)
+        ("C-c t f" . treemacs-find-file)
+        ("C-c t i" . treemacs-find-tag)
+        ("C-c t d" . treemacs-select-directory))
   :config
   (progn
     (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
@@ -162,15 +168,7 @@
        (treemacs-git-mode 'deferred))
       (`(t . _)
        (treemacs-git-mode 'simple)))
-
     (treemacs-hide-gitignored-files-mode nil))
-  :bind
-  (:map global-map
-        ("C-c t 1" . treemacs-delete-other-windows)
-        ("C-c t s" . treemacs-select-window)
-        ("C-c t t" . treemacs)
-        ("C-c t f" . treemacs-find-file)
-        ("C-c t i" . treemacs-find-tag)
-        ("C-c t d" . treemacs-select-directory)))
+  )
 
 (provide 'init-project)

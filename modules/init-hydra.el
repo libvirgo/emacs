@@ -3,6 +3,7 @@
 (use-package hydra)
 
 (use-package major-mode-hydra
+  :defer t
   :init
   (pretty-hydra-define fast-switch
 	(:title "Switch" :color pink :quit-key ("q" "C-g"))
@@ -40,8 +41,10 @@
 	 "Magit"
 	 (("f" magit-file-dispatch :color blue)
 	  ("b" magit-blame :color blue))))
+  (require 'major-mode-hydra)
   :bind
   (("s-." . fast-switch/body)
-   ("s-d" . git-diff-hunk/body)))
+   ("s-d" . git-diff-hunk/body)
+   ("C-." . major-mode-hydra)))
 
 (provide 'init-hydra)

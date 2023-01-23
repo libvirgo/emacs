@@ -1,4 +1,35 @@
 ;;; -*- lexical-binding: t; -*-
+
+(setq-default tab-width 4)
+;; (setq-default indent-tabs-mode nil)
+
+(progn
+  (keymap-global-set "s-w" #'kill-current-buffer)
+  (keymap-global-set "s-[" #'switch-to-prev-buffer)
+  (keymap-global-set "s-]" #'switch-to-next-buffer)
+  (keymap-global-set "M-n" #'scroll-other-window)
+  (keymap-global-set "M-p" #'scroll-other-window-down))
+
+(progn
+  (when (treesit-available-p)
+	(setq major-mode-remap-alist
+        '((c-mode          . c-ts-mode)
+          (c++-mode        . c++-ts-mode)
+          (conf-toml-mode  . toml-ts-mode)
+          (csharp-mode     . csharp-ts-mode)
+          (css-mode        . css-ts-mode)
+          (java-mode       . java-ts-mode)
+          (js-mode         . js-ts-mode)
+          (javascript-mode . js-ts-mode)
+          (js-json-mode    . json-ts-mode)
+          (python-mode     . python-ts-mode)
+          (ruby-mode       . ruby-ts-mode)
+          (sh-mode         . bash-ts-mode)
+		  (go-mode         . go-ts-mode)
+		  ))
+	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
+  )
+
 (use-package tramp
   :straight (:type built-in)
   :init
@@ -19,11 +50,10 @@
 
 (use-package electric-pair
   :straight (:type built-in)
-  :hook (prog-mode . electric-pair-mode)
   :init
   (defvar electric-pair-inhibit-predicate-mode-chars-alist
-  '((t . nil))
-  "A list of major-mode and inhibit chars.
+	'((t . nil))
+	"A list of major-mode and inhibit chars.
 
 Each element is in the form of (MODE . (CHAR/CHAR-STRING/CHAR-FUNCTION ...)).
 
@@ -50,9 +80,9 @@ CHAR-FUNCTION
 
   (defun electric-pair-inhibit-predicate-function (c)
 	(let ((alist
-         (append
-          (assoc-default major-mode electric-pair-inhibit-predicate-mode-chars-alist)
-          (assoc-default t          electric-pair-inhibit-predicate-mode-chars-alist))))
+           (append
+			(assoc-default major-mode electric-pair-inhibit-predicate-mode-chars-alist)
+			(assoc-default t          electric-pair-inhibit-predicate-mode-chars-alist))))
       (or (cl-member c
 					 alist
 					 :test
@@ -64,7 +94,8 @@ CHAR-FUNCTION
                                ((functionp (cdr it)) (funcall (cdr it) c)))))))
           (electric-pair-default-inhibit c))))
   (with-eval-after-load 'elec-pair
-	  (setq electric-pair-inhibit-predicate #'electric-pair-inhibit-predicate-function))
+	(setq electric-pair-inhibit-predicate #'electric-pair-inhibit-predicate-function))
+  :hook (prog-mode . electric-pair-mode)
   )
 
 (use-package hl-indent-scope
@@ -74,7 +105,6 @@ CHAR-FUNCTION
         (after-load-theme . hl-indent-scope--auto-color-calc)))
 
 (use-package hungry-delete
-  :diminish
   :init (global-hungry-delete-mode)
   )
 
@@ -82,9 +112,6 @@ CHAR-FUNCTION
   :bind (("s-l" . avy-goto-line)
          ("s-c" . avy-goto-char)
          ("s-f" . avy-goto-char-2)))
-
-(setq-default tab-width 4)
-;; (setq-default indent-tabs-mode nil)
 
 (use-package posframe
   :init
@@ -113,41 +140,13 @@ CHAR-FUNCTION
 
 (use-package ace-window
   :bind (("s-n" . ace-window)
-         )
-  :config)
-
-(progn
-  (when (treesit-available-p)
-	(setq major-mode-remap-alist
-        '((c-mode          . c-ts-mode)
-          (c++-mode        . c++-ts-mode)
-          (conf-toml-mode  . toml-ts-mode)
-          (csharp-mode     . csharp-ts-mode)
-          (css-mode        . css-ts-mode)
-          (java-mode       . java-ts-mode)
-          (js-mode         . js-ts-mode)
-          (javascript-mode . js-ts-mode)
-          (js-json-mode    . json-ts-mode)
-          (python-mode     . python-ts-mode)
-          (ruby-mode       . ruby-ts-mode)
-          (sh-mode         . bash-ts-mode)
-		  (go-mode         . go-ts-mode)
-		  ))
-	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
-  )
+         ))
 
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode)
   :bind
   (("M-[" . 'hs-hide-level)
    ("M-]" . 'hs-show-block)))
-
-(progn
-  (keymap-global-set "s-w" #'kill-current-buffer)
-  (keymap-global-set "s-[" #'switch-to-prev-buffer)
-  (keymap-global-set "s-]" #'switch-to-next-buffer)
-  (keymap-global-set "M-n" #'scroll-other-window)
-  (keymap-global-set "M-p" #'scroll-other-window-down))
 
 (use-package separedit
   :bind

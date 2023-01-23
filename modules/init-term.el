@@ -1,8 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
 (use-package vterm
-  :bind (:map vterm-mode-map
-              ("C-'" . shell-pop-posframe-toggle))
   :init (setq vterm-always-compile-module t)
   (defvar shell-pop--frame nil)
   (defvar shell-pop--window nil)
@@ -84,6 +82,8 @@
             (when (fboundp 'vterm-reset-cursor-point)
               (vterm-reset-cursor-point)))))))
   (bind-key "C-'" #'shell-pop-posframe-toggle)
+  :bind (:map vterm-mode-map
+			  ("C-'" . shell-pop-posframe-toggle))
   )
 
 (provide 'init-term)

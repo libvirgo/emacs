@@ -13,6 +13,23 @@
 
 ;; Example configuration for Consult
 (use-package consult
+  ;; The :init configuration is always executed (Not lazy)
+  :init
+  ;; Optionally configure the register formatting. This improves the register
+  ;; preview for `consult-register', `consult-register-load',
+  ;; `consult-register-store' and the Emacs built-ins.
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+  ;; Optionally tweak the register preview window.
+  ;; This adds thin lines, sorting and hides the mode line of the window.
+  (advice-add #'register-preview :override #'consult-register-window)
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  (advice-add #'project-find-regexp :override #'consult-ripgrep)
+  ;; Enable automatic preview at point in the *Completions* buffer. This is
+  ;; relevant when you use the default completion UI.
+  :hook (completion-list-mode . consult-preview-at-point-mode)
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
@@ -61,40 +78,7 @@
          ;; Minibuffer history
          :map minibuffer-local-map
          ("C-h" . consult-history))                 ;; orig. next-matching-history-element
-         ;; ("M-r" . consult-history))                ;; orig. previous-matching-history-element
-
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
-
-  ;; The :init configuration is always executed (Not lazy)
-  :init
-
-  ;; Optionally configure the register formatting. This improves the register
-  ;; preview for `consult-register', `consult-register-load',
-  ;; `consult-register-store' and the Emacs built-ins.
-  (setq register-preview-delay 0.5
-        register-preview-function #'consult-register-format)
-
-  ;; Optionally tweak the register preview window.
-  ;; This adds thin lines, sorting and hides the mode line of the window.
-  (advice-add #'register-preview :override #'consult-register-window)
-
-
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-  (advice-add #'project-find-regexp :override #'consult-ripgrep)
-  ;; Configure other variables and modes in the :config section,
-  ;; after lazily loading the package.
   :config
-  ;; Optionally configure preview. The default value
-  ;; is 'any, such that any key triggers the preview.
-  ;; (setq consult-preview-key 'any)
-  ;; (setq consult-preview-key (kbd "M-."))
-  ;; (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
-  ;; For some commands and buffer sources it is useful to configure the
-  ;; :preview-key on a per-command basis using the `consult-customize' macro.
   (consult-customize
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep
@@ -103,7 +87,6 @@
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key (kbd "M-.")
    :preview-key '(:debounce 0.4 any))
-  
   (defvar consult--fd-command nil)
   (defun consult--fd-builder (input)
     (unless consult--fd-command
@@ -121,7 +104,6 @@
                               (consult--join-regexps re 'extended))
                         opts)
               :highlight hl))))
-  
   (defun consult-fd (&optional dir initial)
     (interactive "P")
     (let* ((prompt-dir (consult--directory-prompt "Fd" dir))
@@ -134,21 +116,22 @@
 
 (use-package embark
   :straight (embark :files ("embark.el" "embark-consult.el" "embark-org.el"))
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
   :hook
   (embark-collect-mode . consult-preview-at-point-mode)
   :bind
   (("C-;" . embark-act)
    ("M-." . embark-dwim)
    ("C-h B" . embark-bindings))
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
   :config
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
-                 (window-parameters (mode-line-format . none)))))
+                 (window-parameters (mode-line-format . none))))
+  )
 
 (use-package wgrep)
 
@@ -166,22 +149,6 @@
 
 (use-package corfu
   :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
-  :bind ((:map corfu-map
-               ("C-SPC" . corfu-insert-separator)
-               ("C-n" . corfu-complete-common-or-next)
-               ("C-f" . corfu-quick-insert)))
-			   ;; ("M-n" . corfu-popupinfo-scroll-up)))
-			   ;; ("M-p" . corfu-popupinfo-scroll-down)))
-  :hook ((prog-mode . corfu-mode))
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
-  (corfu-separator ?\s)          ;; Orderless field separator
-  (corfu-auto-delay 0)
-  (corfu-quit-no-match t)
-  (corfu-quit-at-boundary 'separator)
-  (corfu-popupinfo-delay '(1.0 . 1.0))
   :init
   (defun corfu-complete-common-or-next ()
     "Complete common prefix or go to next candidate."
@@ -198,17 +165,24 @@
                  (stringp common)
                  (not (string= str common)))
             (insert (substring common pt))
-          (corfu-next))))))
+          (corfu-next)))))
+  :hook ((prog-mode . corfu-mode))
+  :bind ((:map corfu-map
+               ("C-SPC" . corfu-insert-separator)
+               ("C-n" . corfu-complete-common-or-next)
+               ("C-f" . corfu-quick-insert)))
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-auto-delay 0)
+  (corfu-quit-no-match t)
+  (corfu-quit-at-boundary 'separator)
+  (corfu-popupinfo-delay '(1.0 . 1.0)))
 
 (use-package emacs
   :init
-  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
-  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
-  ;; (setq read-extended-command-predicate
-  ;;       #'command-completion-default-include-p)
-
-  ;; Enable indentation+completion using the TAB key.
-  ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
 
 (use-package yasnippet-snippets
@@ -224,24 +198,24 @@
   (yasnippet-snippets-initialize))
 
 (use-package consult-yasnippet
-  :bind (("C-c C-y" . consult-yasnippet))
   :init
   (advice-add 'consult-yasnippet :before (lambda (&rest _)
 										   (unless (bound-and-true-p yas-minor-mode)
-											 (yas-minor-mode-on)))))
+											 (yas-minor-mode-on))))
+  :bind (("C-c C-y" . consult-yasnippet)))
 
 ;; for some company-backend.
 (use-package company)
 
 (use-package cape
-  :bind (
-         ("C-c c d" . cape-dabbrev)
-         ("C-c c f" . cape-file))
   :init
   (setq cape-dabbrev-min-length 1)
   (setq cape-dabbrev-check-other-buffers t)
   ;; (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  :bind (
+         ("C-c c d" . cape-dabbrev)
+         ("C-c c f" . cape-file))
   )
 
 (use-package orderless
@@ -271,14 +245,14 @@
 
 (use-package sdcv
   :straight (sdcv :host github :repo "manateelazycat/sdcv")
-  :bind (("C-h C-w" . sdcv-search-input+))
   :init
   (setq sdcv-only-data-dir t)
   (setq sdcv-dictionary-data-dir (expand-file-name "dict" clytie-local-dir))
   (setq sdcv-dictionary-simple-list    ;setup dictionary list for simple search
 		'(
         "懒虫简明英汉词典"
-        )))
+        ))
+  :bind (("C-h C-w" . sdcv-search-input+)))
 
 (use-package multi-translate
   :straight (multi-translate :host github :repo "twlz0ne/multi-translate.el")

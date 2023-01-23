@@ -3,9 +3,6 @@
 (setq clytie-org-dir (expand-file-name "Documents/org" clytie-home-dir))
 
 (use-package org-modern
-  :hook
-  (org-mode . org-modern-mode)
-  (org-agenda-finalize . org-modern-agenda)
   :init
   (setq org-todo-keywords '((sequence "TODO(t)" "DOING(i/!)" "|" "DONE(d@/!)" "ABORT(a)"))
 		org-enforce-todo-dependencies t
@@ -35,18 +32,22 @@
 		"⭠ now ─────────────────────────────────────────────────")
   (add-to-list 'electric-pair-inhibit-predicate-mode-chars-alist
                '(org-mode . (?\<)))
+  :hook
+  (org-mode . org-modern-mode)
+  (org-agenda-finalize . org-modern-agenda)
   )
 
 (use-package org
+
+
+  :init
+  (setq org-capture-templates nil
+		org-src-tab-acts-natively nil)
   :hook (org-mode . (lambda () (setq truncate-lines nil)))
   :bind
   (:map org-mode-map
 		("C-c C-y" . nil))
-  :init
-  (setq org-capture-templates nil
-		org-src-tab-acts-natively nil)
-  
-  :config
+    :config
   ;; agenda and capture
   (setq clytie-agenda-dir (expand-file-name "agenda" clytie-org-dir)
 		org-agenda-files (list clytie-agenda-dir))
@@ -92,17 +93,17 @@
   :hook (org-mode . org-autolist-mode))
 
 (use-package org-roam
-  :custom
-  org-roam-directory (file-truename (expand-file-name"notes" clytie-org-dir))
+  :init
+  (setq org-roam-db-location (expand-file-name "org-roam.db" clytie-cache-dir)
+		org-id-locations-file (expand-file-name "org-id-locations" clytie-cache-dir))
   :bind (("C-c n l" . org-roam-buffer-toggle)
 		 ("C-c n f" . org-roam-node-find)
 		 ("C-c n g" . org-roam-graph)
 		 ("C-c n i" . org-roam-node-insert)
 		 ("C-c n c" . org-roam-capture)
 		 ("C-c n j" . org-roam-dailies-capture-today))
-  :init
-  (setq org-roam-db-location (expand-file-name "org-roam.db" clytie-cache-dir)
-		org-id-locations-file (expand-file-name "org-id-locations" clytie-cache-dir))
+  :custom
+  org-roam-directory (file-truename (expand-file-name"notes" clytie-org-dir))
   :config
   (org-roam-db-autosync-mode))
 

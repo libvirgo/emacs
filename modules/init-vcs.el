@@ -15,23 +15,22 @@
   :bind (("C-c v d" . vc-version-diff)))
 
 (use-package diff-hl
+  :init
+  (setq diff-hl-draw-borders nil)
+  :hook ((dired-mode . diff-hl-dired-mode)
+		 (find-file . diff-hl-mode))
+  :bind (("C-c d s" . diff-hl-show-hunk)
+         :map diff-hl-command-map
+         ("SPC" . diff-hl-mark-hunk))
   :custom-face
   (diff-hl-change ((t (:inherit diff-changed :foreground unspecified :background unspecified))))
   (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
   (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
-  :bind (("C-c d s" . diff-hl-show-hunk)
-         :map diff-hl-command-map
-         ("SPC" . diff-hl-mark-hunk))
-  :hook ((dired-mode . diff-hl-dired-mode)
-		 (find-file . diff-hl-mode))
-  :init
-  (setq diff-hl-draw-borders nil)
   :config
   ;; Highlight on-the-fly
   (diff-hl-flydiff-mode 1)
   ;; Set fringe style
   (setq-default fringes-outside-margins t)
-
   (with-no-warnings
     (defun my-diff-hl-fringe-bmp-function (_type _pos)
       "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
@@ -40,10 +39,10 @@
         1 8
         '(center t)))
     (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
-    ;; performance slow
-    (with-eval-after-load 'magit
-      (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
-      (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
+  ;; performance slow
+  (with-eval-after-load 'magit
+    (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+    (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
 (use-package vc
   :bind (("C-c v h" . vc-region-history))
@@ -75,7 +74,15 @@
   (keymap-set vundo-mode-map "d" #'my/vundo-diff))
 
 (use-package smerge-mode
-  :diminish
+  :hook ((find-file . (lambda ()
+                        (save-excursion
+						  (goto-char (point-min))
+						  (when (re-search-forward "^<<<<<<< " nil t)
+                            (smerge-mode 1)))))
+         (magit-diff-visit-file . (lambda ()
+                                    (when smerge-mode
+									  (smerge-mode-hydra/body))))
+		 )
   :config
   (pretty-hydra-define smerge-mode-hydra
 	(:title "Merge" :color pink :quit-key ("q" "C-g"))
@@ -105,15 +112,6 @@
               (bury-buffer))
 	   "Save and bury buffer" :exit t))))
   (keymap-set smerge-mode-map "C-c m s" #'smerge-mode-hydra/body)
-  :hook ((find-file . (lambda ()
-                        (save-excursion
-						  (goto-char (point-min))
-						  (when (re-search-forward "^<<<<<<< " nil t)
-                            (smerge-mode 1)))))
-         (magit-diff-visit-file . (lambda ()
-                                    (when smerge-mode
-									  (smerge-mode-hydra/body))))
-		 )
   )
 
 (use-package vc-msg)
