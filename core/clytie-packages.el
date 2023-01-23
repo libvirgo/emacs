@@ -27,7 +27,7 @@
 
 (clytie-straight-check)
 
-(dolist (pack '(use-package diminish))
+(dolist (pack '(use-package))
   (straight-use-package pack))
 
 (setq use-package-verbose t)
