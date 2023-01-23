@@ -39,8 +39,13 @@
 
 (use-package org
   :hook (org-mode . (lambda () (setq truncate-lines nil)))
+  :bind
+  (:map org-mode-map
+		("C-c C-y" . nil))
   :init
-  (setq org-capture-templates nil)
+  (setq org-capture-templates nil
+		org-src-tab-acts-natively nil)
+  
   :config
   ;; agenda and capture
   (setq clytie-agenda-dir (expand-file-name "agenda" clytie-org-dir)
