@@ -11,6 +11,7 @@
 (require 'init-hydra)
 
 ;; lang
+(require 'init-lsp)
 (require 'init-golang)
 (require 'init-rust)
 (require 'init-protobuf)

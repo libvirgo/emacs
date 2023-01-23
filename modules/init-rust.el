@@ -11,10 +11,9 @@
 							(setq-local compilation-ask-about-save nil)))))
   :init
   (setq rustic-rustfmt-args "+nightly"
-		rustic-lsp-server 'rust-analyzer
-		rustic-lsp-client 'eglot)
+		rustic-lsp-server 'rust-analyzer)
   :config
-  (add-hook 'rustic-mode-hook ' eglot-ensure)
+  (add-hook 'rustic-mode-hook 'lsp)
   )
 
 (provide 'init-rust)

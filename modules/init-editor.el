@@ -145,7 +145,9 @@ CHAR-FUNCTION
 (progn
   (keymap-global-set "s-w" #'kill-current-buffer)
   (keymap-global-set "s-[" #'switch-to-prev-buffer)
-  (keymap-global-set "s-]" #'switch-to-next-buffer))
+  (keymap-global-set "s-]" #'switch-to-next-buffer)
+  (keymap-global-set "M-n" #'scroll-other-window)
+  (keymap-global-set "M-p" #'scroll-other-window-down))
 
 (use-package separedit
   :bind

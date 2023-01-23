@@ -165,13 +165,13 @@
   )
 
 (use-package corfu
-  :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el" "extensions/corfu-popupinfo.el"))
+  :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
                ("C-n" . corfu-complete-common-or-next)
-               ("C-f" . corfu-quick-insert)
-			   ("M-n" . corfu-popupinfo-scroll-up)
-			   ("M-p" . corfu-popupinfo-scroll-down)))
+               ("C-f" . corfu-quick-insert)))
+			   ;; ("M-n" . corfu-popupinfo-scroll-up)))
+			   ;; ("M-p" . corfu-popupinfo-scroll-down)))
   :hook ((prog-mode . corfu-mode))
   ;; Optional customizations
   :custom
@@ -198,9 +198,7 @@
                  (stringp common)
                  (not (string= str common)))
             (insert (substring common pt))
-          (corfu-next)))))
-  :config
-  (corfu-popupinfo-mode))
+          (corfu-next))))))
 
 (use-package emacs
   :init
@@ -254,8 +252,7 @@
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '(
-                                        (file (styles partial-completion))
-                                        (eglot (styles orderless))))
+                                        (file (styles partial-completion))))
   :config
   (defun without-if-bang (pattern _index _total)
     (cond
@@ -265,13 +262,7 @@
       `(orderless-without-literal . ,(substring pattern 1)))))
   (add-to-list 'orderless-style-dispatchers #'without-if-bang))
 
-(use-package eglot
-  :straight (:type built-in)
-  :init
-  (with-eval-after-load 'embark
-      (push 'embark--allow-edit
-            (alist-get 'eglot-rename embark-target-injection-hooks)))
-  )
+
 
 (use-package corfu-english-helper
   :straight (corfu-english-helper :type git :host github :repo "manateelazycat/corfu-english-helper" :feature orfu-english-helper-data)
