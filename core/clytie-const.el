@@ -3,6 +3,7 @@
 (defconst clytie-user
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
+(defconst clytie-home-dir (getenv "HOME"))
 (defconst sys/darwinp (eq system-type 'darwin))
 (defconst sys/linuxp
   (and (eq system-type 'gnu/linux)

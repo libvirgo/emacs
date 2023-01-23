@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
+(setq clytie-org-dir (expand-file-name "Documents/org" clytie-home-dir))
+
 (use-package org-modern
   :hook
   (org-mode . org-modern-mode)
@@ -39,7 +41,7 @@
   :hook (org-mode . (lambda () (setq truncate-lines nil)))
   :init
   ;; agenda and capture
-  (setq clytie-agenda-dir (expand-file-name "Documents/org/agenda" (getenv "HOME")))
+  (setq clytie-agenda-dir (expand-file-name "agenda" clytie-org-dir))
   (setq org-capture-templates nil
 		org-agenda-files (list clytie-agenda-dir))
   (defun capture-todo-week-file (p)
@@ -76,7 +78,7 @@
 		(create-password)
       password))
   (add-to-list 'org-capture-templates
-			   '("p" "Passwords" entry (file "~/Documents/org/passwords.org.gpg")
+			   '("p" "Passwords" entry (file (expand-file-name "passwords.org.gpg" clytie-org-dir))
 				 "* %U - %^{title} %^G\n\n  - Name: %^{Name}\n  - Password: %(get-or-create-password)"
 				 :empty-lines 1 :kill-buffer t)))
 
@@ -85,7 +87,7 @@
 
 (use-package org-roam
   :custom
-  org-roam-directory (file-truename "~/Documents/org/notes")
+  org-roam-directory (file-truename (expand-file-name"notes" clytie-org-dir))
   :bind (("C-c n l" . org-roam-buffer-toggle)
 		 ("C-c n f" . org-roam-node-find)
 		 ("C-c n g" . org-roam-graph)
