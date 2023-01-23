@@ -1,49 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
 
-(use-package hydra)
-
-(use-package major-mode-hydra
-  :init
-  (pretty-hydra-define fast-switch
-	(:title "Switch" :color pink :quit-key ("C-g"))
-	("Window"
-	 (("*" maximize-window)
-	  ("w" ace-delete-other-windows :color blue)
-	  ("<" shrink-window-horizontally)
-	  (">" enlarge-window-horizontally)
-	  ("k" shrink-window)
-	  ("j" enlarge-window))
-	 "Search"
-	 (("b" consult-buffer "search buffer" :color blue)
-	  ("a" project-find-regexp "search project" :color blue)
-	  ("i" consult-imenu :color blue)
-	  )
-	 "Project"
-	 (("p" project-switch-project "switch project")
-	  ("c" eyebrowse-create-window-config "create project window")
-	  ("d" eyebrowse-close-window-config "close project window")
-	  ("r" eyebrowse-rename-window-config "rename project window")
-	  ("l" eyebrowse-next-window-config "switch next window")
-	  ("h" eyebrowse-prev-window-config "switch prev window"))
-	 "Misc"
-	 (("C-k" kill-current-buffer "kill buffer")
-	  ("+" org-capture :color blue)
-	  ("=" org-agenda :color blue)
-	  )))
-  (pretty-hydra-define git-diff-hunk
-	(:title "Git" :color pink :quit-key ("C-g"))
-	("Diff"
-	 (("s" diff-hl-show-hunk :color blue)
-	  ("n" diff-hl-show-hunk-next)
-	  ("p" diff-hl-show-hunk-previous)
-	  ("r" diff-hl-show-hunk-revert-hunk))
-	 "Magit"
-	 (("f" magit-file-dispatch :color blue)
-	  ("b" magit-blame :color blue))))
-  :bind
-  (("C-." . fast-switch/body)
-   ("s-d" . git-diff-hunk/body)))
-
 (use-package xref
   :init
   (setq xref-search-program 'ripgrep))
@@ -209,11 +165,14 @@
   )
 
 (use-package corfu
-  :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el"))
+  :straight (corfu :type git :host github :repo "minad/corfu" :files ("corfu.el" "extensions/corfu-quick.el" "extensions/corfu-popupinfo.el"))
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
                ("C-n" . corfu-complete-common-or-next)
-               ("C-f" . corfu-quick-insert)))
+               ("C-f" . corfu-quick-insert)
+			   ("M-n" . corfu-popupinfo-scroll-up)
+			   ("M-p" . corfu-popupinfo-scroll-down)))
+  :hook ((prog-mode . corfu-mode))
   ;; Optional customizations
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
@@ -222,6 +181,7 @@
   (corfu-auto-delay 0)
   (corfu-quit-no-match t)
   (corfu-quit-at-boundary 'separator)
+  (corfu-popupinfo-delay '(1.0 . 1.0))
   :init
   (defun corfu-complete-common-or-next ()
     "Complete common prefix or go to next candidate."
@@ -239,7 +199,8 @@
                  (not (string= str common)))
             (insert (substring common pt))
           (corfu-next)))))
-  (global-corfu-mode))
+  :config
+  (corfu-popupinfo-mode))
 
 (use-package emacs
   :init
@@ -252,48 +213,38 @@
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
 
-;; yasnippet replacement.
-(use-package tempel
-  :custom
-  (tempel-trigger-prefix "<")
-  :bind (:map tempel-map
-              ("M-n" . tempel-next)
-              ("M-p" . tempel-previous)
-              ("M-a" . tempel-beginning)
-              ("RET" . tempel-done)
-              )
+(use-package yasnippet-snippets
+  :straight (:host github :type git :repo "AndreaCrotti/yasnippet-snippets" :depth full :files ("yasnippet-snippets.el" "snippets") :fork (:repo "libvirgo" :protocol ssh)))
+
+(use-package yasnippet
   :init
-  ;; Setup completion at point
-  (defun tempel-setup-capf ()
-    (setq-local completion-at-point-functions
-                (cons #'tempel-complete
-                      completion-at-point-functions)))
-  (add-hook 'prog-mode-hook 'tempel-setup-capf)
-  (add-hook 'text-mode-hook 'tempel-setup-capf)
-  (setq-default tempel-path (expand-file-name "tempel-collection/templates/*.eld" clytie-lib-dir))
-  )
+  (setq yas-snippet-dirs nil)
+  :bind (:map yas-keymap
+			  ("C-c C-n" . yas-next-field)
+			  ("C-c C-p" . yas-prev-field))
+  :config
+  (yasnippet-snippets-initialize))
+
+(use-package consult-yasnippet
+  :bind (("C-c C-y" . consult-yasnippet))
+  :init
+  (advice-add 'consult-yasnippet :before (lambda (&rest _)
+										   (unless (bound-and-true-p yas-minor-mode)
+											 (yas-minor-mode-on)))))
+
+;; for some company-backend.
+(use-package company)
 
 (use-package cape
   :bind (
-         ("C-c c p" . completion-at-point)
          ("C-c c d" . cape-dabbrev)
          ("C-c c f" . cape-file))
-  :hook
-  ((emacs-lisp-mode . (lambda ()
-                        (setq-local completion-at-point-functions
-                                    (list (cape-super-capf
-                                           #'tempel-complete
-                                           #'elisp-completion-at-point
-                                           #'cape-dabbrev))))))
   :init
   (setq cape-dabbrev-min-length 1)
   (setq cape-dabbrev-check-other-buffers t)
   ;; (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   )
-
-;; for some company-backend.
-(use-package company)
 
 (use-package orderless
   :init

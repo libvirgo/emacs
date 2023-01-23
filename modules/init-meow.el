@@ -10,6 +10,14 @@
              meow-esc-mode)
   :bind (:map meow-insert-state-keymap
               ([control-bracketleft] . meow-insert-exit))
+  :hook
+  ((meow-insert-mode . (lambda ()
+						 (when (bound-and-true-p corfu-mode)
+												 (corfu-quit))
+						 (when (bound-and-true-p yas-minor-mode)
+												 (yas-abort-snippet))
+						 (hydra-keyboard-quit)
+						 )))
   :config
   (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
@@ -102,7 +110,9 @@
    '("<escape>" . ignore)))
   (meow-setup)
   (meow-global-mode 1)
-  (define-key input-decode-map (kbd "C-[") [control-bracketleft])
+  (keymap-set input-decode-map "C-[" [control-bracketleft])
+  (add-hook 'clytie-escape-hook #'corfu-quit)
+  (add-hook 'clytie-escape-hook #'yas-abort-snippet)
   )
 
 (provide 'init-meow)
