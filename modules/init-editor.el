@@ -30,6 +30,14 @@
 	(add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" clytie-local-dir)))
   )
 
+(use-package subword
+  :straight (:type built-in)
+  :hook (after-init . global-subword-mode))
+
+(use-package delsel
+  :straight (:type built-in)
+  :hook (after-init . delete-selection-mode))
+
 (use-package tramp
   :straight (:type built-in)
   :init
