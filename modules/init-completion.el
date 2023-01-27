@@ -166,7 +166,7 @@
                  (not (string= str common)))
             (insert (substring common pt))
           (corfu-next)))))
-  :hook ((prog-mode . corfu-mode))
+  (global-corfu-mode)
   :bind ((:map corfu-map
                ("C-SPC" . corfu-insert-separator)
                ("C-n" . corfu-complete-common-or-next)
