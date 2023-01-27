@@ -70,4 +70,10 @@
 
 (setq switch-to-prev-buffer-skip #'vmacs-switch-to-prev-buffer-skip)
 
+(defun copy-thing-at-point (thing)
+  "Copy url at thing."
+  (save-excursion
+	(avy-goto-word-or-subword-1)
+	(kill-new (thing-at-point thing))))
+
 (provide 'clytie-util)
