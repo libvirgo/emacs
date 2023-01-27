@@ -21,6 +21,17 @@
    (:title "Go Commands" :color blue)
    ("Doc"
     (("d" godoc-at-point "doc at point"))
+	"Goto"
+	(("gf" consult-flymake "flymake goto")
+	 ("gi" go-goto-method-receiver "goto method receiver")
+	 ("ga" go-goto-arguments "goto func arguments")
+	 ("gr" go-goto-return-values "goto return values")
+	 )
+	""
+	(("gn" go-goto-function-name "goto func name")
+	 ("gu" go-goto-imports "goto imports")
+	 ("gF" go-goto-function "goto function")
+	 ("gd" go-goto-docstring "goto docstring"))
 	"Guru"
 	(("r" go-guru-implements "find impl or interface.")
 	 ("c" go-guru-callers "find func callers")

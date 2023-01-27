@@ -48,6 +48,36 @@
 		  (propertize (format-mode-line mode-name)
 					  'face '(:inherit font-lock-type-face))))
 
+(use-package flymake
+  :straight (:type built-in)
+  :config
+  (defun moon-flymake-mode-line ()
+	(let* ((known (hash-table-keys flymake--state))
+           (running (flymake-running-backends))
+           (disabled (flymake-disabled-backends))
+           (reported (flymake-reporting-backends))
+           (diags-by-type (make-hash-table))
+           (all-disabled (and disabled (null running)))
+           (some-waiting (cl-set-difference running reported)))
+      (maphash (lambda (_b state)
+				 (mapc (lambda (diag)
+						 (push diag
+                               (gethash (flymake--diag-type diag)
+										diags-by-type)))
+                       (flymake--state-diags state)))
+               flymake--state)
+      (apply #'concat
+			 (mapcar (lambda (args)
+                       (apply (lambda (num str face)
+								(propertize
+								 (format str num) 'face face))
+                              args))
+					 `((,(length (gethash :error diags-by-type)) "[%d/" error)
+					   (,(length (gethash :warning diags-by-type)) "%d] " warning)
+                       )))))
+  )
+
+
 (defun +format-mode-line ()
   (let* ((lhs '(
                 (:eval (when (bound-and-true-p meow-mode) (meow-indicator)))
@@ -59,10 +89,8 @@
                 (:eval (propertize "%c" 'face 'font-lock-type-face))
                 ;; (:eval " L%l C%C")
                 (:eval (when (bound-and-true-p flycheck-mode) flycheck-mode-line))
-                (:eval (when (bound-and-true-p flymake-mode) flymake-mode-line-format))
-
-                       ))
-
+                (:eval (when (bound-and-true-p flymake-mode) (concat " " (moon-flymake-mode-line))))
+                ))
          (rhs '(
                 ;; (:eval minor-mode-alist) " "
                 (:eval (eyebrowse-mode-line-indicator))
