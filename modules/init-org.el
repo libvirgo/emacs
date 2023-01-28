@@ -38,8 +38,6 @@
   )
 
 (use-package org
-
-
   :init
   (setq org-capture-templates nil
 		org-src-tab-acts-natively nil)
@@ -47,7 +45,7 @@
   :bind
   (:map org-mode-map
 		("C-c C-y" . nil))
-    :config
+  :config
   ;; agenda and capture
   (setq clytie-agenda-dir (expand-file-name "agenda" clytie-org-dir)
 		org-agenda-files (list clytie-agenda-dir))
@@ -85,7 +83,7 @@
 		(create-password)
       password))
   (add-to-list 'org-capture-templates
-			   '("p" "Passwords" entry (file (expand-file-name "passwords.org.gpg" clytie-org-dir))
+			   `("p" "Passwords" entry (file ,(expand-file-name "passwords.org.gpg" clytie-org-dir))
 				 "* %U - %^{title} %^G\n\n  - Name: %^{Name}\n  - Password: %(get-or-create-password)"
 				 :empty-lines 1 :kill-buffer t)))
 
