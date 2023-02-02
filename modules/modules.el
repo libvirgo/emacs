@@ -16,6 +16,7 @@
 (require 'init-rust)
 (require 'init-protobuf)
 (require 'init-elisp)
+(require 'init-nix)
 ;; utils
 (require 'init-input)
 (require 'init-sql)
