@@ -1,10 +1,15 @@
 ;;; -*- lexical-binding: t; -*-
 
+(if sys/linuxp
+	  (use-package rime
+		:straight (:type built-in))
+  (use-package rime
+	:straight (rime :type git
+					:host github
+					:repo "DogLooksGood/emacs-rime"
+					:files ("*.el" "Makefile" "lib.c"))))
+
 (use-package rime
-  :straight (rime :type git
-                  :host github
-                  :repo "DogLooksGood/emacs-rime"
-                  :files ("*.el" "Makefile" "lib.c"))
   :init
   (if sys/darwinp
 	  (progn
@@ -14,7 +19,9 @@
 		 rime-user-data-dir "~/Library/Rime"
 		 ))
 	(progn
-	  (setq rime-user-data-dir "~/.config/ibus/rime")))
+	  (require 'rime)
+	  (setq rime-user-data-dir (expand-file-name "rime" clytie-cache-dir)
+			rime-share-data-dir "~/.config/ibus/rime")))
   (setq default-input-method "rime"
         rime-show-candidate 'posframe
         rime-posframe-style 'vertical)

@@ -195,6 +195,7 @@
 			  ("C-c C-n" . yas-next-field)
 			  ("C-c C-p" . yas-prev-field))
   :config
+  (setq yas--default-user-snippets-dir nil)
   (yasnippet-snippets-initialize))
 
 (use-package consult-yasnippet

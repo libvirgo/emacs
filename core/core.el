@@ -51,7 +51,7 @@
 		 ((find-font (font-spec :name "Iosevka NF"))
 		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka NF" 22)))
 		 ((find-font (font-spec :name "Iosevka Nerd Font"))
-		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka Nerd Font" 15))))
+		  (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Iosevka Nerd Font" 22))))
         ;; chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
