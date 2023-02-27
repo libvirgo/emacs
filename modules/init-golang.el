@@ -4,6 +4,7 @@
 
 (use-package go-mode
   :straight (:files ("go-mode.el" "go-guru.el"))
+  :mode ("\\.go\\'" . go-mode)
   :hook ((before-save . (lambda () (when (eq major-mode 'go-mode)
 									 (gofmt))))
 		 (go-mode . lsp)
