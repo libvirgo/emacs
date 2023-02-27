@@ -77,7 +77,6 @@
                        )))))
   )
 
-
 (defun +format-mode-line ()
   (let* ((lhs '(
                 (:eval (when (bound-and-true-p meow-mode) (meow-indicator)))
