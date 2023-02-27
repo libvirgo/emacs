@@ -18,7 +18,7 @@
 (require 'init-elisp)
 (require 'init-nix)
 ;; utils
-(require 'init-input)
+;; (require 'init-input)
 (require 'init-sql)
 (require 'init-email)
 

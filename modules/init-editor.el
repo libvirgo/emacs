@@ -161,4 +161,8 @@ CHAR-FUNCTION
   (:map prog-mode-map
 		("C-c '" . #'separedit)))
 
+(use-package direnv
+  :init
+  (direnv-mode))
+
 (provide 'init-editor)
