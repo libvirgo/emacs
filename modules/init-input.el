@@ -55,7 +55,7 @@
 				  pyim-probe-dynamic-english))
   (setq-default pyim-punctuation-translate-p '(no))
   (setq pyim-indicator-list (list #'pyim-indicator-with-cursor-color))
-  :bind ("M-j" . pyim-convert-string-at-point)
+  :bind ("s-j" . pyim-convert-string-at-point)
   :config
   (use-package pyim-basedict
 	:init
