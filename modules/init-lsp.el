@@ -12,7 +12,8 @@
   (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
   :hook
   ((lsp-mode . (lambda () (yas-minor-mode-on)))
-   (lsp-completion-mode . my/lsp-mode-setup-completion))
+   (lsp-completion-mode . my/lsp-mode-setup-completion)
+   (my-lsp-before . direnv-update-directory-environment))
   :custom
   (lsp-completion-provider :none) ;; we use Corfu!
   (lsp-modeline-code-actions-enable nil)

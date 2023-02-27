@@ -77,6 +77,12 @@
 (advice-add #'load-theme :after (lambda (&rest _)
 								  (run-hooks 'after-load-theme-hook)))
 
+(defvar my-lsp-before-hook nil
+  "Hook before run lsp")
+
+(advice-add #'lsp :before (lambda (&rest _)
+							(run-hooks 'my-lsp-before-hook)))
+
 (use-package composite
   :straight (:type built-in)
   :init (defvar composition-ligature-table (make-char-table nil))
